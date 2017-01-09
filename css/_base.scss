@@ -1,0 +1,61 @@
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+::selection {
+	background-color: darken($white, 5%);
+	color: $black;
+}
+
+body {
+	margin:  0;
+	padding: 0;
+	background-color: $background-grey;
+	font-family: 'JohnstonITCMedium', sans-serif;
+	min-height: 100vh;
+	&.fixed {
+		position: fixed;
+		top:0;
+		left:0;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+p {
+	letter-spacing: -0.1px;
+    font-family: 'Avenir 55 Roman', sans-serif;
+    line-height: 1.75;
+    color: #5d6065;
+    font-size: 1.125rem;
+    &.grey {
+    	color: #8c9396;
+    }
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	> li {
+		margin: 0.5rem 0;
+		line-height: 1.75;
+	}
+}
+
+pre {
+	background-color: #eceef1;
+	display: block;
+	padding: 15px;
+}
+
+form {
+	width: 100%;
+	height: auto;
+}

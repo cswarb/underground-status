@@ -1,0 +1,85 @@
+.center {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.no-margin-top {
+	margin-top: 0;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0;
+}
+
+.small-margin-top {
+	margin-top: 1rem;
+}
+
+.small-margin-bottom {
+	margin-bottom: 1rem;
+}
+
+.no-margin {
+	margin: 0!important;
+}
+
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.full-block {
+	display: block;
+	width: 100%;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.monospace {
+	font-family: monospace;
+	color: #ccc;
+    font-size: 1.1rem;
+}
+
+.margin-align-left {
+	margin: 0 auto 0 0;
+}
+
+.margin-align-right {
+	margin: 0 0 0 auto;
+}
+
+.color-light {
+	color: #c1c0c0;
+}
+
+
+//Animation helper classes
+.in-viewport {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.in-viewport.fadeInDown {
+	-webkit-animation-name: fadeInDown;
+	animation-name: fadeInDown;
+}
+
+.in-viewport.fadeOutUp {
+	-webkit-animation-name: fadeOutUp;
+	animation-name: fadeOutUp;
+}

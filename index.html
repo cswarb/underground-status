@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Underground Status Checker - TFL</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/main.css" data-all-devices>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<!-- Icons by [Freepik] from flaticon.com -->
+</head>
+<body data-app-id="cd8b67bd" data-key="e64e8650106cda51cac3339611c63202">
+	<div id="container">
+		<header class="navigation">
+			<nav class="navigation__bar">
+				<div class="navigation__bar__logo">
+					<img class="logo__header logo__medium" src="img/underground-white.svg" alt="Underground Logo"/>
+					<h1 class="navigation__bar__item"><a class="navigation__bar__item--link navigation__bar__text" href="/">Transport for London <span>Service Checker</span></a></h1>
+				</div>
+				<div class="navigation__bar__items">
+					<ul class="navigation__bar__container">
+						<li class="navigation__bar__item"><a class="navigation__bar__item--link" href="img/map.png">Underground Map</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<article class="">
+
+			<section class="dataselection">
+				<button type="button" class="dataselection__filter button button__tab button__filter button__filter--selected">Lines</button>
+				<button type="button" class="dataselection__filter button button__tab button__filter">Stations</button>
+			</section>
+
+			<section class="undergroundline">
+				<header class="undergroundline__header">
+					<form action="">
+						<div class="searcharea">
+							<input type="text" class="searcharea__input" placeholder="e.g. District" min="2" max="30" autofocus="autofocus"/>
+						</div>
+					</form>
+				</header>
+				<div class="undergroundline__lines">
+					<h2 class="undergroundline__title">Popular Lines:</h2>
+					<article class="undergroundline__line undergroundline__line--central">
+						<h1 class="undergroundline__line__name">Central</h1>
+						<div class="undergroundline__line__status">
+							<!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+							<p class="undergroundline__line__status__text">Full Service</p>
+						</div>
+						<div class="undergroundline__line__toggle">
+							<button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+								<p class="button__icon__text">Find out more</p>
+								<img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+							</button>
+						</div>
+					</article>
+					<article class="undergroundline__line undergroundline__line--picadilly">
+						<h1 class="undergroundline__line__name">Picadilly</h1>
+						<div class="undergroundline__line__status">
+							<!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+							<p class="undergroundline__line__status__text">Full Service</p>
+						</div>
+						<div class="undergroundline__line__toggle">
+							<button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+								<p class="button__icon__text">Find out more</p>
+								<img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+							</button>
+						</div>
+					</article>
+					<article class="undergroundline__line undergroundline__line--hammersmithandcity">
+						<h1 class="undergroundline__line__name">Hammersmith And City</h1>
+						<div class="undergroundline__line__status">
+							<!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+							<p class="undergroundline__line__status__text">Full Service</p>
+						</div>
+						<div class="undergroundline__line__toggle">
+							<button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+								<p class="button__icon__text">Find out more</p>
+								<img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+							</button>
+						</div>
+					</article>
+					<article class="undergroundline__line undergroundline__line--northern">
+						<h1 class="undergroundline__line__name">Northern</h1>
+						<div class="undergroundline__line__status">
+							<!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+							<p class="undergroundline__line__status__text">Partial Service</p>
+						</div>
+						<div class="undergroundline__line__toggle">
+							<button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+								<p class="button__icon__text">Find out more</p>
+								<img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+							</button>
+						</div>
+					</article>
+				</div>
+				<footer>
+					
+				</footer>
+			</section>
+		</article>
+		<footer class="">
+			
+		</footer>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	var tfl = tfl || {};
+		tfl.api_base_url = "https://api.tfl.gov.uk/";
+		tfl.app_id = "cd8b67bd";
+		tfl.app_key = "e64e8650106cda51cac3339611c63202";
+
+		function go(){
+			$.ajax({
+				url: tfl.api_base_url + "Line/victoria/Status?detail=true",
+				type: "GET",
+				data: {"app_id": tfl.app_id, "app_key": tfl.app_key},
+				success: function(data) {
+					console.log(data);
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+		};
+		go();		
+</script>
+</body>
+</html>

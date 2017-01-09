@@ -1,0 +1,295 @@
+//container
+#container {
+	min-height: 100vh;
+	background-color: $background-grey;
+}
+
+//nav
+.navigation {
+	background-color: $tfl-blue;
+	min-height: 5rem;
+	display: flex;
+	justify-content: flex-start;
+	padding: 2rem 2rem;
+	align-items: center;
+	&__bar {
+    	display: flex;
+    	flex-flow: column nowrap;
+		width: 100%;
+		align-items: center;
+		justify-content: flex-start;
+		@media screen and (min-width: 30rem) {
+			flex-flow: row nowrap;
+			justify-content: space-between;
+		}
+		&__text {
+			position: relative;
+			overflow: hidden;
+			margin-bottom: 1rem;
+			display: block;
+			@media screen and (min-width: 30rem) {
+				margin-bottom: 0;
+			}
+			&:before {
+				content: "";
+				background-color: #fff;
+				height: 100%;
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				animation: blockRevealRight 1s ease-in-out forwards;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			&:after {
+				content: "";
+				background-color: #fff;
+				width: 0;
+				height: 100%;
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				animation: blockRevealLeft 1s ease-in-out forwards;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+		}
+		&__container {
+			list-style: none;
+		}
+    	&__items {
+			width: 100%;
+			text-align: left;
+			flex: 1;
+			@media screen and (min-width: 30rem) {
+				text-align: right;
+			}
+    	}
+    	&__item {
+    		overflow: hidden;
+    		font-size: 1.25rem;
+     		color: $white;
+     		display: inline-block;
+      		margin: 0;
+      		&--link {
+      			text-decoration: none;
+      			color: $white;
+      			&:visited {
+      				color: $white;
+      			}
+      		}
+    	}
+    	&__logo {
+    		flex: 1;
+    		width: auto;
+			.navigation__bar__item {
+				font-size: 2rem;
+			}
+    	}
+  	}
+}
+
+
+//Main underground section
+.undergroundline {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0 0 0;
+    flex-flow: column nowrap;
+    width: 100%;
+    overflow: hidden;
+    @media screen and (min-width: 30rem) {
+		margin: 4rem 0 0 0;
+	}
+	&__header {
+		width: 100%;
+	}
+	&__title {
+		margin: 2rem 2rem 1rem 2rem;
+		font-size: 2rem;
+	}
+	&__lines {
+		width: 100%;
+		display: block;
+		margin: 5rem 0 0 0;
+	}
+	&__line {
+		padding: 2rem 1.5rem;
+		word-break: break-all;
+		color: $white;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		@media screen and (min-width: 30rem) {
+			padding: 3rem 4rem;
+		}
+		@each $line, $color in $lines {
+			&--#{$line} {
+				background-color: $color;
+			}
+		}
+		&__name {
+			flex: 2;
+			font-size: 1.5rem;
+			margin: 0;
+			text-transform: capitalize;
+			color: $white;
+			font-family: 'JohnstonITCMedium', sans-serif;
+			margin-right: 0.5rem;
+			@media screen and (min-width: 30rem) {
+				// max-width: 50%;
+				font-size: 3rem;
+			}
+		}
+		&__status {
+			text-transform: uppercase;
+			flex: 1;
+			margin: 0;
+			color: $white;
+			margin: 0;
+			font-family: 'JohnstonITCBold', sans-serif;
+			&__badge, &__text {
+				color: $white;
+				display: inline-block;
+				margin: 0;
+				font-family: 'JohnstonITCBold', sans-serif;
+			}
+			&__text {
+				font-size: 0.8rem;
+				@media screen and (min-width: 60rem) {
+					font-size: 1.25rem;
+				}
+			}
+			&--bold {
+				font-family: 'JohnstonITCBold', sans-serif;
+			}
+		}
+		&__toggle {
+			flex: 0.4;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    &__helper {
+		    	font-family: 'JohnstonITCBold', sans-serif;
+		    	color: $white;
+		    	display: inline-block;
+		    	margin-right: 0.5rem;
+		    	font-size: 1rem;
+		    }
+			&icon {
+				// background-image: url("../img/toggle.svg");
+				// background-size: 1.5rem auto;
+				// background-color: transparent;
+			}
+		}
+	}
+}
+
+//search
+.searcharea {
+	background-color: #fff;
+    width: 90%;
+    height: 5rem;
+    animation: fadeInSoftDown 0.5s ease-in-out forwards;
+    margin: 0 auto;
+    @media screen and (min-width: 30rem) {
+		width: 85%;
+	}
+	@media screen and (min-width: 60rem) {
+		width: 45%;
+	}
+	&__input {
+		border: 0;
+		width: 100%;
+		height: 100%;
+		font-size: 2rem;
+		font-family: 'JohnstonITCMedium', sans-serif;
+		text-transform: capitalize;
+		padding: 0.5rem 1rem;
+		@media screen and (min-width: 60rem) {
+			padding: 1rem;
+		}
+	}
+}
+
+
+.button {
+	border: 0;
+	background-color: transparent;
+	color: $black;
+	flex-flow: row nowrap;
+	&:hover {
+		cursor: pointer;
+	}
+	&__tab {
+
+	}
+	&__filter {
+		flex: 1;
+		padding: 2rem 2rem;
+		font-size: 1rem;
+		font-family: 'JohnstonITCBold', sans-serif;
+		text-transform: uppercase;
+		background-color: darken($background-grey, 5%);
+		@media screen and (min-width: 60rem) {
+			font-size: 1.8rem;
+			padding: 3rem;
+		}
+		&:first-child {
+			border-right: 0.1rem solid darken($background-grey, 9%);
+		}
+		&--selected {
+			background-color: $background-grey;
+			text-decoration: underline;
+		}
+	}
+	&__icon {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+		align-items: center;
+		&__text {
+			font-family: 'JohnstonITCBold', sans-serif;
+			color: $white;
+			display: none;
+			margin: 0 0.5rem 0 0;
+			font-size: 0.95rem;
+			@media screen and (min-width: 60rem) {
+				display: inline;
+			}
+		}
+	}
+}
+
+
+.dataselection {
+	display: flex;
+	flex-flow: row nowrap;
+	// @media screen and (min-width: 60rem) {
+	// 	flex-flow: row nowrap;
+	// }
+	&__filter {
+
+	}
+}
+
+
+.icon {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.logo {
+	&__header {
+		display: inline-block;
+		margin-right: 0.5rem;
+	}
+	&__medium {
+		width: 2.8rem;
+		height: auto;
+	}
+}
