@@ -20,89 +20,14 @@
                 </div>
             </nav>
         </header>
-        <article class="">
 
-            <section class="dataselection">
-                <button type="button" class="dataselection__filter button button__tab button__filter button__filter--selected">Lines</button>
-                <button type="button" class="dataselection__filter button button__tab button__filter">Stations</button>
-            </section>
-
-
-    <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">A Perpetual layered component Route</a>
-    
-    <!-- Any components linked to by routes should be output within the following tags -->
-    <router-outlet></router-outlet>
-    <router-outlet name="popup"></router-outlet>
-
-            <section class="undergroundline">
-                <header class="undergroundline__header">
-                    <form action="">
-                        <div class="searcharea">
-                            <input type="text" class="searcharea__input" placeholder="e.g. District" min="2" max="30" autofocus="autofocus"/>
-                        </div>
-                    </form>
-                </header>
-                <div class="undergroundline__lines">
-                    <h2 class="undergroundline__title">Popular Lines:</h2>
-                    <article class="undergroundline__line undergroundline__line--central">
-                        <h1 class="undergroundline__line__name">Central</h1>
-                        <div class="undergroundline__line__status">
-                            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-                            <p class="undergroundline__line__status__text">Full Service</p>
-                        </div>
-                        <div class="undergroundline__line__toggle">
-                            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                                <p class="button__icon__text">Find out more</p>
-                                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-                            </button>
-                        </div>
-                    </article>
-                    <article class="undergroundline__line undergroundline__line--picadilly">
-                        <h1 class="undergroundline__line__name">Picadilly</h1>
-                        <div class="undergroundline__line__status">
-                            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-                            <p class="undergroundline__line__status__text">Full Service</p>
-                        </div>
-                        <div class="undergroundline__line__toggle">
-                            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                                <p class="button__icon__text">Find out more</p>
-                                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-                            </button>
-                        </div>
-                    </article>
-                    <article class="undergroundline__line undergroundline__line--hammersmithandcity">
-                        <h1 class="undergroundline__line__name">Hammersmith And City</h1>
-                        <div class="undergroundline__line__status">
-                            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-                            <p class="undergroundline__line__status__text">Full Service</p>
-                        </div>
-                        <div class="undergroundline__line__toggle">
-                            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                                <p class="button__icon__text">Find out more</p>
-                                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-                            </button>
-                        </div>
-                    </article>
-                    <article class="undergroundline__line undergroundline__line--northern">
-                        <h1 class="undergroundline__line__name">Northern</h1>
-                        <div class="undergroundline__line__status">
-                            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-                            <p class="undergroundline__line__status__text">Partial Service</p>
-                        </div>
-                        <div class="undergroundline__line__toggle">
-                            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                                <p class="button__icon__text">Find out more</p>
-                                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-                            </button>
-                        </div>
-                    </article>
-                </div>
-                <footer>
-                    
-                </footer>
-            </section>
-        </article>
-        <footer class="">
+        <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">A Perpetual layered component Route</a>
             
+        <!-- Any components linked to by routes should be output within the following tags -->
+        <router-outlet></router-outlet>
+        <router-outlet name="popup"></router-outlet>
+        
+        <footer class="footer">
+            <p class="footer__text">Made by: <a class="link-primary link-text" target="_BLANK" href="//chrismakesweb.co.uk">chrismakesweb.co.uk</a></p>
         </footer>
     </div>

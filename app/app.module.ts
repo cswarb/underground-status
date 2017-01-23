@@ -14,6 +14,8 @@ import { homeModule } from "./home/home.module";
 import { aboutModule } from "./about/about.module";
 import { adminModule } from "./admin/admin.module";
 
+import { popularLinesModule } from "./popular-lines/popular-lines.module";
+
 //Global Services
 import { testService } from "./shared/services/test.service";
 import { AuthGuard } from "./shared/services/authguard.service";
@@ -32,7 +34,8 @@ import { AppRoutingModule } from './app.routes';
 
         homeModule,
         aboutModule,
-        adminModule
+        adminModule,
+        popularLinesModule,
 
     	AppRoutingModule
     ],

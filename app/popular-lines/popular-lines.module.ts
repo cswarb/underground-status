@@ -5,17 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
-import { homeComponent } from './home.component';
-import { homeDetailComponent } from './home-detail.component';
-import { homeListComponent } from './home-list.component';
+import { popularLinesComponent } from './popular-lines.component';
+// import { popularLinesListComponent } from './list/popular-lines-list.component';
+// import { popularLinesDetailComponent } from './detail/popular-lines-detail.component';
 
 //Modules
-import { popularLinesModule } from "../popular-lines/popular-lines.module";
 
 //Global Services
 
 //Routing
-import { homeRoutingModule } from "./home-routing.module";
+// import { popularLinesRoutingModule } from "./popular-lines-routing.module";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -23,29 +22,25 @@ import { homeRoutingModule } from "./home-routing.module";
     	FormsModule,
     	HttpModule,
     	JsonpModule,
-    	ReactiveFormsModule,
-
-        popularLinesModule,
-        
-        homeRoutingModule
+    	ReactiveFormsModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        homeComponent,
-        homeDetailComponent,
-        homeListComponent
+        popularLinesComponent
+        // popularLinesDetailComponent,
+        // popularLinesListComponent
     ],
     providers: [ //The service providers for this module
     ],
     exports: [
-        homeComponent,
-        homeDetailComponent,
-        homeListComponent
+        popularLinesComponent
+        // popularLinesDetailComponent,
+        // popularLinesListComponent
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	
     ],
     entryComponents: [
-        homeComponent
+        popularLinesComponent
     ]
 })
-export class homeModule { }
+export class popularLinesModule { }

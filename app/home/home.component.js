@@ -18,7 +18,7 @@ var homeComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<h2>Home</h2>\n\t\t<router-outlet></router-outlet>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <section class=\"dataselection\">\n                <button type=\"button\" class=\"dataselection__filter button button__tab button__filter button__filter--selected\">Lines</button>\n                <button type=\"button\" class=\"dataselection__filter button button__tab button__filter\">Stations</button>\n            </section>\n            \n            <section class=\"undergroundline\">\n                <header class=\"undergroundline__header\">\n                    <form action=\"\">\n                        <div class=\"searcharea\">\n                            <input type=\"text\" class=\"searcharea__input\" placeholder=\"e.g. District\" min=\"2\" max=\"30\" autofocus=\"autofocus\"/>\n                        </div>\n                    </form>\n                </header>\n\n                <popular-lines style=\"display: block;width:100%;\"></popular-lines>\n\n                <!-- <footer>\n                    \n                </footer> -->\n            </section>\n        </article>\n\t\t<router-outlet></router-outlet>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], homeComponent);

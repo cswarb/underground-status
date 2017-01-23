@@ -217,6 +217,16 @@
 }
 
 
+.footer {
+	background-color: #000000;
+	color: #ffffff;
+	&__text {
+		margin: 0;
+		padding: 2rem;
+	}
+}
+
+
 .button {
 	border: 0;
 	background-color: transparent;
@@ -293,3 +303,14 @@
 		height: auto;
 	}
 }
+
+//Link styles
+.link {
+	&-primary {
+		color: #cccccc;
+	}
+	&-text {
+		
+	}
+}
+

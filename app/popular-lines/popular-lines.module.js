@@ -14,47 +14,40 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
-var home_component_1 = require('./home.component');
-var home_detail_component_1 = require('./home-detail.component');
-var home_list_component_1 = require('./home-list.component');
+var popular_lines_component_1 = require('./popular-lines.component');
+// import { popularLinesListComponent } from './list/popular-lines-list.component';
+// import { popularLinesDetailComponent } from './detail/popular-lines-detail.component';
 //Modules
-var popular_lines_module_1 = require("../popular-lines/popular-lines.module");
 //Global Services
 //Routing
-var home_routing_module_1 = require("./home-routing.module");
-var homeModule = (function () {
-    function homeModule() {
+// import { popularLinesRoutingModule } from "./popular-lines-routing.module";
+var popularLinesModule = (function () {
+    function popularLinesModule() {
     }
-    homeModule = __decorate([
+    popularLinesModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                forms_1.ReactiveFormsModule,
-                popular_lines_module_1.popularLinesModule,
-                home_routing_module_1.homeRoutingModule
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
-                home_component_1.homeComponent,
-                home_detail_component_1.homeDetailComponent,
-                home_list_component_1.homeListComponent
+                popular_lines_component_1.popularLinesComponent
             ],
             providers: [],
             exports: [
-                home_component_1.homeComponent,
-                home_detail_component_1.homeDetailComponent,
-                home_list_component_1.homeListComponent
+                popular_lines_component_1.popularLinesComponent
             ],
             bootstrap: [],
             entryComponents: [
-                home_component_1.homeComponent
+                popular_lines_component_1.popularLinesComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], homeModule);
-    return homeModule;
+    ], popularLinesModule);
+    return popularLinesModule;
 }());
-exports.homeModule = homeModule;
-//# sourceMappingURL=home.module.js.map
+exports.popularLinesModule = popularLinesModule;
+//# sourceMappingURL=popular-lines.module.js.map

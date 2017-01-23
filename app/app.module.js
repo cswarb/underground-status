@@ -21,6 +21,7 @@ var popup_component_1 = require('./shared/components/popup.component');
 var home_module_1 = require("./home/home.module");
 var about_module_1 = require("./about/about.module");
 var admin_module_1 = require("./admin/admin.module");
+var popular_lines_module_1 = require("./popular-lines/popular-lines.module");
 //Global Services
 var test_service_1 = require("./shared/services/test.service");
 var authguard_service_1 = require("./shared/services/authguard.service");
@@ -41,6 +42,7 @@ var AppModule = (function () {
                 home_module_1.homeModule,
                 about_module_1.aboutModule,
                 admin_module_1.adminModule,
+                popular_lines_module_1.popularLinesModule,
                 app_routes_1.AppRoutingModule
             ],
             declarations: [
