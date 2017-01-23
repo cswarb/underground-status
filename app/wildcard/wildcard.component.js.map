@@ -1,0 +1,1 @@
+{"version":3,"file":"wildcard.component.js","sourceRoot":"","sources":["wildcard.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAkC,eAAe,CAAC,CAAA;AASlD;IACC;IAAe,CAAC;IAEhB,oCAAQ,GAAR;IAEA,CAAC;IAZF;QAAC,gBAAS,CAAC;YACV,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,UAAU;YACpB,QAAQ,EAAE,0BAET;SACD,CAAC;;yBAAA;IAOF,wBAAC;AAAD,CAAC,AAND,IAMC;AANY,yBAAiB,oBAM7B,CAAA"}
