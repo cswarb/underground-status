@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { testService } from "../shared/services/test.service";
 
 @Component({
 	moduleId: module.id,
@@ -7,36 +8,36 @@ import { FormControl } from '@angular/forms';
     template: `
 		<article class="">
 
-            <section class="dataselection">
-                <button type="button" class="dataselection__filter button button__tab button__filter button__filter--selected">Lines</button>
-                <button type="button" class="dataselection__filter button button__tab button__filter">Stations</button>
-            </section>
+            <filters style="display:block;width:100%"></filters>
             
             <section class="undergroundline">
-                <header class="undergroundline__header">
-                    <form action="">
-                        <div class="searcharea">
-                            <input type="text" class="searcharea__input" placeholder="e.g. District" min="2" max="30" autofocus="autofocus"/>
-                        </div>
-                    </form>
-                </header>
+	            <search style="display:block;width:100%"></search>
 
-                <popular-lines style="display: block;width:100%;"></popular-lines>
+	            {{lineData | json}}
 
-                <!-- <footer>
-                    
-                </footer> -->
+	            <line-list style="display:block;width:100%"></line-list>
             </section>
+            
         </article>
-		<router-outlet></router-outlet>
     `
 })
 export class homeComponent implements OnInit {
 
+	lineData: any;
 
+	constructor(private _testService: testService) {}
 	
 	ngOnInit() {
-		
+		this.getData();
+	}
+
+	getData() {
+		this._testService.getPromiseData().then((response) => {
+			console.log(response);
+			this.lineData = response.data;
+		}, (err) => {
+			console.log("error: ", err);
+		});
 	}
 
 }

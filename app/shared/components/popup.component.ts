@@ -16,8 +16,8 @@ import { slideInDownAnimation }   from '../../animations';
     styles: [
     `
 		.popup {
-			position: absolute;
-			bottom:0;
+			position: fixed;
+			bottom: 0;
 			right: 1rem;
 			background-color: #fff;
 			width: 20rem;

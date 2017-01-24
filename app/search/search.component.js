@@ -8,30 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-//Custom Components
-var home_component_1 = require('./home.component');
-var homeRoutingModule = (function () {
-    function homeRoutingModule() {
+var core_1 = require("@angular/core");
+var searchComponent = (function () {
+    function searchComponent() {
     }
-    homeRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                router_1.RouterModule.forChild([
-                    {
-                        path: '',
-                        component: home_component_1.homeComponent
-                    }
-                ])
-            ],
-            exports: [
-                router_1.RouterModule
-            ]
+    searchComponent.prototype.ngOnInit = function () {
+    };
+    searchComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'search',
+            templateUrl: './search.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], homeRoutingModule);
-    return homeRoutingModule;
+    ], searchComponent);
+    return searchComponent;
 }());
-exports.homeRoutingModule = homeRoutingModule;
-//# sourceMappingURL=home-routing.module.js.map
+exports.searchComponent = searchComponent;
+//# sourceMappingURL=search.component.js.map

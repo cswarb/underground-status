@@ -9,18 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var test_service_1 = require("../shared/services/test.service");
 var homeComponent = (function () {
-    function homeComponent() {
+    function homeComponent(_testService) {
+        this._testService = _testService;
     }
     homeComponent.prototype.ngOnInit = function () {
+        this.getData();
+    };
+    homeComponent.prototype.getData = function () {
+        var _this = this;
+        this._testService.getPromiseData().then(function (response) {
+            console.log(response);
+            _this.lineData = response.data;
+        }, function (err) {
+            console.log("error: ", err);
+        });
     };
     homeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <section class=\"dataselection\">\n                <button type=\"button\" class=\"dataselection__filter button button__tab button__filter button__filter--selected\">Lines</button>\n                <button type=\"button\" class=\"dataselection__filter button button__tab button__filter\">Stations</button>\n            </section>\n            \n            <section class=\"undergroundline\">\n                <header class=\"undergroundline__header\">\n                    <form action=\"\">\n                        <div class=\"searcharea\">\n                            <input type=\"text\" class=\"searcharea__input\" placeholder=\"e.g. District\" min=\"2\" max=\"30\" autofocus=\"autofocus\"/>\n                        </div>\n                    </form>\n                </header>\n\n                <popular-lines style=\"display: block;width:100%;\"></popular-lines>\n\n                <!-- <footer>\n                    \n                </footer> -->\n            </section>\n        </article>\n\t\t<router-outlet></router-outlet>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list style=\"display:block;width:100%\"></line-list>\n            </section>\n            \n        </article>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [test_service_1.testService])
     ], homeComponent);
     return homeComponent;
 }());

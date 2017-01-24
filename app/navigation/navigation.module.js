@@ -14,52 +14,37 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
-var app_component_1 = require('./app.component');
-var wildcard_component_1 = require('./wildcard/wildcard.component');
-var popup_component_1 = require('./shared/components/popup.component');
-var navigation_component_1 = require('./navigation/navigation.component');
+var navigation_component_1 = require('./navigation.component');
 //Modules
-var home_module_1 = require("./home/home.module");
-var admin_module_1 = require("./admin/admin.module");
 //Global Services
-var test_service_1 = require("./shared/services/test.service");
-var authguard_service_1 = require("./shared/services/authguard.service");
-var auth_service_1 = require("./shared/services/auth.service");
 //Routing
-var app_routes_1 = require('./app.routes');
-var AppModule = (function () {
-    function AppModule() {
+var navigationModule = (function () {
+    function navigationModule() {
     }
-    AppModule = __decorate([
+    navigationModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                forms_1.ReactiveFormsModule,
-                home_module_1.homeModule,
-                admin_module_1.adminModule,
-                app_routes_1.AppRoutingModule
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
-                app_component_1.AppComponent,
-                wildcard_component_1.wildCardComponent,
-                popup_component_1.popupComponent,
                 navigation_component_1.navigationComponent
             ],
-            providers: [
-                test_service_1.testService,
-                authguard_service_1.AuthGuard,
-                auth_service_1.AuthService
+            providers: [],
+            exports: [
+                navigation_component_1.navigationComponent
             ],
-            bootstrap: [
-                app_component_1.AppComponent
+            bootstrap: [],
+            entryComponents: [
+                navigation_component_1.navigationComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], navigationModule);
+    return navigationModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.navigationModule = navigationModule;
+//# sourceMappingURL=navigation.module.js.map

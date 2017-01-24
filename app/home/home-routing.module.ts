@@ -11,19 +11,7 @@ import { homeListComponent } from './home-list.component';
     RouterModule.forChild([
       {
         path: '',
-        component: homeComponent,
-        children: [
-          {
-            path: '',
-            component: homeListComponent,
-            children: [
-              {
-                path: 'detail',
-                component: homeDetailComponent
-              }
-            ]
-          }
-        ]
+        component: homeComponent
       }
     ])
   ],

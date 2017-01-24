@@ -31,7 +31,7 @@ var popupComponent = (function () {
             selector: '',
             template: "\n\t\t<div class=\"popup\">\n\t\t\t<h2>Popup</h2>\n\t\t\t<button type=\"button\" (click)=\"close()\">Close</button>\n\t\t</div>\t\n    ",
             styles: [
-                "\n\t\t.popup {\n\t\t\tposition: absolute;\n\t\t\tbottom:0;\n\t\t\tright: 1rem;\n\t\t\tbackground-color: #fff;\n\t\t\twidth: 20rem;\n\t\t\theight: auto;\n\t\t\tdisplay: block;\n\t\t\tborder: 1px solid grey;\n\t\t    border-radius: 3px;\n\t\t    padding: 1rem;\n\t\t    font-family: sans-serif;\n\t\t}\t\n    "
+                "\n\t\t.popup {\n\t\t\tposition: fixed;\n\t\t\tbottom: 0;\n\t\t\tright: 1rem;\n\t\t\tbackground-color: #fff;\n\t\t\twidth: 20rem;\n\t\t\theight: auto;\n\t\t\tdisplay: block;\n\t\t\tborder: 1px solid grey;\n\t\t    border-radius: 3px;\n\t\t    padding: 1rem;\n\t\t    font-family: sans-serif;\n\t\t}\t\n    "
             ],
             animations: [
                 animations_1.slideInDownAnimation

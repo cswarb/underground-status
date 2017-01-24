@@ -1,33 +1,14 @@
 <div id="container">
-        <header class="navigation">
-            <nav class="navigation__bar">
-                <div class="navigation__bar__logo">
-                    <img class="logo__header logo__medium" src="img/underground-white.svg" alt="Underground Logo"/>
-                    <h1 class="navigation__bar__item"><a class="navigation__bar__item--link navigation__bar__text" href="/">Transport for London <span>Service Checker</span></a></h1>
-                </div>
-                <div class="navigation__bar__items">
-                    <ul class="navigation__bar__container">
-                        <li class="navigation__bar__item">
-                            <a class="navigation__bar__item--link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-                        </li>
-                        <li class="navigation__bar__item">
-                            <a class="navigation__bar__item--link" [routerLink]="['/map']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Underground Map</a>
-                        </li>
-                        <li class="navigation__bar__item">
-                            <a class="navigation__bar__item--link" [routerLink]="['/admin']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Admin (Restricted Access)</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">A Perpetual layered component Route</a>
-            
-        <!-- Any components linked to by routes should be output within the following tags -->
-        <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
         
-        <footer class="footer">
-            <p class="footer__text">Made by: <a class="link-primary link-text" target="_BLANK" href="//chrismakesweb.co.uk">chrismakesweb.co.uk</a></p>
-        </footer>
-    </div>
+    <navigation></navigation>
+        
+    <!-- Any components linked to by routes should be output within the following tags -->
+    <router-outlet></router-outlet>
+    <router-outlet name="popup"></router-outlet>
+
+    <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">A Perpetual layered component Route</a>
+    
+    <footer class="footer">
+        <p class="footer__text">Made by: <a class="link-primary link-text" target="_BLANK" href="//chrismakesweb.co.uk">chrismakesweb.co.uk</a></p>
+    </footer>
+</div>

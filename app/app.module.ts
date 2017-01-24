@@ -9,12 +9,11 @@ import { AppComponent } from './app.component';
 import { wildCardComponent } from './wildcard/wildcard.component';
 import { popupComponent } from './shared/components/popup.component';
 
+import { navigationComponent } from './navigation/navigation.component';
+
 //Modules
 import { homeModule } from "./home/home.module";
-import { aboutModule } from "./about/about.module";
 import { adminModule } from "./admin/admin.module";
-
-import { popularLinesModule } from "./popular-lines/popular-lines.module";
 
 //Global Services
 import { testService } from "./shared/services/test.service";
@@ -33,16 +32,15 @@ import { AppRoutingModule } from './app.routes';
     	ReactiveFormsModule,
 
         homeModule,
-        aboutModule,
         adminModule,
-        popularLinesModule,
 
     	AppRoutingModule
     ],
     declarations: [ //The components, directives, and pipes for this module
         AppComponent,
         wildCardComponent,
-        popupComponent
+        popupComponent,
+        navigationComponent
     ],
     providers: [ //The service providers for this module
     	testService,

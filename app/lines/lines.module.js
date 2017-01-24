@@ -14,50 +14,40 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
-var home_component_1 = require('./home.component');
-var search_component_1 = require('../search/search.component');
-var filter_component_1 = require('../filter/filter.component');
+var line_list_component_1 = require('./list/line-list.component');
+// import { popularLinesListComponent } from './list/popular-lines-list.component';
+// import { popularLinesDetailComponent } from './detail/popular-lines-detail.component';
 //Modules
-var lines_module_1 = require("../lines/lines.module");
 //Global Services
-var test_service_1 = require("../shared/services/test.service");
 //Routing
-var home_routing_module_1 = require("./home-routing.module");
-var homeModule = (function () {
-    function homeModule() {
+// import { popularLinesRoutingModule } from "./popular-lines-routing.module";
+var linesModule = (function () {
+    function linesModule() {
     }
-    homeModule = __decorate([
+    linesModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                forms_1.ReactiveFormsModule,
-                lines_module_1.linesModule,
-                home_routing_module_1.homeRoutingModule
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
-                home_component_1.homeComponent,
-                search_component_1.searchComponent,
-                filter_component_1.filterComponent
+                line_list_component_1.lineListComponent
             ],
-            providers: [
-                test_service_1.testService
-            ],
+            providers: [],
             exports: [
-                home_component_1.homeComponent,
-                search_component_1.searchComponent,
-                filter_component_1.filterComponent
+                line_list_component_1.lineListComponent
             ],
             bootstrap: [],
             entryComponents: [
-                home_component_1.homeComponent
+                line_list_component_1.lineListComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], homeModule);
-    return homeModule;
+    ], linesModule);
+    return linesModule;
 }());
-exports.homeModule = homeModule;
-//# sourceMappingURL=home.module.js.map
+exports.linesModule = linesModule;
+//# sourceMappingURL=lines.module.js.map

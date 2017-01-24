@@ -9,6 +9,7 @@ import { homeModule } from "./home/home.module";
 import { popupComponent } from './shared/components/popup.component';
 import { wildCardComponent } from "./wildcard/wildcard.component";
 
+
 //Either configure routes in this Routing Module or within the module itself but not in both.
 @NgModule({
   imports: [

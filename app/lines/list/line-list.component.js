@@ -9,29 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-//Custom Components
-var home_component_1 = require('./home.component');
-var homeRoutingModule = (function () {
-    function homeRoutingModule() {
+var lineListComponent = (function () {
+    function lineListComponent() {
     }
-    homeRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                router_1.RouterModule.forChild([
-                    {
-                        path: '',
-                        component: home_component_1.homeComponent
-                    }
-                ])
-            ],
-            exports: [
-                router_1.RouterModule
-            ]
+    lineListComponent.prototype.ngOnInit = function () {
+    };
+    lineListComponent = __decorate([
+        core_1.Component({
+            moduleId: module.id,
+            selector: 'line-list',
+            templateUrl: "./line-list.template.html"
         }), 
         __metadata('design:paramtypes', [])
-    ], homeRoutingModule);
-    return homeRoutingModule;
+    ], lineListComponent);
+    return lineListComponent;
 }());
-exports.homeRoutingModule = homeRoutingModule;
-//# sourceMappingURL=home-routing.module.js.map
+exports.lineListComponent = lineListComponent;
+//# sourceMappingURL=line-list.component.js.map
