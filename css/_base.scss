@@ -7,6 +7,10 @@
 	color: $black;
 }
 
+a:focus, button:focus, input:focus {
+	outline: 3px solid #ffbf47;
+}
+
 body {
 	margin:  0;
 	padding: 0;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
 	moduleId: module.id,
@@ -6,6 +6,9 @@ import { Component, OnInit } from "@angular/core";
     templateUrl: './search.component.html'
 })
 export class searchComponent implements OnInit {
+
+	@Input() filterType;
+	@Input() searchExample;
 
 	constructor() {
 

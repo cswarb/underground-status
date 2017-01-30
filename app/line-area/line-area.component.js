@@ -13,6 +13,8 @@ var test_service_1 = require("../shared/services/test.service");
 var lineAreaComponent = (function () {
     function lineAreaComponent(_testService) {
         this._testService = _testService;
+        this.filterType = "line";
+        this.searchExample = "Circle";
     }
     lineAreaComponent.prototype.ngOnInit = function () {
         this.getData();
@@ -30,7 +32,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list style=\"display:block;width:100%\"></line-list>\n            </section>\n\n            \n            \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [test_service_1.testService])
     ], lineAreaComponent);

@@ -11,21 +11,21 @@ import { testService } from "../shared/services/test.service";
             <filters style="display:block;width:100%"></filters>
             
             <section class="undergroundline">
-	            <search style="display:block;width:100%"></search>
+	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
 
 	            {{lineData | json}}
 
 	            <line-list style="display:block;width:100%"></line-list>
             </section>
 
-            
-            
         </article>
     `
 })
 export class lineAreaComponent implements OnInit {
 
 	lineData: any;
+	filterType: string = "line";
+	searchExample: string = "Circle";
 
 	constructor(private _testService: testService) {}
 	
