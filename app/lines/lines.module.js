@@ -15,8 +15,6 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
 var line_list_component_1 = require('./list/line-list.component');
-// import { popularLinesListComponent } from './list/popular-lines-list.component';
-// import { popularLinesDetailComponent } from './detail/popular-lines-detail.component';
 //Modules
 //Global Services
 //Routing

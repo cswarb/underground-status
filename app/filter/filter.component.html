@@ -1,4 +1,4 @@
 <section class="dataselection">
-    <button type="button" class="dataselection__filter button button__tab button__filter button__filter--selected">Lines</button>
-    <button type="button" class="dataselection__filter button button__tab button__filter">Stations</button>
+    <button type="button" class="dataselection__filter button button__tab button__filter" [routerLink]="['/lines']" routerLinkActive="button__filter--selected" [routerLinkActiveOptions]="{exact: true}">Lines</button>
+    <button type="button" class="dataselection__filter button button__tab button__filter" [routerLink]="['/stations']" routerLinkActive="button__filter--selected" [routerLinkActiveOptions]="{exact: true}">Stations</button>
 </section>

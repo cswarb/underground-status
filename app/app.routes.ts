@@ -19,7 +19,7 @@ import { wildCardComponent } from "./wildcard/wildcard.component";
       */
       { 
           path: '',
-          redirectTo: '/',
+          redirectTo: '/lines',
           pathMatch: 'full' 
       },
       { 

@@ -10,7 +10,11 @@ import { homeListComponent } from './home-list.component';
   imports: [
     RouterModule.forChild([
       {
-        path: '',
+        path: 'lines',
+        component: homeComponent
+      },
+      {
+        path: 'stations',
         component: homeComponent
       }
     ])

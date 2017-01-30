@@ -20,7 +20,11 @@ var homeRoutingModule = (function () {
             imports: [
                 router_1.RouterModule.forChild([
                     {
-                        path: '',
+                        path: 'lines',
+                        component: home_component_1.homeComponent
+                    },
+                    {
+                        path: 'stations',
                         component: home_component_1.homeComponent
                     }
                 ])

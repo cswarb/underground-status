@@ -6,8 +6,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
 import { lineListComponent } from './list/line-list.component';
-// import { popularLinesListComponent } from './list/popular-lines-list.component';
-// import { popularLinesDetailComponent } from './detail/popular-lines-detail.component';
 
 //Modules
 
@@ -26,15 +24,11 @@ import { lineListComponent } from './list/line-list.component';
     ],
     declarations: [ //The components, directives, and pipes for this module
         lineListComponent
-        // popularLinesDetailComponent,
-        // popularLinesListComponent
     ],
     providers: [ //The service providers for this module
     ],
     exports: [
         lineListComponent
-        // popularLinesDetailComponent,
-        // popularLinesListComponent
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	
