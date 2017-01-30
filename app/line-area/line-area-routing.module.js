@@ -11,9 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 //Custom Components
-var home_component_1 = require('./home.component');
-var line_area_component_1 = require('../line-area/line-area.component');
-var station_area_component_1 = require('../station-area/station-area.component');
+var line_area_component_1 = require('./line-area.component');
 var homeRoutingModule = (function () {
     function homeRoutingModule() {
     }
@@ -22,18 +20,8 @@ var homeRoutingModule = (function () {
             imports: [
                 router_1.RouterModule.forChild([
                     {
-                        path: 'status',
-                        component: home_component_1.homeComponent,
-                        children: [
-                            {
-                                path: 'lines',
-                                component: line_area_component_1.lineAreaComponent
-                            },
-                            {
-                                path: 'stations',
-                                component: station_area_component_1.stationAreaComponent
-                            }
-                        ]
+                        path: '',
+                        component: line_area_component_1.lineAreaComponent
                     }
                 ])
             ],
@@ -46,4 +34,4 @@ var homeRoutingModule = (function () {
     return homeRoutingModule;
 }());
 exports.homeRoutingModule = homeRoutingModule;
-//# sourceMappingURL=home-routing.module.js.map
+//# sourceMappingURL=line-area-routing.module.js.map

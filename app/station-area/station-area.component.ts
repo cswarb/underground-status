@@ -6,10 +6,24 @@ import { testService } from "../shared/services/test.service";
 	moduleId: module.id,
     selector: '',
     template: `
-    	<router-outlet></router-outlet>
+		<article class="">
+
+            <filters style="display:block;width:100%"></filters>
+            
+            <section class="undergroundline">
+	            <search style="display:block;width:100%"></search>
+
+	            {{lineData | json}}
+
+	            <line-list style="display:block;width:100%"></line-list>
+            </section>
+
+            
+            
+        </article>
     `
 })
-export class homeComponent implements OnInit {
+export class stationAreaComponent implements OnInit {
 
 	lineData: any;
 

@@ -25,7 +25,7 @@ var AppRoutingModule = (function () {
                     */
                     {
                         path: '',
-                        redirectTo: '/lines',
+                        redirectTo: '/status/lines',
                         pathMatch: 'full'
                     },
                     {

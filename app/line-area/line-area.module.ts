@@ -5,21 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
-import { homeComponent } from './home.component';
+import { lineAreaComponent } from './line-area.component';
 
 //Modules
 import { linesModule } from "../lines/lines.module";
 import { filterModule } from "../filter/filter.module";
 import { searchModule } from "../search/search.module";
 
-import { lineAreaModule } from "../line-area/line-area.module";
-import { stationAreaModule } from "../station-area/station-area.module";
-
 //Global Services
 import { testService } from "../shared/services/test.service";
 
 //Routing
-import { homeRoutingModule } from "./home-routing.module";
+// import { homeRoutingModule } from "../home/home-routing.module";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -31,27 +28,22 @@ import { homeRoutingModule } from "./home-routing.module";
 
         linesModule,
         filterModule,
-        searchModule,
-
-        lineAreaModule,
-        stationAreaModule,
-        
-        homeRoutingModule
+        searchModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        homeComponent
+        lineAreaComponent
     ],
     providers: [ //The service providers for this module
         testService
     ],
     exports: [
-        homeComponent
+        lineAreaComponent
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	
     ],
     entryComponents: [
-        homeComponent
+        lineAreaComponent
     ]
 })
-export class homeModule { }
+export class lineAreaModule { }

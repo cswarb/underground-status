@@ -10,14 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var test_service_1 = require("../shared/services/test.service");
-var homeComponent = (function () {
-    function homeComponent(_testService) {
+var stationAreaComponent = (function () {
+    function stationAreaComponent(_testService) {
         this._testService = _testService;
     }
-    homeComponent.prototype.ngOnInit = function () {
+    stationAreaComponent.prototype.ngOnInit = function () {
         this.getData();
     };
-    homeComponent.prototype.getData = function () {
+    stationAreaComponent.prototype.getData = function () {
         var _this = this;
         this._testService.getPromiseData().then(function (response) {
             console.log(response);
@@ -26,15 +26,15 @@ var homeComponent = (function () {
             console.log("error: ", err);
         });
     };
-    homeComponent = __decorate([
+    stationAreaComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n    \t<router-outlet></router-outlet>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list style=\"display:block;width:100%\"></line-list>\n            </section>\n\n            \n            \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [test_service_1.testService])
-    ], homeComponent);
-    return homeComponent;
+    ], stationAreaComponent);
+    return stationAreaComponent;
 }());
-exports.homeComponent = homeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.stationAreaComponent = stationAreaComponent;
+//# sourceMappingURL=station-area.component.js.map

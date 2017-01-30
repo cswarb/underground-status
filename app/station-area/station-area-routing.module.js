@@ -11,29 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 //Custom Components
-var home_component_1 = require('./home.component');
-var line_area_component_1 = require('../line-area/line-area.component');
-var station_area_component_1 = require('../station-area/station-area.component');
-var homeRoutingModule = (function () {
-    function homeRoutingModule() {
+var station_area_component_1 = require('./station-area.component');
+var stationRoutingModule = (function () {
+    function stationRoutingModule() {
     }
-    homeRoutingModule = __decorate([
+    stationRoutingModule = __decorate([
         core_1.NgModule({
             imports: [
                 router_1.RouterModule.forChild([
                     {
-                        path: 'status',
-                        component: home_component_1.homeComponent,
-                        children: [
-                            {
-                                path: 'lines',
-                                component: line_area_component_1.lineAreaComponent
-                            },
-                            {
-                                path: 'stations',
-                                component: station_area_component_1.stationAreaComponent
-                            }
-                        ]
+                        path: '',
+                        component: station_area_component_1.stationAreaComponent
                     }
                 ])
             ],
@@ -42,8 +30,8 @@ var homeRoutingModule = (function () {
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], homeRoutingModule);
-    return homeRoutingModule;
+    ], stationRoutingModule);
+    return stationRoutingModule;
 }());
-exports.homeRoutingModule = homeRoutingModule;
-//# sourceMappingURL=home-routing.module.js.map
+exports.stationRoutingModule = stationRoutingModule;
+//# sourceMappingURL=station-area-routing.module.js.map
