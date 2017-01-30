@@ -4,19 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { homeRoutingModule } from "../home/home-routing.module";
+
 //Custom Components
-import { homeComponent } from './home.component';
-
-//Modules
-import { linesModule } from "../lines/lines.module";
-import { filterModule } from "../filter/filter.module";
-import { searchModule } from "../search/search.module";
-
-//Global Services
-import { testService } from "../shared/services/test.service";
-
-//Routing
-import { homeRoutingModule } from "./home-routing.module";
+import { searchComponent } from './search.component';
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -25,27 +16,21 @@ import { homeRoutingModule } from "./home-routing.module";
     	HttpModule,
     	JsonpModule,
     	ReactiveFormsModule,
-
-        linesModule,
-        filterModule,
-        searchModule,
-        
         homeRoutingModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        homeComponent
+        searchComponent
     ],
     providers: [ //The service providers for this module
-        testService
     ],
     exports: [
-        homeComponent
+        searchComponent
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	
     ],
     entryComponents: [
-        homeComponent
+        searchComponent
     ]
 })
-export class homeModule { }
+export class searchModule { }

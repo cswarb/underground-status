@@ -13,20 +13,13 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
+var home_routing_module_1 = require("../home/home-routing.module");
 //Custom Components
-var home_component_1 = require('./home.component');
-//Modules
-var lines_module_1 = require("../lines/lines.module");
-var filter_module_1 = require("../filter/filter.module");
-var search_module_1 = require("../search/search.module");
-//Global Services
-var test_service_1 = require("../shared/services/test.service");
-//Routing
-var home_routing_module_1 = require("./home-routing.module");
-var homeModule = (function () {
-    function homeModule() {
+var filter_component_1 = require('./filter.component');
+var filterModule = (function () {
+    function filterModule() {
     }
-    homeModule = __decorate([
+    filterModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
@@ -34,28 +27,23 @@ var homeModule = (function () {
                 http_1.HttpModule,
                 http_1.JsonpModule,
                 forms_1.ReactiveFormsModule,
-                lines_module_1.linesModule,
-                filter_module_1.filterModule,
-                search_module_1.searchModule,
                 home_routing_module_1.homeRoutingModule
             ],
             declarations: [
-                home_component_1.homeComponent
+                filter_component_1.filterComponent
             ],
-            providers: [
-                test_service_1.testService
-            ],
+            providers: [],
             exports: [
-                home_component_1.homeComponent
+                filter_component_1.filterComponent
             ],
             bootstrap: [],
             entryComponents: [
-                home_component_1.homeComponent
+                filter_component_1.filterComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], homeModule);
-    return homeModule;
+    ], filterModule);
+    return filterModule;
 }());
-exports.homeModule = homeModule;
-//# sourceMappingURL=home.module.js.map
+exports.filterModule = filterModule;
+//# sourceMappingURL=filter.module.js.map
