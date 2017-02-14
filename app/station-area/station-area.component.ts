@@ -31,6 +31,9 @@ export class stationAreaComponent implements OnInit {
 	
 	ngOnInit() {
 		this.getData();
+
+
+		
 	}
 
 	getData() {

@@ -1,8 +1,18 @@
 <header class="undergroundline__header">
-	{{filterType}}
+	{{filterType}} {{searchExample}}
+
     <form action="">
         <div class="searcharea">
-            <input type="text" class="searcharea__input" placeholder="e.g. {{searchExample}}" min="2" max="30" autofocus="autofocus"/>
+            <input type="text" 
+            class="searcharea__input" 
+            name="search"
+            #searchTerm 
+            [ngModel]='model' 
+            (ngModelChange)='search($event)' 
+            [placeholder]="'e.g. ' + searchExample" 
+            min="2" 
+            max="30" 
+            autofocus="autofocus"/>
         </div>
     </form>
 </header>
