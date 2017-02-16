@@ -91,7 +91,13 @@
     		font-size: 1.25rem;
      		color: $white;
      		display: inline-block;
-      		margin: 0;
+      		margin: 0 1rem;
+      		&:first-child {
+      			margin-left: 0;
+      		}
+      		&:last-child {
+      			margin-right: 0;
+      		}
       		&--link {
       			text-decoration: none;
       			color: $white;
@@ -103,8 +109,10 @@
     	&__logo {
     		flex: 1;
     		width: auto;
+    		display: flex;
+    		align-items: center;
 			.navigation__bar__item {
-				font-size: 2rem;
+				font-size: 1.2rem;
 			}
     	}
   	}

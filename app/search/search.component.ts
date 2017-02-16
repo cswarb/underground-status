@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, EventEmitter } from "@angular/core";
 import { formControl } from "@angular/forms";
 
+import { searchService } from "./search.service";
+
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
@@ -18,6 +20,8 @@ export class searchComponent implements OnInit {
 	@Input() filterType;
 	@Input() searchExample;
 
+	@Input() searchData;
+
 	//Create a Subject
 	modelChanged: Subject = new Subject();
 
@@ -25,7 +29,7 @@ export class searchComponent implements OnInit {
 	searchTerm: string;
 	debounceValue: number = 300;
 
-	constructor() {
+	constructor(private _searchService: searchService) {
 
 	}
 
@@ -33,8 +37,12 @@ export class searchComponent implements OnInit {
 		this.modelChanged
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
-            .subscribe((model) => {
-            	console.log(model);
+            .subscribe((searchTerm) => {
+            	this._searchService.queryLineList(searchTerm).then(function(res) {
+            		console.log(res);
+            	}, function(err){
+            		console.log(err);
+            	});
             };		
 	}
 

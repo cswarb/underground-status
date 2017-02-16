@@ -9,6 +9,9 @@ import { homeRoutingModule } from "../home/home-routing.module";
 //Custom Components
 import { searchComponent } from './search.component';
 
+//services
+import { searchService } from './search.service';
+
 @NgModule({
     imports: [ //All the required additional modules for this module
     	BrowserModule,
@@ -22,6 +25,7 @@ import { searchComponent } from './search.component';
         searchComponent
     ],
     providers: [ //The service providers for this module
+        searchService
     ],
     exports: [
         searchComponent

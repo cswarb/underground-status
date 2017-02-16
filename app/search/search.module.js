@@ -16,6 +16,8 @@ var http_1 = require('@angular/http');
 var home_routing_module_1 = require("../home/home-routing.module");
 //Custom Components
 var search_component_1 = require('./search.component');
+//services
+var search_service_1 = require('./search.service');
 var searchModule = (function () {
     function searchModule() {
     }
@@ -32,7 +34,9 @@ var searchModule = (function () {
             declarations: [
                 search_component_1.searchComponent
             ],
-            providers: [],
+            providers: [
+                search_service_1.searchService
+            ],
             exports: [
                 search_component_1.searchComponent
             ],

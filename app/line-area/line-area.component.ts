@@ -11,7 +11,7 @@ import { testService } from "../shared/services/test.service";
             <filters style="display:block;width:100%"></filters>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
+	            <search [filterType]="filterType" [searchExample]="searchExample" [searchData]="searchData" style="display:block;width:100%"></search>
 
 	            {{lineData | json}}
 
@@ -27,6 +27,8 @@ export class lineAreaComponent implements OnInit {
 	filterType: string = "line";
 	searchExample: string = "Circle";
 
+	searchData: any = {"search": "data"};
+
 	constructor(private _testService: testService) {}
 	
 	ngOnInit() {
@@ -40,6 +42,8 @@ export class lineAreaComponent implements OnInit {
 		}, (err) => {
 			console.log("error: ", err);
 		});
+
+
 	}
 
 }
