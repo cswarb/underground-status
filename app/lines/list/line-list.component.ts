@@ -17,4 +17,8 @@ export class lineListComponent implements OnInit {
 		
 	}
 
+	sanitizeLineId(line) {
+		return line.replace(/-/g, "");
+	}
+
 }

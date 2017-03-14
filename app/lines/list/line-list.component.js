@@ -14,6 +14,9 @@ var lineListComponent = (function () {
     }
     lineListComponent.prototype.ngOnInit = function () {
     };
+    lineListComponent.prototype.sanitizeLineId = function (line) {
+        return line.replace(/-/g, "");
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
