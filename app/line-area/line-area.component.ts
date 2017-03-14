@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { testService } from "../shared/services/test.service";
+import { lineService } from "./line.service";
 
 @Component({
 	moduleId: module.id,
@@ -13,9 +13,7 @@ import { testService } from "../shared/services/test.service";
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" [searchData]="searchData" style="display:block;width:100%"></search>
 
-	            {{lineData | json}}
-
-	            <line-list style="display:block;width:100%"></line-list>
+	            <line-list [popularLines]="popularLines" style="display:block;width:100%"></line-list>
             </section>
 
         </article>
@@ -26,24 +24,38 @@ export class lineAreaComponent implements OnInit {
 	lineData: any;
 	filterType: string = "line";
 	searchExample: string = "Circle";
-
 	searchData: any = {"search": "data"};
 
-	constructor(private _testService: testService) {}
+	constructor(private _lineService: lineService) {}
 	
 	ngOnInit() {
-		this.getData();
+		this.getAllLines();
 	}
 
-	getData() {
-		this._testService.getPromiseData().then((response) => {
-			console.log(response);
-			this.lineData = response.data;
+	getAllLines() {
+		this._lineService.getAllPossibleLines().then((response) => {
+
+			//Filter some popular lines - just get every couple for now
+			this.popularLines = response.filter(function(value, iterator){
+				if(iterator % 2){
+					return value;
+				};
+			});
+
+			//Convert to array of name only
+			this.popularLinesArray = this.popularLines.map(function(value, iterator){
+				return value.id;
+			});
+
+			//Get line statuses passing an array and reassign popularLines
+			this._lineService.getPopularLineStatuses(this.popularLinesArray).then((popularLinesData) => {
+				this.popularLines = popularLinesData;
+			}, function(err){
+				console.log("error: ", err);
+			});
 		}, (err) => {
 			console.log("error: ", err);
 		});
-
-
 	}
 
 }

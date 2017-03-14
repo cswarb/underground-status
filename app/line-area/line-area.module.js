@@ -20,7 +20,7 @@ var lines_module_1 = require("../lines/lines.module");
 var filter_module_1 = require("../filter/filter.module");
 var search_module_1 = require("../search/search.module");
 //Global Services
-var test_service_1 = require("../shared/services/test.service");
+var line_service_1 = require("./line.service");
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
 var lineAreaModule = (function () {
@@ -42,7 +42,7 @@ var lineAreaModule = (function () {
                 line_area_component_1.lineAreaComponent
             ],
             providers: [
-                test_service_1.testService
+                line_service_1.lineService
             ],
             exports: [
                 line_area_component_1.lineAreaComponent

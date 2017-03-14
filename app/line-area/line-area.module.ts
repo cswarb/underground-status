@@ -13,7 +13,7 @@ import { filterModule } from "../filter/filter.module";
 import { searchModule } from "../search/search.module";
 
 //Global Services
-import { testService } from "../shared/services/test.service";
+import { lineService } from "./line.service";
 
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
@@ -34,7 +34,7 @@ import { testService } from "../shared/services/test.service";
         lineAreaComponent
     ],
     providers: [ //The service providers for this module
-        testService
+        lineService
     ],
     exports: [
         lineAreaComponent
