@@ -3,18 +3,14 @@ import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
+import { appConstants } from "../app.constants";
 
 
 @Injectable()
 export class lineService {
-	apiUrl: string = "/app/shared/services/";
 
-	constructor(private http: Http) {
-		this.tfl = {};
-		this.tfl.api_base_url = "https://api.tfl.gov.uk/";
-      	this.tfl.app_id = "cd8b67bd";
-      	this.tfl.app_key = "e64e8650106cda51cac3339611c63202";
-      	this.tfl.detail = "true";
+	constructor(private http: Http, private _appConstants: appConstants) {
+
 	}
 
 	getHeaders() {
@@ -25,12 +21,13 @@ export class lineService {
 
 	getAllPossibleLines() {
 		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this.tfl.detail);
-		params.set("app_id", this.tfl.app_id);
-		params.set("app_key", this.tfl.app_key);
+
+		params.set("detail", this._appConstants.app_detail);
+		params.set("app_id", this._appConstants.app_id);
+		params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-			.get(tfl.api_base_url + "/Line/Mode/tube", 
+			.get(this._appConstants.api_base_url + "/Line/Mode/tube", 
 				{
 					headers: this.getHeaders()
 				}
@@ -42,9 +39,9 @@ export class lineService {
 
 	getPopularLineStatuses(ids) {
 		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this.tfl.detail);
-		params.set("app_id", this.tfl.app_id);
-		params.set("app_key", this.tfl.app_key);
+		params.set("detail", this._appConstants.app_detail);
+		params.set("app_id", this._appConstants.app_id);
+		params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
 			.get(tfl.api_base_url + "/Line/" + ids + "/Status", 

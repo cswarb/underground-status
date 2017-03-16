@@ -27,6 +27,8 @@ var authguard_service_1 = require("./shared/services/authguard.service");
 var auth_service_1 = require("./shared/services/auth.service");
 //Routing
 var app_routes_1 = require('./app.routes');
+//Constants
+var app_constants_1 = require("./app.constants");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -49,6 +51,7 @@ var AppModule = (function () {
                 navigation_component_1.navigationComponent
             ],
             providers: [
+                app_constants_1.appConstants,
                 test_service_1.testService,
                 authguard_service_1.AuthGuard,
                 auth_service_1.AuthService

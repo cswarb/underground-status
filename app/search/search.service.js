@@ -10,17 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var app_constants_1 = require("../app.constants");
 var searchService = (function () {
-    function searchService(http) {
+    function searchService(http, _appConstants) {
         var _this = this;
         this.http = http;
+        this._appConstants = _appConstants;
         this.queryLineList = function (searchTerm) {
             var params = new http_1.URLSearchParams();
-            params.set("detail", _this.tfl.detail);
-            params.set("app_id", _this.tfl.app_id);
-            params.set("app_key", _this.tfl.app_key);
+            params.set("detail", _this._appConstants.app_detail);
+            params.set("app_id", _this._appConstants.app_id);
+            params.set("app_key", _this._appConstants.app_key);
             return _this.http
-                .get(tfl.api_base_url + "Line/" + _this.cleanSearchTerm(searchTerm) + "/Status", {
+                .get(_this._appConstants.api_base_url + "Line/" + _this.cleanSearchTerm(searchTerm) + "/Status", {
                 headers: _this.getHeaders(),
                 search: params
             })
@@ -53,16 +55,11 @@ var searchService = (function () {
             headers.append('Accept', 'application/json');
             return headers;
         };
-        this.tfl = {};
-        this.tfl.api_base_url = "https://api.tfl.gov.uk/";
-        this.tfl.app_id = "cd8b67bd";
-        this.tfl.app_key = "e64e8650106cda51cac3339611c63202";
-        this.tfl.detail = "true";
     }
     ;
     searchService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, app_constants_1.appConstants])
     ], searchService);
     return searchService;
 }());

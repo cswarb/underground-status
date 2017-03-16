@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 
+import { appConstants } from "../app.constants";
+
 @Injectable()
 export class searchService {
-	constructor(private http: Http) {
-		this.tfl = {};
-		this.tfl.api_base_url = "https://api.tfl.gov.uk/";
-      	this.tfl.app_id = "cd8b67bd";
-      	this.tfl.app_key = "e64e8650106cda51cac3339611c63202";
-      	this.tfl.detail = "true";
+	constructor(private http: Http, private _appConstants: appConstants) {
+
 	};
 
 	queryLineList = (searchTerm) => {
 		let params: URLSearchParams = new URLSearchParams();
-			params.set("detail", this.tfl.detail);
-			params.set("app_id", this.tfl.app_id);
-			params.set("app_key", this.tfl.app_key);
+			params.set("detail", this._appConstants.app_detail);
+			params.set("app_id", this._appConstants.app_id);
+			params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-		.get(tfl.api_base_url + "Line/" + this.cleanSearchTerm(searchTerm)  + "/Status", 
+		.get(this._appConstants.api_base_url + "Line/" + this.cleanSearchTerm(searchTerm)  + "/Status", 
 			{
 				headers: this.getHeaders(), 
 				search: params

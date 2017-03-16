@@ -12,15 +12,11 @@ var core_1 = require("@angular/core");
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 require('rxjs/Rx');
+var app_constants_1 = require("../app.constants");
 var lineService = (function () {
-    function lineService(http) {
+    function lineService(http, _appConstants) {
         this.http = http;
-        this.apiUrl = "/app/shared/services/";
-        this.tfl = {};
-        this.tfl.api_base_url = "https://api.tfl.gov.uk/";
-        this.tfl.app_id = "cd8b67bd";
-        this.tfl.app_key = "e64e8650106cda51cac3339611c63202";
-        this.tfl.detail = "true";
+        this._appConstants = _appConstants;
     }
     lineService.prototype.getHeaders = function () {
         var headers = new Headers();
@@ -29,11 +25,11 @@ var lineService = (function () {
     };
     lineService.prototype.getAllPossibleLines = function () {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this.tfl.detail);
-        params.set("app_id", this.tfl.app_id);
-        params.set("app_key", this.tfl.app_key);
+        params.set("detail", this._appConstants.app_detail);
+        params.set("app_id", this._appConstants.app_id);
+        params.set("app_key", this._appConstants.app_key);
         return this.http
-            .get(tfl.api_base_url + "/Line/Mode/tube", {
+            .get(this._appConstants.api_base_url + "/Line/Mode/tube", {
             headers: this.getHeaders()
         })
             .map(function (res) { return res.json(); })
@@ -42,9 +38,9 @@ var lineService = (function () {
     };
     lineService.prototype.getPopularLineStatuses = function (ids) {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this.tfl.detail);
-        params.set("app_id", this.tfl.app_id);
-        params.set("app_key", this.tfl.app_key);
+        params.set("detail", this._appConstants.app_detail);
+        params.set("app_id", this._appConstants.app_id);
+        params.set("app_key", this._appConstants.app_key);
         return this.http
             .get(tfl.api_base_url + "/Line/" + ids + "/Status", {
             headers: this.getHeaders()
@@ -58,7 +54,7 @@ var lineService = (function () {
     };
     lineService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, app_constants_1.appConstants])
     ], lineService);
     return lineService;
 }());

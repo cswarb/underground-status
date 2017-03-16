@@ -23,6 +23,9 @@ import { AuthService } from "./shared/services/auth.service";
 //Routing
 import { AppRoutingModule } from './app.routes';
 
+//Constants
+import { appConstants } from "./app.constants";
+
 @NgModule({
     imports: [ //All the required additional modules for this root module
     	BrowserModule,
@@ -43,7 +46,8 @@ import { AppRoutingModule } from './app.routes';
         navigationComponent
     ],
     providers: [ //The service providers for this module
-    	testService,
+        appConstants,
+        testService,
         AuthGuard,
         AuthService
     ],
