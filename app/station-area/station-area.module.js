@@ -15,12 +15,13 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
 var station_area_component_1 = require('./station-area.component');
+var delays_component_1 = require('../shared/components/delays.component');
 //Modules
 var lines_module_1 = require("../lines/lines.module");
 var filter_module_1 = require("../filter/filter.module");
 var search_module_1 = require("../search/search.module");
 //Global Services
-var test_service_1 = require("../shared/services/test.service");
+var station_service_1 = require("./station.service");
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
 var stationAreaModule = (function () {
@@ -39,10 +40,11 @@ var stationAreaModule = (function () {
                 search_module_1.searchModule
             ],
             declarations: [
-                station_area_component_1.stationAreaComponent
+                station_area_component_1.stationAreaComponent,
+                delays_component_1.delayComponent
             ],
             providers: [
-                test_service_1.testService
+                station_service_1.stationService
             ],
             exports: [
                 station_area_component_1.stationAreaComponent

@@ -48,7 +48,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchData]=\"searchData\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularLines]=\"popularLines\" style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchData]=\"searchData\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularItems]=\"popularLines\" style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService])
     ], lineAreaComponent);

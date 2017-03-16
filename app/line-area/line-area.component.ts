@@ -13,7 +13,7 @@ import { lineService } from "./line.service";
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" [searchData]="searchData" style="display:block;width:100%"></search>
 
-	            <line-list [popularLines]="popularLines" style="display:block;width:100%"></line-list>
+	            <line-list [popularItems]="popularLines" style="display:block;width:100%"></line-list>
             </section>
 
         </article>

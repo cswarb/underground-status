@@ -401,6 +401,20 @@ form {
       .searcharea__input {
         padding: 1rem; } }
 
+emergency-delays {
+  width: 100%;
+  max-width: 38rem;
+  padding: 1rem;
+  margin: 1rem; }
+
+.delay__wrapper {
+  width: 100%;
+  background-color: #FFFFFF;
+  margin: 1rem 0;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1); }
+
 .footer {
   background-color: #000000;
   color: #ffffff; }

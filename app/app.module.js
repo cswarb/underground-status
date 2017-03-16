@@ -25,6 +25,7 @@ var admin_module_1 = require("./admin/admin.module");
 var test_service_1 = require("./shared/services/test.service");
 var authguard_service_1 = require("./shared/services/authguard.service");
 var auth_service_1 = require("./shared/services/auth.service");
+var delay_service_1 = require("./shared/services/delay.service");
 //Routing
 var app_routes_1 = require('./app.routes');
 //Constants
@@ -54,7 +55,8 @@ var AppModule = (function () {
                 app_constants_1.appConstants,
                 test_service_1.testService,
                 authguard_service_1.AuthGuard,
-                auth_service_1.AuthService
+                auth_service_1.AuthService,
+                delay_service_1.delayService
             ],
             bootstrap: [
                 app_component_1.AppComponent

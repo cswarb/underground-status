@@ -6,6 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
 import { stationAreaComponent } from './station-area.component';
+import { delayComponent } from '../shared/components/delays.component';
 
 //Modules
 import { linesModule } from "../lines/lines.module";
@@ -13,7 +14,7 @@ import { filterModule } from "../filter/filter.module";
 import { searchModule } from "../search/search.module";
 
 //Global Services
-import { testService } from "../shared/services/test.service";
+import { stationService } from "./station.service";
 
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
@@ -31,10 +32,11 @@ import { testService } from "../shared/services/test.service";
         searchModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        stationAreaComponent
+        stationAreaComponent,
+        delayComponent
     ],
     providers: [ //The service providers for this module
-        testService
+        stationService
     ],
     exports: [
         stationAreaComponent

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { testService } from "../shared/services/test.service";
+import { stationService } from "./station.service";
+import { delayService } from "../shared/services/delay.service";
 
 @Component({
 	moduleId: module.id,
@@ -13,9 +14,11 @@ import { testService } from "../shared/services/test.service";
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
 
+				<emergency-delays [delays]="delays"></emergency-delays>
+
 	            {{lineData | json}}
 
-	            <line-list style="display:block;width:100%"></line-list>
+	            <line-list [popularItems]="popularStations" style="display:block;width:100%"></line-list>
             </section>
                   
         </article>
@@ -27,19 +30,43 @@ export class stationAreaComponent implements OnInit {
 	filterType: string = "station";
 	searchExample: string = "Bank";
 
-	constructor(private _testService: testService) {}
+	constructor(private _stationService: stationService, private _delayService: delayService) {}
 	
 	ngOnInit() {
-		this.getData();
-
-
-		
+		this.getAllStations();		
+		this.getAllDelays();		
 	}
 
-	getData() {
-		this._testService.getPromiseData().then((response) => {
+	getAllDelays() {
+		this._delayService.getAllDelays("tube").then((response) => {
+			this.delays = response;
 			console.log(response);
-			this.lineData = response.data;
+		}, (err) => {
+			console.log(err);
+		});
+	}
+
+	getAllStations() {
+		this._stationService.getAllPossibleStations().then((response) => {
+
+			//Filter some popular lines - just get every couple for now
+			this.popularStations = response.filter(function(value, iterator){
+				if(iterator % 2){
+					return value;
+				};
+			});
+
+			//Convert to array of name only
+			this.popularStationsArray = this.popularStations.map(function(value, iterator){
+				return value.id;
+			});
+
+			//Get line statuses passing an array and reassign popularStations
+			this._stationService.getPopularStationStatuses(this.popularStationsArray).then((popularStationsData) => {
+				this.popularStations = popularStationsData;
+			}, function(err){
+				console.log("error: ", err);
+			});
 		}, (err) => {
 			console.log("error: ", err);
 		});

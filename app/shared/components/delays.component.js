@@ -9,27 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var lineListComponent = (function () {
-    function lineListComponent() {
+var delayComponent = (function () {
+    function delayComponent() {
     }
-    lineListComponent.prototype.ngOnInit = function () {
-    };
-    lineListComponent.prototype.sanitizeLineId = function (line) {
-        return line.replace(/-/g, "");
+    delayComponent.prototype.ngOnInit = function () {
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], lineListComponent.prototype, "popularItems", void 0);
-    lineListComponent = __decorate([
+    ], delayComponent.prototype, "delays", void 0);
+    delayComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'line-list',
-            templateUrl: "./line-list.template.html"
+            selector: 'emergency-delays',
+            template: "\n\t\t<div *ngFor=\"let delay of delays\" class=\"delay\">\n\t\t\t<div class=\"delay__wrapper\">\n\t\t\t\t<p>{{delay?.description}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedRoutes.length > 0\">{{delay?.affectedRoutes}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedStops.length > 0\">{{delay?.affectedStops}}</p>\n\t\t\t</div>\n\t\t</div>\t\n    "
         }), 
         __metadata('design:paramtypes', [])
-    ], lineListComponent);
-    return lineListComponent;
+    ], delayComponent);
+    return delayComponent;
 }());
-exports.lineListComponent = lineListComponent;
-//# sourceMappingURL=line-list.component.js.map
+exports.delayComponent = delayComponent;
+//# sourceMappingURL=delays.component.js.map

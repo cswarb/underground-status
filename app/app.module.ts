@@ -19,6 +19,7 @@ import { adminModule } from "./admin/admin.module";
 import { testService } from "./shared/services/test.service";
 import { AuthGuard } from "./shared/services/authguard.service";
 import { AuthService } from "./shared/services/auth.service";
+import { delayService } from "./shared/services/delay.service";
 
 //Routing
 import { AppRoutingModule } from './app.routes';
@@ -49,7 +50,8 @@ import { appConstants } from "./app.constants";
         appConstants,
         testService,
         AuthGuard,
-        AuthService
+        AuthService,
+        delayService
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	AppComponent
