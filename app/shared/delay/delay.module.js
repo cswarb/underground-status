@@ -14,49 +14,34 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
-var line_area_component_1 = require('./line-area.component');
-//Modules
-var lines_module_1 = require("../lines/lines.module");
-var filter_module_1 = require("../filter/filter.module");
-var search_module_1 = require("../search/search.module");
-var delay_module_1 = require("../shared/delay/delay.module");
-//Global Services
-var line_service_1 = require("./line.service");
-//Routing
-// import { homeRoutingModule } from "../home/home-routing.module";
-var lineAreaModule = (function () {
-    function lineAreaModule() {
+var delay_component_1 = require('./delay.component');
+var delayModule = (function () {
+    function delayModule() {
     }
-    lineAreaModule = __decorate([
+    delayModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                forms_1.ReactiveFormsModule,
-                lines_module_1.linesModule,
-                filter_module_1.filterModule,
-                search_module_1.searchModule,
-                delay_module_1.delayModule
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
-                line_area_component_1.lineAreaComponent
+                delay_component_1.delayComponent
             ],
-            providers: [
-                line_service_1.lineService
-            ],
+            providers: [],
             exports: [
-                line_area_component_1.lineAreaComponent
+                delay_component_1.delayComponent
             ],
             bootstrap: [],
             entryComponents: [
-                line_area_component_1.lineAreaComponent
+                delay_component_1.delayComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], lineAreaModule);
-    return lineAreaModule;
+    ], delayModule);
+    return delayModule;
 }());
-exports.lineAreaModule = lineAreaModule;
-//# sourceMappingURL=line-area.module.js.map
+exports.delayModule = delayModule;
+//# sourceMappingURL=delay.module.js.map

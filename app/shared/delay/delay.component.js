@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var delayComponent = (function () {
     function delayComponent() {
+        this.delays = [];
     }
     delayComponent.prototype.ngOnInit = function () {
     };
@@ -22,11 +23,11 @@ var delayComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'emergency-delays',
-            template: "\n\t\t<div *ngFor=\"let delay of delays\" class=\"delay\">\n\t\t\t<div class=\"delay__wrapper\">\n\t\t\t\t<p>{{delay?.description}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedRoutes.length > 0\">{{delay?.affectedRoutes}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedStops.length > 0\">{{delay?.affectedStops}}</p>\n\t\t\t</div>\n\t\t</div>\t\n    "
+            template: "\n    \t<div *ngIf=\"delays?.length < 1\" class=\"center\">\n\t\t\t<p>Currently no delays reported.</p>\n    \t</div>\n\t\t<div *ngFor=\"let delay of delays\" class=\"delay\">\n\t\t\t<div class=\"delay__wrapper\">\n\t\t\t\t<p>{{delay?.description}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedRoutes.length > 0\">{{delay?.affectedRoutes}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedStops.length > 0\">{{delay?.affectedStops}}</p>\n\t\t\t</div>\n\t\t</div>\t\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], delayComponent);
     return delayComponent;
 }());
 exports.delayComponent = delayComponent;
-//# sourceMappingURL=delays.component.js.map
+//# sourceMappingURL=delay.component.js.map

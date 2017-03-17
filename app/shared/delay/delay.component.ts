@@ -4,6 +4,9 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 	moduleId: module.id,
     selector: 'emergency-delays',
     template: `
+    	<div *ngIf="delays?.length < 1" class="center">
+			<p>Currently no delays reported.</p>
+    	</div>
 		<div *ngFor="let delay of delays" class="delay">
 			<div class="delay__wrapper">
 				<p>{{delay?.description}}</p>
@@ -15,7 +18,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 })
 export class delayComponent implements OnInit {
 
-	@Input() delays;
+	@Input() delays = [];
 
 	constructor(){}	
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { lineService } from "./line.service";
+import { delayService } from "../shared/delay/delay.service";
 
 @Component({
 	moduleId: module.id,
@@ -9,6 +10,8 @@ import { lineService } from "./line.service";
 		<article class="">
 
             <filters style="display:block;width:100%"></filters>
+
+            <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" [searchData]="searchData" style="display:block;width:100%"></search>
@@ -26,10 +29,20 @@ export class lineAreaComponent implements OnInit {
 	searchExample: string = "Circle";
 	searchData: any = {"search": "data"};
 
-	constructor(private _lineService: lineService) {}
+	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	
 	ngOnInit() {
 		this.getAllLines();
+		this.getAllDelays();
+	}
+
+	getAllDelays() {
+		this._delayService.getAllDelays("tube").then((response) => {
+			this.delays = response;
+			console.log(response);
+		}, (err) => {
+			console.log(err);
+		});
 	}
 
 	getAllLines() {

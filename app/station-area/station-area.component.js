@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var station_service_1 = require("./station.service");
-var delay_service_1 = require("../shared/services/delay.service");
+var delay_service_1 = require("../shared/delay/delay.service");
 var stationAreaComponent = (function () {
     function stationAreaComponent(_stationService, _delayService) {
         this._stationService = _stationService;
@@ -59,7 +59,7 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t\t\t\t<emergency-delays [delays]=\"delays\"></emergency-delays>\n\n\t            {{lineData | json}}\n\n\t            <line-list [popularItems]=\"popularStations\" style=\"display:block;width:100%\"></line-list>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list [popularItems]=\"popularStations\" style=\"display:block;width:100%\"></line-list>\n            </section>\n                  \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService])
     ], stationAreaComponent);

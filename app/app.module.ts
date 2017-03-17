@@ -10,6 +10,7 @@ import { wildCardComponent } from './wildcard/wildcard.component';
 import { popupComponent } from './shared/components/popup.component';
 
 import { navigationComponent } from './navigation/navigation.component';
+import { delayComponent } from "./shared/components/delays.component";
 
 //Modules
 import { homeModule } from "./home/home.module";
@@ -19,7 +20,7 @@ import { adminModule } from "./admin/admin.module";
 import { testService } from "./shared/services/test.service";
 import { AuthGuard } from "./shared/services/authguard.service";
 import { AuthService } from "./shared/services/auth.service";
-import { delayService } from "./shared/services/delay.service";
+import { delayService } from "./shared/delay/delay.service";
 
 //Routing
 import { AppRoutingModule } from './app.routes';

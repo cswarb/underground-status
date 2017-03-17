@@ -15,11 +15,11 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
 var station_area_component_1 = require('./station-area.component');
-var delays_component_1 = require('../shared/components/delays.component');
 //Modules
 var lines_module_1 = require("../lines/lines.module");
 var filter_module_1 = require("../filter/filter.module");
 var search_module_1 = require("../search/search.module");
+var delay_module_1 = require("../shared/delay/delay.module");
 //Global Services
 var station_service_1 = require("./station.service");
 //Routing
@@ -37,11 +37,11 @@ var stationAreaModule = (function () {
                 forms_1.ReactiveFormsModule,
                 lines_module_1.linesModule,
                 filter_module_1.filterModule,
-                search_module_1.searchModule
+                search_module_1.searchModule,
+                delay_module_1.delayModule
             ],
             declarations: [
-                station_area_component_1.stationAreaComponent,
-                delays_component_1.delayComponent
+                station_area_component_1.stationAreaComponent
             ],
             providers: [
                 station_service_1.stationService

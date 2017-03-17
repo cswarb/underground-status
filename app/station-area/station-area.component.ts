@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { stationService } from "./station.service";
-import { delayService } from "../shared/services/delay.service";
+import { delayService } from "../shared/delay/delay.service";
 
 @Component({
 	moduleId: module.id,
@@ -10,11 +10,11 @@ import { delayService } from "../shared/services/delay.service";
 		<article class="">
 
             <filters style="display:block;width:100%"></filters>
+
+            <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
-
-				<emergency-delays [delays]="delays"></emergency-delays>
 
 	            {{lineData | json}}
 
