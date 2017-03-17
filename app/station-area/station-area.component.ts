@@ -16,9 +16,7 @@ import { delayService } from "../shared/delay/delay.service";
             <section class="undergroundline">
 	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
 
-	            {{lineData | json}}
-
-	            <line-list [popularItems]="popularStations" style="display:block;width:100%"></line-list>
+	            <line-list [popularItems]="popularStations" [listType]="listType" style="display:block;width:100%"></line-list>
             </section>
                   
         </article>
@@ -26,9 +24,9 @@ import { delayService } from "../shared/delay/delay.service";
 })
 export class stationAreaComponent implements OnInit {
 
-	lineData: any;
 	filterType: string = "station";
 	searchExample: string = "Bank";
+	listType: string = "Stations";
 
 	constructor(private _stationService: stationService, private _delayService: delayService) {}
 	

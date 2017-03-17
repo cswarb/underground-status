@@ -14,9 +14,9 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" [searchData]="searchData" style="display:block;width:100%"></search>
+	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
 
-	            <line-list [popularItems]="popularLines" style="display:block;width:100%"></line-list>
+	            <line-list [popularItems]="popularLines" [listType]="listType" style="display:block;width:100%"></line-list>
             </section>
 
         </article>
@@ -27,7 +27,7 @@ export class lineAreaComponent implements OnInit {
 	lineData: any;
 	filterType: string = "line";
 	searchExample: string = "Circle";
-	searchData: any = {"search": "data"};
+	listType: string = "Lines";
 
 	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	

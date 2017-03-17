@@ -47,10 +47,6 @@ var searchComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], searchComponent.prototype, "searchExample", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], searchComponent.prototype, "searchData", void 0);
     searchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

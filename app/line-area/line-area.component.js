@@ -17,7 +17,7 @@ var lineAreaComponent = (function () {
         this._delayService = _delayService;
         this.filterType = "line";
         this.searchExample = "Circle";
-        this.searchData = { "search": "data" };
+        this.listType = "Lines";
     }
     lineAreaComponent.prototype.ngOnInit = function () {
         this.getAllLines();
@@ -60,7 +60,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchData]=\"searchData\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularItems]=\"popularLines\" style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularItems]=\"popularLines\" [listType]=\"listType\" style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);

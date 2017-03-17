@@ -1,5 +1,5 @@
 <div class="undergroundline__lines">
-    <h2 class="undergroundline__title">Popular Lines:</h2>
+    <h2 class="undergroundline__title">Popular {{listType}}:</h2>
 
     <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}">
         <h1 class="undergroundline__line__name">{{line?.name}}</h1>

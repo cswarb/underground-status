@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 export class lineListComponent implements OnInit {
 
 	@Input() popularItems;
+	@Input() listType;
 
 	constructor(){}
 	

@@ -17,6 +17,7 @@ var stationAreaComponent = (function () {
         this._delayService = _delayService;
         this.filterType = "station";
         this.searchExample = "Bank";
+        this.listType = "Stations";
     }
     stationAreaComponent.prototype.ngOnInit = function () {
         this.getAllStations();
@@ -59,7 +60,7 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t            {{lineData | json}}\n\n\t            <line-list [popularItems]=\"popularStations\" style=\"display:block;width:100%\"></line-list>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularItems]=\"popularStations\" [listType]=\"listType\" style=\"display:block;width:100%\"></line-list>\n            </section>\n                  \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService])
     ], stationAreaComponent);

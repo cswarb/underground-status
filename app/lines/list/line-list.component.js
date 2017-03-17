@@ -21,6 +21,10 @@ var lineListComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], lineListComponent.prototype, "popularItems", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], lineListComponent.prototype, "listType", void 0);
     lineListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
