@@ -10,19 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var station_service_1 = require("./station.service");
+var line_service_1 = require("../line-area/line.service");
 var delay_service_1 = require("../shared/delay/delay.service");
 var stationAreaComponent = (function () {
-    function stationAreaComponent(_stationService, _delayService) {
+    function stationAreaComponent(_stationService, _delayService, _lineService) {
         this._stationService = _stationService;
         this._delayService = _delayService;
+        this._lineService = _lineService;
         this.filterType = "station";
         this.searchExample = "Bank";
         this.listType = "Stations";
         this.searchString = "";
-        this.searchResults = ["test"];
+        this.searchResults = [null];
+        this.allLines = [];
+        this.stationsList = {};
+        this.itemsProcessed = 0;
     }
     stationAreaComponent.prototype.ngOnInit = function () {
-        this.getAllStations();
+        var _this = this;
+        //Determine if we should get a new list of stations, or ones from cache
+        if (!this._stationService.getStations()) {
+            this.getAllLines(function () {
+                _this.getAllStations();
+            });
+        }
+        else {
+            this.stationsList = this._stationService.getStations();
+        }
+        ;
+        //Get all the delays
         this.getAllDelays();
     };
     stationAreaComponent.prototype.getAllDelays = function () {
@@ -33,26 +49,53 @@ var stationAreaComponent = (function () {
             console.log(err);
         });
     };
+    stationAreaComponent.prototype.createStationLookup = function (lineId, stationsForLine) {
+        var _this = this;
+        var stations = stationsForLine;
+        if (!this.stationsList[lineId]) {
+            this.stationsList[lineId] = [];
+        }
+        ;
+        stations.map(function (value, iterator) {
+            if (_this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
+                _this.stationsList[lineId].push({
+                    "stationName": value.commonName,
+                    "naptanId": value.naptanId
+                });
+            }
+            ;
+        });
+    };
+    stationAreaComponent.prototype.stationListReady = function () {
+        //Set the stations to cache them
+        this._stationService.setStations(this.stationsList);
+        //Assign them to the components model value
+        this.stationsList = this._stationService.getStations();
+    };
     stationAreaComponent.prototype.getAllStations = function () {
         var _this = this;
-        this._stationService.getAllPossibleStations().then(function (response) {
-            //Filter some popular lines - just get every couple for now
-            _this.popularStations = response.filter(function (value, iterator) {
-                if (iterator % 2) {
-                    return value;
+        //Go through each of the lines, get all stations from them, and create a lookup object
+        //so we can use this data as autocomplete data, search and filter stations at a later point in time
+        this.allLines.forEach(function (lineId) {
+            _this._stationService.getStationsFromLine(lineId).then(function (response) {
+                _this.itemsProcessed++;
+                _this.createStationLookup(lineId, response);
+                if (_this.itemsProcessed === _this.allLines.length) {
+                    _this.stationListReady();
                 }
                 ;
             });
-            //Convert to array of name only
-            _this.popularStationsArray = _this.popularStations.map(function (value, iterator) {
+        });
+    };
+    stationAreaComponent.prototype.getAllLines = function (callback) {
+        var _this = this;
+        //Get all the possible lines
+        this._lineService.getAllPossibleLines().then(function (response) {
+            //Convert to array of line id only
+            _this.allLines = response.map(function (value, iterator) {
                 return value.id;
             });
-            //Get line statuses passing an array and reassign popularStations
-            _this._stationService.getPopularStationStatuses(_this.popularStationsArray).then(function (popularStationsData) {
-                _this.popularStations = popularStationsData;
-            }, function (err) {
-                console.log("error: ", err);
-            });
+            callback();
         }, function (err) {
             console.log("error: ", err);
         });
@@ -61,9 +104,9 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchString]=\"searchString\" style=\"display:block;width:100%\"></search>\n\n\t            <search-results [searchResults]=\"searchResults\" style=\"display:block;width:100%\"></search-results>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchString]=\"searchString\" [autoCompleteVals]=\"stationsList\" style=\"display:block;width:100%\"></search>\n\t\t\t\t\n\t            <search-results [searchResults]=\"searchResults\" style=\"display:block;width:100%\"></search-results>\n            </section>\n                  \n        </article>\n    "
         }), 
-        __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService])
+        __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService, line_service_1.lineService])
     ], stationAreaComponent);
     return stationAreaComponent;
 }());

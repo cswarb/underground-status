@@ -20,6 +20,8 @@ export class searchComponent implements OnInit {
 	@Input() filterType;
 	@Input() searchExample;
 	@Input() searchString;
+	@Input() autoCompleteVals;
+	results = [];
 
 	//Create a Subject
 	modelChanged: Subject = new Subject();
@@ -32,16 +34,35 @@ export class searchComponent implements OnInit {
 
 	}
 
+	handleStationDistruption(disruption) {
+		this.results = disruption.filter((value) => {
+			return value.mode === "tube";
+		});
+	}
+
 	ngOnInit() {
+		this._searchService.setAutoCompleteVals(this.autoCompleteVals);
+
 		this.modelChanged
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe((searchTerm) => {
-            	this._searchService.queryLineList(searchTerm).then(function(res) {
-            		console.log(res);
-            	}, function(err){
-            		console.log(err);
-            	});
+            	if(searchTerm.length > 3) {
+            		if(this.filterType === "station") {
+            			this._searchService.queryStation(searchTerm).then((res) => {
+		            		console.log(res);
+		            		this.handleStationDistruption(res);
+		            	}, function(err){
+		            		console.log(err);
+		            	});
+            		} else {
+		            	this._searchService.queryLineList(searchTerm).then((res) => {
+		            		console.log(res);
+		            	}, function(err){
+		            		console.log(err);
+		            	});
+            		};
+            	};
             };		
 	}
 

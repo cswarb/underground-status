@@ -16,6 +16,7 @@ import { searchResultsModule } from "../shared/search-results/search-results.mod
 
 //Global Services
 import { stationService } from "./station.service";
+import { lineService } from "../line-area/line.service";
 
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
@@ -38,7 +39,8 @@ import { stationService } from "./station.service";
         stationAreaComponent
     ],
     providers: [ //The service providers for this module
-        stationService
+        stationService,
+        lineService
     ],
     exports: [
         stationAreaComponent

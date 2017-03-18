@@ -1,59 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Angular QuickStart</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/main.css" data-all-devices>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- Icons by [Freepik] from flaticon.com -->
-    <base href="/">
+    <head>
+        <title>London Underground Service Checker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/main.css" data-all-devices>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <base href="/">
 
-    <!-- Polyfill(s) for older browsers -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
+        <!-- Polyfill(s) for older browsers -->
+        <script src="node_modules/core-js/client/shim.min.js"></script>
 
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script src="node_modules/zone.js/dist/zone.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-    <script src="systemjs.config.js"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err); });
-    </script>
-  </head>
+        <script src="systemjs.config.js"></script>
+        <script>
+          System.import('app').catch(function(err){ console.error(err); });
+        </script>
+    </head>
 
-  <body data-app-id="cd8b67bd" data-key="e64e8650106cda51cac3339611c63202">
-  <!--Icons by [Gregor Cresnar ...] from www.flaticon.com-->
-  
-    <app-component>
-      <div class="loading-area">
-        <div class="loading-area__badge">
-          <img src="./img/loading.svg" alt="loading icon">
-        </div>
-        <div class="loading-area__text">Loading Application</div>
-      </div>
-    </app-component>
+    <body data-app-id="cd8b67bd" data-key="e64e8650106cda51cac3339611c63202">
+        <!--Icons made by [Gregor Cresnar ...] from www.flaticon.com-->
+        <app-component>
+          <div class="loading-area">
+            <div class="loading-area__badge">
+              <img src="./img/loading.svg" alt="loading icon">
+            </div>
+            <div class="loading-area__text">Loading Application</div>
+          </div>
+        </app-component>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script>
-    var tfl = tfl || {};
-      tfl.api_base_url = "https://api.tfl.gov.uk/";
-      tfl.app_id = "cd8b67bd";
-      tfl.app_key = "e64e8650106cda51cac3339611c63202";
-
-      function go(){
-        $.ajax({
-          url: tfl.api_base_url + "Line/victoria/Status?detail=true",
-          type: "GET",
-          data: {"app_id": tfl.app_id, "app_key": tfl.app_key},
-          success: function(data) {
-            console.log(data);
-          },
-          error: function(data) {
-            console.log(data);
-          }
-        });
-      };
-      //go();   
-  </script>
-  </body>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script>
+        var tfl = tfl || {};
+            tfl.api_base_url = "https://api.tfl.gov.uk/";
+            tfl.app_id = "cd8b67bd";
+            tfl.app_key = "e64e8650106cda51cac3339611c63202";  
+        </script>
+    </body>
 </html>

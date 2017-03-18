@@ -16,6 +16,7 @@ var searchService = (function () {
         var _this = this;
         this.http = http;
         this._appConstants = _appConstants;
+        this.autoCompleteVals = null;
         this.queryLineList = function (searchTerm) {
             var params = new http_1.URLSearchParams();
             params.set("detail", _this._appConstants.app_detail);
@@ -57,6 +58,41 @@ var searchService = (function () {
         };
     }
     ;
+    searchService.prototype.setAutoCompleteVals = function (autoCompleteVals) {
+        this.autoCompleteVals = autoCompleteVals;
+    };
+    searchService.prototype.getAutoCompleteVals = function () {
+        return this.autoCompleteVals;
+    };
+    searchService.prototype.getNaptanId = function (stationName) {
+        for (var key in this.autoCompleteVals) {
+            if (!this.autoCompleteVals.hasOwnProperty(key))
+                continue;
+            var obj = this.autoCompleteVals[key];
+            for (var prop in obj) {
+                if (!obj.hasOwnProperty(prop))
+                    continue;
+                if (stationName === obj[prop].stationName) {
+                    return obj[prop].naptanId;
+                }
+                ;
+            }
+        }
+    };
+    searchService.prototype.queryStation = function (searchTerm) {
+        var params = new http_1.URLSearchParams();
+        params.set("getFamily", false);
+        params.set("app_id", this._appConstants.app_id);
+        params.set("app_key", this._appConstants.app_key);
+        return this.http
+            .get(this._appConstants.api_base_url + "StopPoint/" + this.getNaptanId(searchTerm) + "/Disruption", {
+            headers: this.getHeaders(),
+            search: params
+        })
+            .map(function (res) { return res.json(); })
+            .toPromise()
+            .catch(this.handleError);
+    };
     searchService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, app_constants_1.appConstants])

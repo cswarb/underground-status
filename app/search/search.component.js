@@ -18,6 +18,7 @@ var searchComponent = (function () {
     function searchComponent(_searchService) {
         var _this = this;
         this._searchService = _searchService;
+        this.results = [];
         //Create a Subject
         this.modelChanged = new Subject_1.Subject();
         this.debounceValue = 300;
@@ -26,17 +27,37 @@ var searchComponent = (function () {
             _this.modelChanged.next(term);
         };
     }
+    searchComponent.prototype.handleStationDistruption = function (disruption) {
+        this.results = disruption.filter(function (value) {
+            return value.mode === "tube";
+        });
+    };
     searchComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._searchService.setAutoCompleteVals(this.autoCompleteVals);
         this.modelChanged
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe(function (searchTerm) {
-            _this._searchService.queryLineList(searchTerm).then(function (res) {
-                console.log(res);
-            }, function (err) {
-                console.log(err);
-            });
+            if (searchTerm.length > 3) {
+                if (_this.filterType === "station") {
+                    _this._searchService.queryStation(searchTerm).then(function (res) {
+                        console.log(res);
+                        _this.handleStationDistruption(res);
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }
+                else {
+                    _this._searchService.queryLineList(searchTerm).then(function (res) {
+                        console.log(res);
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }
+                ;
+            }
+            ;
         });
     };
     __decorate([
@@ -51,6 +72,10 @@ var searchComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], searchComponent.prototype, "searchString", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], searchComponent.prototype, "autoCompleteVals", void 0);
     searchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

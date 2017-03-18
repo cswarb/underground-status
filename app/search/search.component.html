@@ -1,4 +1,5 @@
 <header class="undergroundline__header">
+
     <form action="">
         <div class="searcharea">
             <input type="text" 
@@ -13,6 +14,13 @@
             autofocus="autofocus"/>
         </div>
     </form>
+
+    {{results | json}}
+
+    <br><br><br>
+
+    {{autoCompleteVals | json}}
+
 </header>
 
 <!-- <footer>

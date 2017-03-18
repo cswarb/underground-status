@@ -23,6 +23,7 @@ var delay_module_1 = require("../shared/delay/delay.module");
 var search_results_module_1 = require("../shared/search-results/search-results.module");
 //Global Services
 var station_service_1 = require("./station.service");
+var line_service_1 = require("../line-area/line.service");
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
 var stationAreaModule = (function () {
@@ -46,7 +47,8 @@ var stationAreaModule = (function () {
                 station_area_component_1.stationAreaComponent
             ],
             providers: [
-                station_service_1.stationService
+                station_service_1.stationService,
+                line_service_1.lineService
             ],
             exports: [
                 station_area_component_1.stationAreaComponent

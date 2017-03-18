@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { stationService } from "./station.service";
+import { lineService } from "../line-area/line.service";
 import { delayService } from "../shared/delay/delay.service";
 
 @Component({
@@ -14,8 +15,8 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" [searchString]="searchString" style="display:block;width:100%"></search>
-
+	            <search [filterType]="filterType" [searchExample]="searchExample" [searchString]="searchString" [autoCompleteVals]="stationsList" style="display:block;width:100%"></search>
+				
 	            <search-results [searchResults]="searchResults" style="display:block;width:100%"></search-results>
             </section>
                   
@@ -28,12 +29,25 @@ export class stationAreaComponent implements OnInit {
 	searchExample: string = "Bank";
 	listType: string = "Stations";
 	searchString: string = "";
-	searchResults = ["test"];
+	searchResults = [null];
+	allLines = [];
 
-	constructor(private _stationService: stationService, private _delayService: delayService) {}
+	stationsList = {};
+	itemsProcessed = 0;
+
+	constructor(private _stationService: stationService, private _delayService: delayService, private _lineService: lineService) {}
 	
 	ngOnInit() {
-		this.getAllStations();		
+		//Determine if we should get a new list of stations, or ones from cache
+		if(!this._stationService.getStations()) {
+			this.getAllLines(() => {
+				this.getAllStations();	
+			});			
+		} else {
+			this.stationsList = this._stationService.getStations();
+		};
+
+		//Get all the delays
 		this.getAllDelays();		
 	}
 
@@ -45,27 +59,52 @@ export class stationAreaComponent implements OnInit {
 		});
 	}
 
-	getAllStations() {
-		this._stationService.getAllPossibleStations().then((response) => {
+	createStationLookup(lineId, stationsForLine) {
+		let stations = stationsForLine;
 
-			//Filter some popular lines - just get every couple for now
-			this.popularStations = response.filter(function(value, iterator){
-				if(iterator % 2){
-					return value;
+		if(!this.stationsList[lineId]) {
+			this.stationsList[lineId] = [];
+		};
+
+		stations.map((value, iterator) => {
+			if(this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
+				this.stationsList[lineId].push({
+					"stationName": value.commonName,
+					"naptanId": value.naptanId
+				});
+			};
+		});
+	}
+
+	stationListReady() {
+		//Set the stations to cache them
+		this._stationService.setStations(this.stationsList);
+		//Assign them to the components model value
+		this.stationsList = this._stationService.getStations();
+	}
+
+	getAllStations() {
+		//Go through each of the lines, get all stations from them, and create a lookup object
+		//so we can use this data as autocomplete data, search and filter stations at a later point in time
+		this.allLines.forEach((lineId) => {
+			this._stationService.getStationsFromLine(lineId).then((response) => {
+				this.itemsProcessed++;
+				this.createStationLookup(lineId, response);
+				if(this.itemsProcessed === this.allLines.length){
+					this.stationListReady();
 				};
 			});
+		});
+	}
 
-			//Convert to array of name only
-			this.popularStationsArray = this.popularStations.map(function(value, iterator){
+	getAllLines(callback) {
+		//Get all the possible lines
+		this._lineService.getAllPossibleLines().then((response) => {
+			//Convert to array of line id only
+			this.allLines = response.map(function(value, iterator){
 				return value.id;
 			});
-
-			//Get line statuses passing an array and reassign popularStations
-			this._stationService.getPopularStationStatuses(this.popularStationsArray).then((popularStationsData) => {
-				this.popularStations = popularStationsData;
-			}, function(err){
-				console.log("error: ", err);
-			});
+			callback();
 		}, (err) => {
 			console.log("error: ", err);
 		});

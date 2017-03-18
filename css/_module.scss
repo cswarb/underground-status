@@ -171,7 +171,7 @@
 			    justify-content: center;
 			    align-items: center;
 			    color: #000000;
-			    animation: fadeOut 2s ease-in-out forwards;
+			    animation: fadeOutUnderlay 2s ease-in-out forwards;
 			}
 		}
 		@for $i from 1 through 25 {
