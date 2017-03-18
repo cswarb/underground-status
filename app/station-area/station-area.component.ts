@@ -14,9 +14,9 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" style="display:block;width:100%"></search>
+	            <search [filterType]="filterType" [searchExample]="searchExample" [searchString]="searchString" style="display:block;width:100%"></search>
 
-	            <line-list [popularItems]="popularStations" [listType]="listType" style="display:block;width:100%"></line-list>
+	            <search-results [searchResults]="searchResults" style="display:block;width:100%"></search-results>
             </section>
                   
         </article>
@@ -27,6 +27,8 @@ export class stationAreaComponent implements OnInit {
 	filterType: string = "station";
 	searchExample: string = "Bank";
 	listType: string = "Stations";
+	searchString: string = "";
+	searchResults = ["test"];
 
 	constructor(private _stationService: stationService, private _delayService: delayService) {}
 	
@@ -38,7 +40,6 @@ export class stationAreaComponent implements OnInit {
 	getAllDelays() {
 		this._delayService.getAllDelays("tube").then((response) => {
 			this.delays = response;
-			console.log(response);
 		}, (err) => {
 			console.log(err);
 		});

@@ -14,51 +14,38 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
-var station_area_component_1 = require('./station-area.component');
-//Modules
-var lines_module_1 = require("../lines/lines.module");
-var filter_module_1 = require("../filter/filter.module");
-var search_module_1 = require("../search/search.module");
-var delay_module_1 = require("../shared/delay/delay.module");
-var search_results_module_1 = require("../shared/search-results/search-results.module");
-//Global Services
-var station_service_1 = require("./station.service");
-//Routing
-// import { homeRoutingModule } from "../home/home-routing.module";
-var stationAreaModule = (function () {
-    function stationAreaModule() {
+var search_results_component_1 = require('./search-results.component');
+//Services
+var search_results_service_1 = require("./search-results.service");
+var searchResultsModule = (function () {
+    function searchResultsModule() {
     }
-    stationAreaModule = __decorate([
+    searchResultsModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 http_1.JsonpModule,
-                forms_1.ReactiveFormsModule,
-                lines_module_1.linesModule,
-                filter_module_1.filterModule,
-                search_module_1.searchModule,
-                delay_module_1.delayModule,
-                search_results_module_1.searchResultsModule
+                forms_1.ReactiveFormsModule
             ],
             declarations: [
-                station_area_component_1.stationAreaComponent
+                search_results_component_1.searchResultsComponent
             ],
             providers: [
-                station_service_1.stationService
+                search_results_service_1.searchResultsService
             ],
             exports: [
-                station_area_component_1.stationAreaComponent
+                search_results_component_1.searchResultsComponent
             ],
             bootstrap: [],
             entryComponents: [
-                station_area_component_1.stationAreaComponent
+                search_results_component_1.searchResultsComponent
             ]
         }), 
         __metadata('design:paramtypes', [])
-    ], stationAreaModule);
-    return stationAreaModule;
+    ], searchResultsModule);
+    return searchResultsModule;
 }());
-exports.stationAreaModule = stationAreaModule;
-//# sourceMappingURL=station-area.module.js.map
+exports.searchResultsModule = searchResultsModule;
+//# sourceMappingURL=search-results.module.js.map

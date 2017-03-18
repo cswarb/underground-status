@@ -19,6 +19,7 @@ export class searchComponent implements OnInit {
 	//Inputs from parent components
 	@Input() filterType;
 	@Input() searchExample;
+	@Input() searchString;
 
 	//Create a Subject
 	modelChanged: Subject = new Subject();

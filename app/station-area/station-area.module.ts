@@ -12,6 +12,7 @@ import { linesModule } from "../lines/lines.module";
 import { filterModule } from "../filter/filter.module";
 import { searchModule } from "../search/search.module";
 import { delayModule } from "../shared/delay/delay.module";
+import { searchResultsModule } from "../shared/search-results/search-results.module";
 
 //Global Services
 import { stationService } from "./station.service";
@@ -30,7 +31,8 @@ import { stationService } from "./station.service";
         linesModule,
         filterModule,
         searchModule,
-        delayModule
+        delayModule,
+        searchResultsModule
     ],
     declarations: [ //The components, directives, and pipes for this module
         stationAreaComponent
