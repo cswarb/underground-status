@@ -16,6 +16,18 @@
     }
 }
 
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @-webkit-keyframes blockRevealLeft {
     0% {
         opacity: 0;

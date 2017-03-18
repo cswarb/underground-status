@@ -1,7 +1,7 @@
 <div class="undergroundline__lines">
     <h2 class="undergroundline__title">Popular {{listType}}:</h2>
 
-    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}">
+    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id}">
         <h1 class="undergroundline__line__name">{{line?.name}}</h1>
         <div class="undergroundline__line__status">
             <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->

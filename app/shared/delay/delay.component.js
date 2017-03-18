@@ -23,7 +23,7 @@ var delayComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'emergency-delays',
-            template: "\n    \t<div *ngIf=\"delays?.length < 1\" class=\"center\">\n\t\t\t<p>Currently no delays reported.</p>\n    \t</div>\n\t\t<div *ngFor=\"let delay of delays\" class=\"delay\">\n\t\t\t<div class=\"delay__wrapper\">\n\t\t\t\t<p>{{delay?.description}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedRoutes.length > 0\">{{delay?.affectedRoutes}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedStops.length > 0\">{{delay?.affectedStops}}</p>\n\t\t\t</div>\n\t\t</div>\t\n    "
+            template: "\n    \t<div *ngIf=\"delays?.length < 1\" class=\"center\">\n\t\t\t<h4 class=\"ui-helper\">Currently no delays reported.</h4>\n    \t</div>\n\t\t<div *ngFor=\"let delay of delays\" class=\"delay\">\n\t\t\t<div class=\"delay__wrapper\">\n\t\t\t\t<p>{{delay?.description}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedRoutes.length > 0\">{{delay?.affectedRoutes}}</p>\n\t\t\t\t<p *ngIf=\"delay.affectedStops.length > 0\">{{delay?.affectedStops}}</p>\n\t\t\t</div>\n\t\t</div>\t\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], delayComponent);
