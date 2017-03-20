@@ -16,7 +16,7 @@ var searchService = (function () {
         var _this = this;
         this.http = http;
         this._appConstants = _appConstants;
-        this.autoCompleteVals = null;
+        this.autoCompleteVals = [];
         this.queryLineList = function (searchTerm) {
             var params = new http_1.URLSearchParams();
             params.set("detail", _this._appConstants.app_detail);

@@ -1,25 +1,38 @@
 <header class="undergroundline__header">
 
     <form action="">
-        <div class="searcharea">
-            <input type="text" 
-            class="searcharea__input" 
-            name="search"
-            #searchTerm 
-            [ngModel]='model' 
-            (ngModelChange)='search($event)' 
-            [placeholder]="'e.g. ' + searchExample" 
-            min="2" 
-            max="30" 
-            autofocus="autofocus"/>
+        <div class="searcharea__wrapper">
+            <div class="searcharea__input__wrapper">
+                <input type="text" 
+                class="searcharea__input" 
+                name="search"
+                #searchTerm 
+                [ngModel]='model' 
+                (ngModelChange)='search($event)' 
+                [placeholder]="'e.g. ' + searchExample" 
+                (click)="revealAutocomplete()"
+                (blur)="hideAutocomplete($event)"
+                (keyup)="filterAutocomplete(searchTerm, $event)"
+                min="2" 
+                max="30" 
+                autofocus="autofocus"/>
+            </div>
+
+            {{autocompleteFilteredList | json}}
+
+            <div class="suggestion__wrapper" *ngIf="autoCompleteVals && showAutocomplete">
+                <div class="suggestion__value" *ngFor="let suggestion of autoCompleteVals">
+                    <button class="suggestion__select" (click)="selectStation(suggestion)">
+                        <p class="suggestion__name">{{suggestion?.stationName}}</p>
+                        <p class="suggestion__helper suggestion__helper--{{suggestion?.parentLine}}">{{suggestion?.parentLine}}</p>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </form>
 
     {{results | json}}
-
-    <br><br><br>
-
-    {{autoCompleteVals | json}}
 
 </header>
 

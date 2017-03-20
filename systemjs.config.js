@@ -22,6 +22,7 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      'lodash': 'npm:lodash',
 
       // other libraries
       'rxjs':                      'npm:rxjs',
@@ -32,6 +33,10 @@
       app: {
         main: './main.js',
         defaultExtension: 'js'
+      },
+      lodash: {
+          main: 'index.js',
+          defaultExtension: 'js'
       },
       rxjs: {
         defaultExtension: 'js'

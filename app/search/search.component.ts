@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, EventEmitter } from "@angular/core";
+import { Component, Input, OnInit, EventEmitter, ElementRef } from "@angular/core";
 import { formControl } from "@angular/forms";
 
 import { searchService } from "./search.service";
@@ -8,6 +8,8 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+
+import * as _ from "lodash";
 
 @Component({
 	moduleId: module.id,
@@ -21,7 +23,10 @@ export class searchComponent implements OnInit {
 	@Input() searchExample;
 	@Input() searchString;
 	@Input() autoCompleteVals;
+	autocompleteFilteredList = [];
 	results = [];
+
+	showAutocomplete = false;
 
 	//Create a Subject
 	modelChanged: Subject = new Subject();
@@ -30,7 +35,7 @@ export class searchComponent implements OnInit {
 	searchTerm: string;
 	debounceValue: number = 300;
 
-	constructor(private _searchService: searchService) {
+	constructor(private _searchService: searchService, private myElement: ElementRef) {
 
 	}
 
@@ -51,6 +56,7 @@ export class searchComponent implements OnInit {
             		if(this.filterType === "station") {
             			this._searchService.queryStation(searchTerm).then((res) => {
 		            		console.log(res);
+		            		if(res.httpStatusCode === 404 || !res) {return false};
 		            		this.handleStationDistruption(res);
 		            	}, function(err){
 		            		console.log(err);
@@ -70,4 +76,38 @@ export class searchComponent implements OnInit {
 		//Force a model change, passing in the term
 		this.modelChanged.next(term);
 	}
+
+	selectStation(station) {
+		this.model = station.naptanId;
+		this.modelChanged.next(this.model);
+	}
+
+	revealAutocomplete() {
+		this.showAutocomplete = true;
+	}
+
+	hideAutocomplete(event) {
+		console.log(this.myElement.nativeElement);
+		console.log(event.target);
+		if(false) {
+			this.showAutocomplete = false;
+			this.autocompleteFilteredList = _.cloneDeep(this.autoCompleteVals);
+		};		
+	}
+
+	filterAutocomplete(search, event) {
+		if(event.isTrusted) {
+			// console.log(search.value, " :search");
+			// console.log(this, " :search");
+			//now filter the list and remove the values from the array
+			// console.log(this.autocompleteFilteredList);
+			// console.log(this.autoCompleteVals);
+			this.autoCompleteVals = this.autoCompleteVals.filter((value, iterator) => {
+				if(value.stationName.match(new RegExp(search.value, "i"))) {
+					return value;
+				};
+			});
+		};
+	}
+
 }

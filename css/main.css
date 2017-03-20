@@ -603,30 +603,104 @@ form {
         margin-right: 0.5rem;
         font-size: 1rem; }
 
-.searcharea {
-  background-color: #fff;
-  width: 90%;
-  height: 5rem;
-  -webkit-animation: fadeInSoftDown 0.5s ease-in-out forwards;
-          animation: fadeInSoftDown 0.5s ease-in-out forwards;
+.searcharea__wrapper {
   margin: 0 auto; }
   @media screen and (min-width: 30rem) {
-    .searcharea {
+    .searcharea__wrapper {
       width: 85%; } }
   @media screen and (min-width: 60rem) {
-    .searcharea {
+    .searcharea__wrapper {
       width: 45%; } }
-  .searcharea__input {
-    border: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 2rem;
-    font-family: 'JohnstonITCMedium', sans-serif;
-    text-transform: capitalize;
-    padding: 0.5rem 1rem; }
-    @media screen and (min-width: 60rem) {
-      .searcharea__input {
-        padding: 1rem; } }
+
+.searcharea__input {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  font-family: 'JohnstonITCMedium', sans-serif;
+  text-transform: capitalize;
+  padding: 0.5rem 1rem; }
+  @media screen and (min-width: 60rem) {
+    .searcharea__input {
+      padding: 1rem; } }
+
+.searcharea__input__wrapper {
+  background-color: #fff;
+  width: 100%;
+  height: 5rem;
+  -webkit-animation: fadeInSoftDown 0.5s ease-in-out forwards;
+          animation: fadeInSoftDown 0.5s ease-in-out forwards; }
+
+.suggestion__wrapper {
+  background-color: #FFFFFF;
+  margin-top: 0.5rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1); }
+
+.suggestion__value {
+  position: relative; }
+  .suggestion__value:first-child > .suggestion__select {
+    padding-top: 2.5em; }
+  .suggestion__value:last-child > .suggestion__select {
+    padding-bottom: 2.5em; }
+
+.suggestion__name, .suggestion__helper {
+  font-family: 'JohnstonITCMedium', sans-serif; }
+
+.suggestion__name {
+  color: #000000;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25; }
+
+.suggestion__helper {
+  line-height: 1.25;
+  margin: 0;
+  color: #9ea4a7;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.2px; }
+  .suggestion__helper--bakerloo {
+    color: #B4671D; }
+  .suggestion__helper--central {
+    color: #ED3022; }
+  .suggestion__helper--circle {
+    color: #FFDA2D; }
+  .suggestion__helper--district {
+    color: #00853F; }
+  .suggestion__helper--hammersmithcity {
+    color: #F5A3B7; }
+  .suggestion__helper--jubilee {
+    color: #939BA1; }
+  .suggestion__helper--metropolitan {
+    color: #96005D; }
+  .suggestion__helper--northern {
+    color: #221E1F; }
+  .suggestion__helper--piccadilly {
+    color: #1A3E93; }
+  .suggestion__helper--victoria {
+    color: #009CDB; }
+  .suggestion__helper--waterloocity {
+    color: #86CEBC; }
+  .suggestion__helper--dlr {
+    color: #64C7C8; }
+  .suggestion__helper--overground {
+    color: #F79D57; }
+  .suggestion__helper--emirates {
+    color: #E94E66; }
+
+.suggestion__select {
+  border: 0;
+  background: #FFFFFF url("../img/select.svg");
+  background-size: 1.4rem;
+  background-position: 92% center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 1.25rem 3rem;
+  margin-bottom: 3px; }
+  .suggestion__select:hover {
+    cursor: pointer; }
 
 emergency-delays {
   width: 100%;

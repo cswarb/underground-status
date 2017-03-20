@@ -32,7 +32,7 @@ export class stationAreaComponent implements OnInit {
 	searchResults = [null];
 	allLines = [];
 
-	stationsList = {};
+	stationsList = [];
 	itemsProcessed = 0;
 
 	constructor(private _stationService: stationService, private _delayService: delayService, private _lineService: lineService) {}
@@ -62,13 +62,14 @@ export class stationAreaComponent implements OnInit {
 	createStationLookup(lineId, stationsForLine) {
 		let stations = stationsForLine;
 
-		if(!this.stationsList[lineId]) {
-			this.stationsList[lineId] = [];
-		};
+		// if(!this.stationsList[lineId]) {
+		// 	this.stationsList[lineId] = [];
+		// };
 
 		stations.map((value, iterator) => {
 			if(this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
-				this.stationsList[lineId].push({
+				this.stationsList.push({
+					"parentLine": lineId,
 					"stationName": value.commonName,
 					"naptanId": value.naptanId
 				});

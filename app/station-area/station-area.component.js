@@ -23,7 +23,7 @@ var stationAreaComponent = (function () {
         this.searchString = "";
         this.searchResults = [null];
         this.allLines = [];
-        this.stationsList = {};
+        this.stationsList = [];
         this.itemsProcessed = 0;
     }
     stationAreaComponent.prototype.ngOnInit = function () {
@@ -52,13 +52,13 @@ var stationAreaComponent = (function () {
     stationAreaComponent.prototype.createStationLookup = function (lineId, stationsForLine) {
         var _this = this;
         var stations = stationsForLine;
-        if (!this.stationsList[lineId]) {
-            this.stationsList[lineId] = [];
-        }
-        ;
+        // if(!this.stationsList[lineId]) {
+        // 	this.stationsList[lineId] = [];
+        // };
         stations.map(function (value, iterator) {
             if (_this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
-                _this.stationsList[lineId].push({
+                _this.stationsList.push({
+                    "parentLine": lineId,
                     "stationName": value.commonName,
                     "naptanId": value.naptanId
                 });

@@ -6,7 +6,7 @@ import { appConstants } from "../app.constants";
 @Injectable()
 export class searchService {
 
-	autoCompleteVals = null;
+	autoCompleteVals = [];
 
 	constructor(private http: Http, private _appConstants: appConstants) {
 
