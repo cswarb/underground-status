@@ -23,6 +23,19 @@ var lineService = (function () {
         headers.append('Accept', 'application/json');
         return headers;
     };
+    lineService.prototype.getDetailedLineInfo = function (lineId) {
+        var params = new http_1.URLSearchParams();
+        params.set("detail", this._appConstants.app_detail);
+        params.set("app_id", this._appConstants.app_id);
+        params.set("app_key", this._appConstants.app_key);
+        return this.http
+            .get(this._appConstants.api_base_url + "Line/" + lineId + "/Disruption", {
+            headers: this.getHeaders()
+        })
+            .map(function (res) { return res.json(); })
+            .toPromise()
+            .catch(this.handleError);
+    };
     lineService.prototype.getAllPossibleLines = function () {
         var params = new http_1.URLSearchParams();
         params.set("detail", this._appConstants.app_detail);

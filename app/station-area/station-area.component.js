@@ -21,7 +21,7 @@ var stationAreaComponent = (function () {
         this.searchExample = "Bank";
         this.listType = "Stations";
         this.searchString = "";
-        this.searchResults = [null];
+        this.searchResults = [];
         this.allLines = [];
         this.stationsList = [];
         this.itemsProcessed = 0;
@@ -41,6 +41,13 @@ var stationAreaComponent = (function () {
         //Get all the delays
         this.getAllDelays();
     };
+    stationAreaComponent.prototype.searchResultHasUpdated = function (delta) {
+        console.log("delta2: ", delta);
+        this.searchResults = delta;
+    };
+    stationAreaComponent.prototype.clearSearchResults = function (delta) {
+        this.searchResults = [];
+    };
     stationAreaComponent.prototype.getAllDelays = function () {
         var _this = this;
         this._delayService.getAllDelays("tube").then(function (response) {
@@ -52,9 +59,6 @@ var stationAreaComponent = (function () {
     stationAreaComponent.prototype.createStationLookup = function (lineId, stationsForLine) {
         var _this = this;
         var stations = stationsForLine;
-        // if(!this.stationsList[lineId]) {
-        // 	this.stationsList[lineId] = [];
-        // };
         stations.map(function (value, iterator) {
             if (_this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
                 _this.stationsList.push({
@@ -104,7 +108,7 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchString]=\"searchString\" [autoCompleteVals]=\"stationsList\" style=\"display:block;width:100%\"></search>\n\t\t\t\t\n\t            <search-results [searchResults]=\"searchResults\" style=\"display:block;width:100%\"></search-results>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search (searchResultUpdated)=\"searchResultHasUpdated($event)\" \n\t            \t(clearSearchResults)=\"clearSearchResults($event)\" \n\t            \t[filterType]=\"filterType\" \n\t            \t[searchResults]=\"searchResults\" \n\t            \t[searchExample]=\"searchExample\" \n\t            \t[searchString]=\"searchString\" \n\t            \t[autoCompleteVals]=\"stationsList\">\n\t            </search>\n\n\t            <search-results [searchResults]=\"searchResults\"></search-results>\n            </section>\n                  \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService, line_service_1.lineService])
     ], stationAreaComponent);

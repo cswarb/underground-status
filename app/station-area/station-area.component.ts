@@ -10,14 +10,21 @@ import { delayService } from "../shared/delay/delay.service";
     template: `
 		<article class="">
 
-            <filters style="display:block;width:100%"></filters>
+            <filters></filters>
 
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" [searchString]="searchString" [autoCompleteVals]="stationsList" style="display:block;width:100%"></search>
-				
-	            <search-results [searchResults]="searchResults" style="display:block;width:100%"></search-results>
+	            <search (searchResultUpdated)="searchResultHasUpdated($event)" 
+	            	(clearSearchResults)="clearSearchResults($event)" 
+	            	[filterType]="filterType" 
+	            	[searchResults]="searchResults" 
+	            	[searchExample]="searchExample" 
+	            	[searchString]="searchString" 
+	            	[autoCompleteVals]="stationsList">
+	            </search>
+
+	            <search-results [searchResults]="searchResults"></search-results>
             </section>
                   
         </article>
@@ -29,7 +36,7 @@ export class stationAreaComponent implements OnInit {
 	searchExample: string = "Bank";
 	listType: string = "Stations";
 	searchString: string = "";
-	searchResults = [null];
+	searchResults = [];
 	allLines = [];
 
 	stationsList = [];
@@ -51,6 +58,15 @@ export class stationAreaComponent implements OnInit {
 		this.getAllDelays();		
 	}
 
+	searchResultHasUpdated(delta) {
+		console.log("delta2: ", delta);
+		this.searchResults = delta;
+	}
+
+	clearSearchResults(delta) {
+		this.searchResults = [];
+	}
+
 	getAllDelays() {
 		this._delayService.getAllDelays("tube").then((response) => {
 			this.delays = response;
@@ -61,10 +77,6 @@ export class stationAreaComponent implements OnInit {
 
 	createStationLookup(lineId, stationsForLine) {
 		let stations = stationsForLine;
-
-		// if(!this.stationsList[lineId]) {
-		// 	this.stationsList[lineId] = [];
-		// };
 
 		stations.map((value, iterator) => {
 			if(this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {

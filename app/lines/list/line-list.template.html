@@ -1,19 +1,24 @@
 <div class="undergroundline__lines">
-    <h2 class="undergroundline__title">Popular {{listType}}:</h2>
+    <h2 class="undergroundline__title">All {{listType}}:</h2>
 
-    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id}">
-        <h1 class="undergroundline__line__name">{{line?.name}}</h1>
-        <div class="undergroundline__line__status">
-            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-            <p class="undergroundline__line__status__text" *ngFor="let status of line.lineStatuses">    
-                {{status.statusSeverityDescription}}
-            </p>
+    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id, 'expanded': isLineExpanded}">
+        <div class="undergroundline__block">
+            <h1 class="undergroundline__line__name">{{line?.name}}</h1>
+            <div class="undergroundline__line__status">
+                <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+                <p class="undergroundline__line__status__text" *ngFor="let status of line.lineStatuses">    
+                    {{status.statusSeverityDescription}}
+                </p>
+            </div>
+            <div class="undergroundline__line__toggle">
+                <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+                    <p class="button__icon__text" (click)="expandLineInfo(line)">More Detail</p>
+                    <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+                </button>
+            </div>
         </div>
-        <div class="undergroundline__line__toggle">
-            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                <p class="button__icon__text">More Detail</p>
-                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-            </button>
+        <div class="undergroundline__block more-info">
+            <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
         </div>
     </article>
 </div>

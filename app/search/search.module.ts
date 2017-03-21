@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { homeRoutingModule } from "../home/home-routing.module";
+import { searchResultsModule } from "../shared/search-results/search-results.module";
 
 //Custom Components
 import { searchComponent } from './search.component';
@@ -19,7 +20,8 @@ import { searchService } from './search.service';
     	HttpModule,
     	JsonpModule,
     	ReactiveFormsModule,
-        homeRoutingModule
+        homeRoutingModule,
+        searchResultsModule
     ],
     declarations: [ //The components, directives, and pipes for this module
         searchComponent

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { Router, Params } from "@angular/router";
 import { FormControl } from '@angular/forms';
 
@@ -11,11 +11,20 @@ export class lineListComponent implements OnInit {
 
 	@Input() popularItems;
 	@Input() listType;
+	@Input() detailedLineInfo;
+
+	isLineExpanded = false;
 
 	constructor(){}
 	
 	ngOnInit() {
 		
+	}
+
+	@Output() detailedLineEvent = new EventEmitter();
+	expandLineInfo(line) {
+		this.isLineExpanded = !this.isLineExpanded;
+	    this.detailedLineEvent.next(line);
 	}
 
 	sanitizeLineId(line) {

@@ -9,14 +9,12 @@ import { delayService } from "../shared/delay/delay.service";
     template: `
 		<article class="">
 
-            <filters style="display:block;width:100%"></filters>
+            <filters></filters>
 
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <search [filterType]="filterType" [searchExample]="searchExample" [searchString]="searchString" [autoCompleteVals]="stationsList" style="display:block;width:100%"></search>
-
-	            <line-list [popularItems]="popularLines" [listType]="listType" style="display:block;width:100%"></line-list>
+	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedLineInfo]="detailedLineInfo" [popularItems]="popularLines" [listType]="listType"></line-list>
             </section>
 
         </article>
@@ -29,12 +27,30 @@ export class lineAreaComponent implements OnInit {
 	searchExample: string = "Circle";
 	listType: string = "Lines";
 	searchString: string = "";
+	detailedLineInfo: [];
 
 	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	
 	ngOnInit() {
 		this.getAllLines();
 		this.getAllDelays();
+	}
+
+	getDetailedLineInfo(line) {
+		this._lineService.getDetailedLineInfo(line.id).then((response) => {
+			if(!response) {return false};
+			if(typeof response === "object" && response.length < 1) {
+				this.detailedLineInfo = {
+					"description": "No delays found for " + line.name
+				};
+			} else {
+				this.detailedLineInfo = {
+					"description": response[0].description
+				};
+			};
+		}, (err) => {
+			//error
+		});
 	}
 
 	getAllDelays() {
@@ -48,22 +64,21 @@ export class lineAreaComponent implements OnInit {
 	getAllLines() {
 		this._lineService.getAllPossibleLines().then((response) => {
 
-			//Filter some popular lines - just get every couple for now
-			this.popularLines = response.filter(function(value, iterator){
-				if(iterator % 2){
+			this.popularLines = response.filter((value, iterator) => {
+				// if(iterator % 2){
 					return value;
-				};
+				// };
 			});
 
-			//Convert to array of name only
-			this.popularLinesArray = this.popularLines.map(function(value, iterator){
+			//Convert to array of names only
+			this.popularLinesArray = this.popularLines.map((value, iterator) => {
 				return value.id;
 			});
 
 			//Get line statuses passing an array and reassign popularLines
 			this._lineService.getPopularLineStatuses(this.popularLinesArray).then((popularLinesData) => {
 				this.popularLines = popularLinesData;
-			}, function(err){
+			}, (err) => {
 				console.log("error: ", err);
 			});
 		}, (err) => {

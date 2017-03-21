@@ -19,6 +19,24 @@ export class lineService {
 	    return headers;
 	}
 
+	getDetailedLineInfo(lineId) {
+		let params: URLSearchParams = new URLSearchParams();
+
+		params.set("detail", this._appConstants.app_detail);
+		params.set("app_id", this._appConstants.app_id);
+		params.set("app_key", this._appConstants.app_key);
+			
+		return this.http
+			.get(this._appConstants.api_base_url + "Line/" + lineId + "/Disruption", 
+				{
+					headers: this.getHeaders()
+				}
+			)
+			.map((res) => res.json())
+			.toPromise()
+			.catch(this.handleError);
+	}
+
 	getAllPossibleLines() {
 		let params: URLSearchParams = new URLSearchParams();
 

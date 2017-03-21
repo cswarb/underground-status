@@ -11,19 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var searchResultsComponent = (function () {
     function searchResultsComponent() {
-        this.searchResults = null;
+        this.searchResults = [];
+        this.clearSearchResults = new core_1.EventEmitter();
     }
     searchResultsComponent.prototype.ngOnInit = function () {
+    };
+    searchResultsComponent.prototype.clearResults = function (delta) {
+        this.clearSearchResults.next(delta);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], searchResultsComponent.prototype, "searchResults", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], searchResultsComponent.prototype, "clearSearchResults", void 0);
     searchResultsComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'search-results',
-            template: "\n    \t<div *ngIf=\"!searchResults\" class=\"center\">\n\t\t\t<h4 class=\"ui-helper\">Search for a station.</h4>\n    \t</div>\n\t\t<div *ngFor=\"let result of searchResults\" class=\"result\">\n\t\t\t<div class=\"result__wrapper\">\n\t\t\t</div>\n\t\t</div>\t\n    "
+            template: "\n    \t<div *ngIf=\"searchResults.length < 1\" class=\"center\">\n\t\t\t<h4 class=\"ui-helper\">Search for a station.</h4>\n    \t</div>\n\t\t<div *ngIf=\"searchResults.length > 0\">\n\t\t\t<div (click)=\"clearResults()\">X</div>\n\t\t\t<div class=\"result__block\" *ngFor=\"let result of searchResults\" class=\"result__wrapper\">\n\t\t\t\t<p class=\"result__item result__title\">{{result?.commonName}}</p>\n\t\t\t\t<p class=\"result__item result__description\">{{result?.description}}</p>\n\t\t\t\t<p class=\"result__item result__helper\" [innerHTML]=\"result?.additionalInformation\"></p>\n\t\t\t</div>\n\t\t</div>\t\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], searchResultsComponent);

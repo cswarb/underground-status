@@ -139,10 +139,21 @@
 		margin: 2rem 2rem 1rem 2rem;
 		font-size: 2rem;
 	}
+	&__block {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		&__content {
+			color: $white;
+			font-family: 'JohnstonITCBold', sans-serif;
+			margin: 3rem 0 0 0;
+		}
+	}
 	&__lines {
 		width: 100%;
 		display: block;
-		margin: 5rem 0 0 0;
+		margin: 2rem 0 0 0;
 		position: relative;
 		min-height: 10rem;
 	}
@@ -151,12 +162,13 @@
 		word-break: break-all;
 		color: $white;
 		background-color: #000000;
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-		align-items: center;
+		display: block;
 		opacity: 0;
+		height: 141px;
 		animation: fadeInSoftDown 0.5s ease-in-out forwards;
+		&.expanded {
+			height: auto;
+		}
 		&.loaded {
 			&:before {
 				content: "";
@@ -335,12 +347,48 @@
 	}
 }
 
+.result {
+	&__wrapper {
+		background-color: $white;
+		width: 100%;
+	    max-width: 45rem;
+	    display: block;
+	    margin: 2rem auto;
+	    padding: 2rem;
+	}
+	&__block {
+
+	}
+	&__item {
+		font-family: 'JohnstonITCMedium', sans-serif;
+		margin: 0;
+	}
+	&__title {
+		font-size: 1.5rem;
+		color: $black;
+	}
+	&__description {
+		margin-top: 1rem;
+		font-size: 1.2rem;
+	}
+	&__helper {
+		color: $tfl-blue;
+		margin-top: 4rem;
+    	display: block;
+	}
+}
+
+filters, line-list, search-results, search {
+	display:block;
+	width:100%;
+}
+
 //Delay
 emergency-delays {
 	width: 100%;
 	max-width: 38rem;
 	display: block;
-    margin: 2rem auto;
+    margin: 4rem auto;
 }
 
 .delay {

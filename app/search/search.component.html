@@ -3,24 +3,22 @@
     <form action="">
         <div class="searcharea__wrapper">
             <div class="searcharea__input__wrapper">
-                <input type="text" 
-                class="searcharea__input" 
+                <input type="text"
+                class="searcharea__input"
                 name="search"
-                #searchTerm 
-                [ngModel]='model' 
-                (ngModelChange)='search($event)' 
-                [placeholder]="'e.g. ' + searchExample" 
-                (click)="revealAutocomplete()"
-                (blur)="hideAutocomplete($event)"
+                #searchTerm
+                [ngModel]='model'
+                (ngModelChange)='search($event)'
+                [placeholder]="'e.g. ' + searchExample"
                 (keyup)="filterAutocomplete(searchTerm, $event)"
-                min="2" 
-                max="30" 
+                min="2"
+                max="30"
                 autofocus="autofocus"/>
             </div>
 
             {{autocompleteFilteredList | json}}
 
-            <div class="suggestion__wrapper" *ngIf="autoCompleteVals && showAutocomplete">
+            <div class="suggestion__wrapper" *ngIf="autoCompleteVals && showAutocompleteUI">
                 <div class="suggestion__value" *ngFor="let suggestion of autoCompleteVals">
                     <button class="suggestion__select" (click)="selectStation(suggestion)">
                         <p class="suggestion__name">{{suggestion?.stationName}}</p>
@@ -31,8 +29,6 @@
 
         </div>
     </form>
-
-    {{results | json}}
 
 </header>
 

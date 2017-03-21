@@ -79,13 +79,13 @@ var searchService = (function () {
             }
         }
     };
-    searchService.prototype.queryStation = function (searchTerm) {
+    searchService.prototype.queryStation = function (naptanId) {
         var params = new http_1.URLSearchParams();
         params.set("getFamily", false);
         params.set("app_id", this._appConstants.app_id);
         params.set("app_key", this._appConstants.app_key);
         return this.http
-            .get(this._appConstants.api_base_url + "StopPoint/" + this.getNaptanId(searchTerm) + "/Disruption", {
+            .get(this._appConstants.api_base_url + "StopPoint/" + naptanId + "/Disruption", {
             headers: this.getHeaders(),
             search: params
         })

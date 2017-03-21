@@ -52,14 +52,14 @@ export class searchService {
 		}
 	}
 
-	queryStation(searchTerm) {
+	queryStation(naptanId) {
 		let params: URLSearchParams = new URLSearchParams();
 			params.set("getFamily", false);
 			params.set("app_id", this._appConstants.app_id);
 			params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-			.get(this._appConstants.api_base_url + "StopPoint/" + this.getNaptanId(searchTerm)  + "/Disruption", 
+			.get(this._appConstants.api_base_url + "StopPoint/" + naptanId  + "/Disruption", 
 				{
 					headers: this.getHeaders(), 
 					search: params

@@ -24,6 +24,28 @@ var lineAreaComponent = (function () {
         this.getAllLines();
         this.getAllDelays();
     };
+    lineAreaComponent.prototype.getDetailedLineInfo = function (line) {
+        var _this = this;
+        this._lineService.getDetailedLineInfo(line.id).then(function (response) {
+            if (!response) {
+                return false;
+            }
+            ;
+            if (typeof response === "object" && response.length < 1) {
+                _this.detailedLineInfo = {
+                    "description": "No delays found for " + line.name
+                };
+            }
+            else {
+                _this.detailedLineInfo = {
+                    "description": response[0].description
+                };
+            }
+            ;
+        }, function (err) {
+            //error
+        });
+    };
     lineAreaComponent.prototype.getAllDelays = function () {
         var _this = this;
         this._delayService.getAllDelays("tube").then(function (response) {
@@ -35,14 +57,12 @@ var lineAreaComponent = (function () {
     lineAreaComponent.prototype.getAllLines = function () {
         var _this = this;
         this._lineService.getAllPossibleLines().then(function (response) {
-            //Filter some popular lines - just get every couple for now
             _this.popularLines = response.filter(function (value, iterator) {
-                if (iterator % 2) {
-                    return value;
-                }
-                ;
+                // if(iterator % 2){
+                return value;
+                // };
             });
-            //Convert to array of name only
+            //Convert to array of names only
             _this.popularLinesArray = _this.popularLines.map(function (value, iterator) {
                 return value.id;
             });
@@ -60,7 +80,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters style=\"display:block;width:100%\"></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search [filterType]=\"filterType\" [searchExample]=\"searchExample\" [searchString]=\"searchString\" [autoCompleteVals]=\"stationsList\" style=\"display:block;width:100%\"></search>\n\n\t            <line-list [popularItems]=\"popularLines\" [listType]=\"listType\" style=\"display:block;width:100%\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedLineInfo]=\"detailedLineInfo\" [popularItems]=\"popularLines\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);

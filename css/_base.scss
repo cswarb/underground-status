@@ -11,6 +11,10 @@ a:focus, button:focus, input:focus {
 	outline: 3px solid #ffbf47;
 }
 
+a:visited {
+	color: $tfl-blue;
+}
+
 body {
 	margin:  0;
 	padding: 0;

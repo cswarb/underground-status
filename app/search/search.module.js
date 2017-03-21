@@ -14,6 +14,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var home_routing_module_1 = require("../home/home-routing.module");
+var search_results_module_1 = require("../shared/search-results/search-results.module");
 //Custom Components
 var search_component_1 = require('./search.component');
 //services
@@ -29,7 +30,8 @@ var searchModule = (function () {
                 http_1.HttpModule,
                 http_1.JsonpModule,
                 forms_1.ReactiveFormsModule,
-                home_routing_module_1.homeRoutingModule
+                home_routing_module_1.homeRoutingModule,
+                search_results_module_1.searchResultsModule
             ],
             declarations: [
                 search_component_1.searchComponent

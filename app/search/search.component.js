@@ -20,10 +20,18 @@ var searchComponent = (function () {
         var _this = this;
         this._searchService = _searchService;
         this.myElement = myElement;
+        //Inputs from parent components
+        this.filterType = "station";
+        this.searchExample = "";
+        this.searchString = "";
+        this.autoCompleteVals = [];
+        this.searchResults = [];
+        //Outputs to parent components
+        this.searchResultUpdated = new core_1.EventEmitter();
         this.autocompleteFilteredList = [];
-        this.results = [];
-        this.showAutocomplete = false;
-        //Create a Subject
+        this.hasSearchResults = false;
+        this.showAutocompleteUI = false;
+        //Create a Subject we can subscribe to when the mode changes
         this.modelChanged = new Subject_1.Subject();
         this.debounceValue = 300;
         this.search = function (term) {
@@ -31,11 +39,6 @@ var searchComponent = (function () {
             _this.modelChanged.next(term);
         };
     }
-    searchComponent.prototype.handleStationDistruption = function (disruption) {
-        this.results = disruption.filter(function (value) {
-            return value.mode === "tube";
-        });
-    };
     searchComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._searchService.setAutoCompleteVals(this.autoCompleteVals);
@@ -43,12 +46,20 @@ var searchComponent = (function () {
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe(function (searchTerm) {
+            console.log("subscribe ", searchTerm);
             if (searchTerm.length > 3) {
                 if (_this.filterType === "station") {
                     _this._searchService.queryStation(searchTerm).then(function (res) {
-                        console.log(res);
-                        if (res.httpStatusCode === 404 || !res) {
+                        if (!res || res.httpStatusCode === 404) {
                             return false;
+                        }
+                        ;
+                        if (res.length < 1) {
+                            _this.hasSearchResults = false;
+                        }
+                        else {
+                            _this.hasSearchResults = true;
+                            _this.hideAutocomplete();
                         }
                         ;
                         _this.handleStationDistruption(res);
@@ -68,29 +79,35 @@ var searchComponent = (function () {
             ;
         });
     };
-    searchComponent.prototype.selectStation = function (station) {
-        this.model = station.naptanId;
-        this.modelChanged.next(this.model);
+    searchComponent.prototype.searchResultChanged = function (delta) {
+        this.searchResultUpdated.next(delta);
     };
-    searchComponent.prototype.revealAutocomplete = function () {
-        this.showAutocomplete = true;
+    searchComponent.prototype.handleStationDistruption = function (disruption) {
+        //Only return the results that are from the tube
+        this.searchResults = disruption.filter(function (value) {
+            return value.mode === "tube";
+        });
+        //Cause a change to update the search result component
+        this.searchResultChanged(this.searchResults);
+    };
+    searchComponent.prototype.selectStation = function (station) {
+        this.model = station.stationName;
+        this.modelChanged.next(station.naptanId);
+    };
+    searchComponent.prototype.showAutocomplete = function () {
+        this.showAutocompleteUI = true;
     };
     searchComponent.prototype.hideAutocomplete = function (event) {
-        console.log(this.myElement.nativeElement);
-        console.log(event.target);
+        // console.log(this.myElement.nativeElement);
+        this.showAutocompleteUI = false;
         if (false) {
-            this.showAutocomplete = false;
             this.autocompleteFilteredList = _.cloneDeep(this.autoCompleteVals);
         }
         ;
     };
     searchComponent.prototype.filterAutocomplete = function (search, event) {
+        search.value.length > 1 ? this.showAutocomplete() : this.hideAutocomplete();
         if (event.isTrusted) {
-            // console.log(search.value, " :search");
-            // console.log(this, " :search");
-            //now filter the list and remove the values from the array
-            // console.log(this.autocompleteFilteredList);
-            // console.log(this.autoCompleteVals);
             this.autoCompleteVals = this.autoCompleteVals.filter(function (value, iterator) {
                 if (value.stationName.match(new RegExp(search.value, "i"))) {
                     return value;
@@ -116,6 +133,14 @@ var searchComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], searchComponent.prototype, "autoCompleteVals", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], searchComponent.prototype, "searchResults", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], searchComponent.prototype, "searchResultUpdated", void 0);
     searchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
