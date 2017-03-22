@@ -1,24 +1,20 @@
-<div class="undergroundline__lines">
-    <h2 class="undergroundline__title">All {{listType}}:</h2>
-
-    <article *ngFor="let line of allLineStatuses" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id}">
-        <div class="undergroundline__block">
-            <h1 class="undergroundline__line__name">{{line?.name}}</h1>
-            <div class="undergroundline__line__status">
-                <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-                <p class="undergroundline__line__status__text" *ngFor="let status of line.lineStatuses">    
-                    {{status.statusSeverityDescription}}
-                </p>
-            </div>
-            <div class="undergroundline__line__toggle">
-                <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                    <p class="button__icon__text" (click)="expandLineInfo(line)">More Detail</p>
-                    <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
-                </button>
-            </div>
+<article class="undergroundline__line undergroundline__line--{{sanitizeLineId(lineData?.id)}}" [ngClass]="{'loaded': lineData?.id}">
+    <div class="undergroundline__block">
+        <h1 class="undergroundline__line__name">{{lineData?.name}}</h1>
+        <div class="undergroundline__line__status">
+            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
+            <p class="undergroundline__line__status__text" *ngFor="let status of lineData.lineStatuses">    
+                {{status.statusSeverityDescription}}
+            </p>
         </div>
-        <div class="undergroundline__block more-info" [ngClass]="{'expanded': detailedViewToggle}">
-            <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
+        <div class="undergroundline__line__toggle">
+            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+                <p class="button__icon__text" (click)="expandLineInfo(lineData)">More Detail</p>
+                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+            </button>
         </div>
-    </article>
-</div>
+    </div>
+    <div class="undergroundline__block more-info" [ngClass]="{'expanded': detailedViewToggle}">
+        <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
+    </div>
+</article>

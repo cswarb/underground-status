@@ -19,35 +19,10 @@ var lineAreaComponent = (function () {
         this.searchExample = "Circle";
         this.listType = "Lines";
         this.searchString = "";
-        this.detailedViewToggle = false;
     }
     lineAreaComponent.prototype.ngOnInit = function () {
         this.getAllLinesStatuses();
         this.getAllDelays();
-    };
-    lineAreaComponent.prototype.getDetailedLineInfo = function (line) {
-        var _this = this;
-        this._lineService.getDetailedLineInfo(line.id).then(function (response) {
-            if (!response) {
-                return false;
-            }
-            ;
-            if (typeof response === "object" && response.length < 1) {
-                _this.detailedLineInfo = {
-                    "description": "No delays found for " + line.name
-                };
-            }
-            else {
-                _this.detailedLineInfo = {
-                    "description": response[0].description
-                };
-            }
-            ;
-        }, function (err) {
-            _this.detailedLineInfo = {
-                "description": "Error: Could not get any data."
-            };
-        });
     };
     lineAreaComponent.prototype.getAllDelays = function () {
         var _this = this;
@@ -69,7 +44,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedViewToggle]=\"detailedViewToggle\" [detailedLineInfo]=\"detailedLineInfo\" [allLineStatuses]=\"allLineStatuses\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n            \t<div class=\"undergroundline__lines\">\n    \t\t\t\t<h2 class=\"undergroundline__title\">All {{listType}}:</h2>\n\t            \t<line-list *ngFor=\"let line of allLineStatuses\" [lineData]=\"line\"></line-list>\n           \t\t</div>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);

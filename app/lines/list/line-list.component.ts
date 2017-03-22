@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 import { Router, Params } from "@angular/router";
 import { FormControl } from '@angular/forms';
 
+import { lineService } from "../../line-area/line.service";
+
 @Component({
 	moduleId: module.id,
     selector: 'line-list',
@@ -9,12 +11,12 @@ import { FormControl } from '@angular/forms';
 })
 export class lineListComponent implements OnInit {
 
-	@Input() allLineStatuses;
+	@Input() lineData;
 	@Input() listType;
-	@Input() detailedLineInfo;
-	@Input() detailedViewToggle = false;
 
-	constructor(){}
+	detailedLineInfo = {};
+
+	constructor(private _lineService: lineService){}
 	
 	ngOnInit() {
 		
@@ -22,8 +24,30 @@ export class lineListComponent implements OnInit {
 
 	@Output() detailedLineEvent = new EventEmitter();
 	expandLineInfo(line) {
-		this.detailedViewToggle = !this.detailedViewToggle;
-    	this.detailedLineEvent.next(line);
+		if(this.detailedViewToggle === true) {
+			this.detailedViewToggle = false;
+		} else if(this.detailedLineInfo.hasOwnProperty("description")) {
+			this.detailedViewToggle = true;
+		} else {
+	    	this._lineService.getDetailedLineInfo(line.id).then((response) => {
+				if(!response) {return false};
+				this.detailedViewToggle = true;
+				if(typeof response === "object" && response.length < 1) {
+					this.detailedLineInfo = {
+						"description": "No delays found for " + line.name
+					};
+				} else {
+					this.detailedLineInfo = {
+						"description": response[0].description
+					};
+				};
+			}, (err) => {
+				this.detailedViewToggle = true;
+				this.detailedLineInfo = {
+					"description": "Error: Could not get any data."
+				};
+			});
+		}
 	}
 
 	sanitizeLineId(line) {

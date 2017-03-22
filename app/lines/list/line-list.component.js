@@ -9,16 +9,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var line_service_1 = require("../../line-area/line.service");
 var lineListComponent = (function () {
-    function lineListComponent() {
-        this.detailedViewToggle = false;
+    function lineListComponent(_lineService) {
+        this._lineService = _lineService;
+        this.detailedLineInfo = {};
         this.detailedLineEvent = new core_1.EventEmitter();
     }
     lineListComponent.prototype.ngOnInit = function () {
     };
     lineListComponent.prototype.expandLineInfo = function (line) {
-        this.detailedViewToggle = !this.detailedViewToggle;
-        this.detailedLineEvent.next(line);
+        var _this = this;
+        if (this.detailedViewToggle === true) {
+            this.detailedViewToggle = false;
+        }
+        else if (this.detailedLineInfo.hasOwnProperty("description")) {
+            this.detailedViewToggle = true;
+        }
+        else {
+            this._lineService.getDetailedLineInfo(line.id).then(function (response) {
+                if (!response) {
+                    return false;
+                }
+                ;
+                _this.detailedViewToggle = true;
+                if (typeof response === "object" && response.length < 1) {
+                    _this.detailedLineInfo = {
+                        "description": "No delays found for " + line.name
+                    };
+                }
+                else {
+                    _this.detailedLineInfo = {
+                        "description": response[0].description
+                    };
+                }
+                ;
+            }, function (err) {
+                _this.detailedViewToggle = true;
+                _this.detailedLineInfo = {
+                    "description": "Error: Could not get any data."
+                };
+            });
+        }
     };
     lineListComponent.prototype.sanitizeLineId = function (line) {
         return line.replace(/-/g, "");
@@ -26,19 +58,11 @@ var lineListComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], lineListComponent.prototype, "allLineStatuses", void 0);
+    ], lineListComponent.prototype, "lineData", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], lineListComponent.prototype, "listType", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], lineListComponent.prototype, "detailedLineInfo", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], lineListComponent.prototype, "detailedViewToggle", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -49,7 +73,7 @@ var lineListComponent = (function () {
             selector: 'line-list',
             templateUrl: "./line-list.template.html"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [line_service_1.lineService])
     ], lineListComponent);
     return lineListComponent;
 }());

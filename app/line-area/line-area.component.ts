@@ -14,7 +14,10 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedViewToggle]="detailedViewToggle" [detailedLineInfo]="detailedLineInfo" [allLineStatuses]="allLineStatuses" [listType]="listType"></line-list>
+            	<div class="undergroundline__lines">
+    				<h2 class="undergroundline__title">All {{listType}}:</h2>
+	            	<line-list *ngFor="let line of allLineStatuses" [lineData]="line"></line-list>
+           		</div>
             </section>
 
         </article>
@@ -27,33 +30,12 @@ export class lineAreaComponent implements OnInit {
 	searchExample: string = "Circle";
 	listType: string = "Lines";
 	searchString: string = "";
-	detailedLineInfo: [];
-	detailedViewToggle = false;
 
 	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	
 	ngOnInit() {
 		this.getAllLinesStatuses();
 		this.getAllDelays();
-	}
-
-	getDetailedLineInfo(line) {
-		this._lineService.getDetailedLineInfo(line.id).then((response) => {
-			if(!response) {return false};
-			if(typeof response === "object" && response.length < 1) {
-				this.detailedLineInfo = {
-					"description": "No delays found for " + line.name
-				};
-			} else {
-				this.detailedLineInfo = {
-					"description": response[0].description
-				};
-			};
-		}, (err) => {
-			this.detailedLineInfo = {
-				"description": "Error: Could not get any data."
-			};
-		});
 	}
 
 	getAllDelays() {
