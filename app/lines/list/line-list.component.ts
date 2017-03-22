@@ -12,8 +12,7 @@ export class lineListComponent implements OnInit {
 	@Input() popularItems;
 	@Input() listType;
 	@Input() detailedLineInfo;
-
-	isLineExpanded = false;
+	@Input() detailedViewToggle = false;
 
 	constructor(){}
 	
@@ -23,8 +22,8 @@ export class lineListComponent implements OnInit {
 
 	@Output() detailedLineEvent = new EventEmitter();
 	expandLineInfo(line) {
-		this.isLineExpanded = !this.isLineExpanded;
-	    this.detailedLineEvent.next(line);
+		this.detailedViewToggle = !this.detailedViewToggle;
+    	this.detailedLineEvent.next(line);
 	}
 
 	sanitizeLineId(line) {

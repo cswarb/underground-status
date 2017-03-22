@@ -37,7 +37,7 @@ export class stationService {
 		params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-			.get(this._appConstants.api_base_url + "Line/" + lineId + "/StopPoints", 
+			.get(this._appConstants.api_base_url + "/Line/" + lineId + "/StopPoints", 
 				{
 					headers: this.getHeaders(),
 					search: params

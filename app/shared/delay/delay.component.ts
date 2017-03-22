@@ -5,7 +5,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
     selector: 'emergency-delays',
     template: `
     	<div *ngIf="delays?.length < 1" class="center">
-			<h4 class="ui-helper">Currently no delays reported.</h4>
+			<h4 class="ui-helper">Currently no delays reported on any lines</h4>
     	</div>
 		<div *ngFor="let delay of delays" class="delay">
 			<div class="delay__wrapper">

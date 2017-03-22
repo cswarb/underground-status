@@ -11,13 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var lineListComponent = (function () {
     function lineListComponent() {
-        this.isLineExpanded = false;
+        this.detailedViewToggle = false;
         this.detailedLineEvent = new core_1.EventEmitter();
     }
     lineListComponent.prototype.ngOnInit = function () {
     };
     lineListComponent.prototype.expandLineInfo = function (line) {
-        this.isLineExpanded = !this.isLineExpanded;
+        this.detailedViewToggle = !this.detailedViewToggle;
         this.detailedLineEvent.next(line);
     };
     lineListComponent.prototype.sanitizeLineId = function (line) {
@@ -35,6 +35,10 @@ var lineListComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], lineListComponent.prototype, "detailedLineInfo", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], lineListComponent.prototype, "detailedViewToggle", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

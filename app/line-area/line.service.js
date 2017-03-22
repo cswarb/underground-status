@@ -29,7 +29,7 @@ var lineService = (function () {
         params.set("app_id", this._appConstants.app_id);
         params.set("app_key", this._appConstants.app_key);
         return this.http
-            .get(this._appConstants.api_base_url + "Line/" + lineId + "/Disruption", {
+            .get(this._appConstants.api_base_url + "/Line/" + lineId + "/Disruption", {
             headers: this.getHeaders()
         })
             .map(function (res) { return res.json(); })

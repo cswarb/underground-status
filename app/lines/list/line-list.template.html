@@ -1,7 +1,7 @@
 <div class="undergroundline__lines">
     <h2 class="undergroundline__title">All {{listType}}:</h2>
 
-    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id, 'expanded': isLineExpanded}">
+    <article *ngFor="let line of popularItems" class="undergroundline__line undergroundline__line--{{sanitizeLineId(line?.id)}}" [ngClass]="{'loaded': line?.id}">
         <div class="undergroundline__block">
             <h1 class="undergroundline__line__name">{{line?.name}}</h1>
             <div class="undergroundline__line__status">
@@ -17,7 +17,7 @@
                 </button>
             </div>
         </div>
-        <div class="undergroundline__block more-info">
+        <div class="undergroundline__block more-info" [ngClass]="{'expanded': detailedViewToggle}">
             <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
         </div>
     </article>

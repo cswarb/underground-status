@@ -19,6 +19,7 @@ var lineAreaComponent = (function () {
         this.searchExample = "Circle";
         this.listType = "Lines";
         this.searchString = "";
+        this.detailedViewToggle = false;
     }
     lineAreaComponent.prototype.ngOnInit = function () {
         this.getAllLines();
@@ -43,7 +44,9 @@ var lineAreaComponent = (function () {
             }
             ;
         }, function (err) {
-            //error
+            _this.detailedLineInfo = {
+                "description": "Error: Could not get any data."
+            };
         });
     };
     lineAreaComponent.prototype.getAllDelays = function () {
@@ -80,7 +83,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedLineInfo]=\"detailedLineInfo\" [popularItems]=\"popularLines\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedViewToggle]=\"detailedViewToggle\" [detailedLineInfo]=\"detailedLineInfo\" [popularItems]=\"popularLines\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);

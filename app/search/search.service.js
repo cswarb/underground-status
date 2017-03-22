@@ -23,7 +23,7 @@ var searchService = (function () {
             params.set("app_id", _this._appConstants.app_id);
             params.set("app_key", _this._appConstants.app_key);
             return _this.http
-                .get(_this._appConstants.api_base_url + "Line/" + _this.cleanSearchTerm(searchTerm) + "/Status", {
+                .get(_this._appConstants.api_base_url + "/Line/" + _this.cleanSearchTerm(searchTerm) + "/Status", {
                 headers: _this.getHeaders(),
                 search: params
             })
@@ -85,7 +85,7 @@ var searchService = (function () {
         params.set("app_id", this._appConstants.app_id);
         params.set("app_key", this._appConstants.app_key);
         return this.http
-            .get(this._appConstants.api_base_url + "StopPoint/" + naptanId + "/Disruption", {
+            .get(this._appConstants.api_base_url + "/StopPoint/" + naptanId + "/Disruption", {
             headers: this.getHeaders(),
             search: params
         })

@@ -14,7 +14,7 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedLineInfo]="detailedLineInfo" [popularItems]="popularLines" [listType]="listType"></line-list>
+	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedViewToggle]="detailedViewToggle" [detailedLineInfo]="detailedLineInfo" [popularItems]="popularLines" [listType]="listType"></line-list>
             </section>
 
         </article>
@@ -28,6 +28,7 @@ export class lineAreaComponent implements OnInit {
 	listType: string = "Lines";
 	searchString: string = "";
 	detailedLineInfo: [];
+	detailedViewToggle = false;
 
 	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	
@@ -49,7 +50,9 @@ export class lineAreaComponent implements OnInit {
 				};
 			};
 		}, (err) => {
-			//error
+			this.detailedLineInfo = {
+				"description": "Error: Could not get any data."
+			};
 		});
 	}
 

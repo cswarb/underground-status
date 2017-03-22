@@ -19,7 +19,7 @@ export class searchService {
 			params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-			.get(this._appConstants.api_base_url + "Line/" + this.cleanSearchTerm(searchTerm)  + "/Status", 
+			.get(this._appConstants.api_base_url + "/Line/" + this.cleanSearchTerm(searchTerm)  + "/Status", 
 				{
 					headers: this.getHeaders(), 
 					search: params
@@ -59,7 +59,7 @@ export class searchService {
 			params.set("app_key", this._appConstants.app_key);
 			
 		return this.http
-			.get(this._appConstants.api_base_url + "StopPoint/" + naptanId  + "/Disruption", 
+			.get(this._appConstants.api_base_url + "/StopPoint/" + naptanId  + "/Disruption", 
 				{
 					headers: this.getHeaders(), 
 					search: params

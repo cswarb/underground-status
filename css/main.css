@@ -361,11 +361,22 @@ form {
             justify-content: space-between;
     -webkit-align-items: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    -webkit-flex: 100%;
+        -ms-flex: 100%;
+            flex: 100%; }
+    .undergroundline__block.more-info {
+      display: none; }
+      .undergroundline__block.more-info.expanded {
+        display: block; }
     .undergroundline__block__content {
       color: #FFFFFF;
       font-family: 'JohnstonITCBold', sans-serif;
       margin: 3rem 0 0 0; }
+  .undergroundline__wrapper {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
   .undergroundline__lines {
     width: 100%;
     display: block;
@@ -378,8 +389,14 @@ form {
     color: #FFFFFF;
     background-color: #000000;
     display: block;
+    width: 100%;
+    -webkit-flex-flow: row nowrap;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     opacity: 0;
-    height: 141px;
     -webkit-animation: fadeInSoftDown 0.5s ease-in-out forwards;
             animation: fadeInSoftDown 0.5s ease-in-out forwards; }
     .undergroundline__line.expanded {
@@ -582,7 +599,13 @@ form {
       margin: 0;
       color: #FFFFFF;
       margin: 0;
-      font-family: 'JohnstonITCBold', sans-serif; }
+      font-family: 'JohnstonITCBold', sans-serif;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-flow: column nowrap;
+          -ms-flex-flow: column nowrap;
+              flex-flow: column nowrap; }
       .undergroundline__line__status__badge, .undergroundline__line__status__text {
         color: #FFFFFF;
         display: inline-block;
@@ -827,7 +850,8 @@ emergency-delays {
           flex-flow: row nowrap; }
 
 .ui-helper {
-  font-family: 'JohnstonITCMedium', sans-serif; }
+  font-family: 'JohnstonITCMedium', sans-serif;
+  font-size: 1.25rem; }
 
 .icon {
   width: 1.5rem;

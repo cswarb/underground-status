@@ -144,11 +144,21 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 		align-items: center;
+		flex: 100%;
+		&.more-info {
+			display: none;
+			&.expanded {
+				display: block;
+			}
+		}
 		&__content {
 			color: $white;
 			font-family: 'JohnstonITCBold', sans-serif;
 			margin: 3rem 0 0 0;
 		}
+	}
+	&__wrapper {
+		display: flex;
 	}
 	&__lines {
 		width: 100%;
@@ -163,8 +173,10 @@
 		color: $white;
 		background-color: #000000;
 		display: block;
+	    width: 100%;
+	    flex-flow: row nowrap;
+	    align-items: center;
 		opacity: 0;
-		height: 141px;
 		animation: fadeInSoftDown 0.5s ease-in-out forwards;
 		&.expanded {
 			height: auto;
@@ -224,6 +236,8 @@
 			color: $white;
 			margin: 0;
 			font-family: 'JohnstonITCBold', sans-serif;
+			display: flex;
+    		flex-flow: column nowrap;
 			&__badge, &__text {
 				color: $white;
 				display: inline-block;
@@ -481,6 +495,7 @@ emergency-delays {
 
 .ui-helper {
 	font-family: 'JohnstonITCMedium', sans-serif;
+	font-size: 1.25rem;
 }
 
 .icon {
