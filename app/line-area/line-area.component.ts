@@ -14,7 +14,7 @@ import { delayService } from "../shared/delay/delay.service";
             <emergency-delays [delays]="delays"></emergency-delays>
             
             <section class="undergroundline">
-	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedViewToggle]="detailedViewToggle" [detailedLineInfo]="detailedLineInfo" [popularItems]="popularLines" [listType]="listType"></line-list>
+	            <line-list (detailedLineEvent)="getDetailedLineInfo($event)" [detailedViewToggle]="detailedViewToggle" [detailedLineInfo]="detailedLineInfo" [allLineStatuses]="allLineStatuses" [listType]="listType"></line-list>
             </section>
 
         </article>
@@ -33,7 +33,7 @@ export class lineAreaComponent implements OnInit {
 	constructor(private _lineService: lineService, private _delayService: delayService) {}
 	
 	ngOnInit() {
-		this.getAllLines();
+		this.getAllLinesStatuses();
 		this.getAllDelays();
 	}
 
@@ -64,26 +64,9 @@ export class lineAreaComponent implements OnInit {
 		});
 	}
 
-	getAllLines() {
-		this._lineService.getAllPossibleLines().then((response) => {
-
-			this.popularLines = response.filter((value, iterator) => {
-				// if(iterator % 2){
-					return value;
-				// };
-			});
-
-			//Convert to array of names only
-			this.popularLinesArray = this.popularLines.map((value, iterator) => {
-				return value.id;
-			});
-
-			//Get line statuses passing an array and reassign popularLines
-			this._lineService.getPopularLineStatuses(this.popularLinesArray).then((popularLinesData) => {
-				this.popularLines = popularLinesData;
-			}, (err) => {
-				console.log("error: ", err);
-			});
+	getAllLinesStatuses() {
+		this._lineService.getAllLineStatuses("tube").then((response) => {
+			this.allLineStatuses = response;
 		}, (err) => {
 			console.log("error: ", err);
 		});

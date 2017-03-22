@@ -22,7 +22,7 @@ var lineAreaComponent = (function () {
         this.detailedViewToggle = false;
     }
     lineAreaComponent.prototype.ngOnInit = function () {
-        this.getAllLines();
+        this.getAllLinesStatuses();
         this.getAllDelays();
     };
     lineAreaComponent.prototype.getDetailedLineInfo = function (line) {
@@ -57,24 +57,10 @@ var lineAreaComponent = (function () {
             console.log(err);
         });
     };
-    lineAreaComponent.prototype.getAllLines = function () {
+    lineAreaComponent.prototype.getAllLinesStatuses = function () {
         var _this = this;
-        this._lineService.getAllPossibleLines().then(function (response) {
-            _this.popularLines = response.filter(function (value, iterator) {
-                // if(iterator % 2){
-                return value;
-                // };
-            });
-            //Convert to array of names only
-            _this.popularLinesArray = _this.popularLines.map(function (value, iterator) {
-                return value.id;
-            });
-            //Get line statuses passing an array and reassign popularLines
-            _this._lineService.getPopularLineStatuses(_this.popularLinesArray).then(function (popularLinesData) {
-                _this.popularLines = popularLinesData;
-            }, function (err) {
-                console.log("error: ", err);
-            });
+        this._lineService.getAllLineStatuses("tube").then(function (response) {
+            _this.allLineStatuses = response;
         }, function (err) {
             console.log("error: ", err);
         });
@@ -83,7 +69,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedViewToggle]=\"detailedViewToggle\" [detailedLineInfo]=\"detailedLineInfo\" [popularItems]=\"popularLines\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <line-list (detailedLineEvent)=\"getDetailedLineInfo($event)\" [detailedViewToggle]=\"detailedViewToggle\" [detailedLineInfo]=\"detailedLineInfo\" [allLineStatuses]=\"allLineStatuses\" [listType]=\"listType\"></line-list>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);

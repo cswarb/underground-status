@@ -26,7 +26,7 @@ var lineListComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], lineListComponent.prototype, "popularItems", void 0);
+    ], lineListComponent.prototype, "allLineStatuses", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

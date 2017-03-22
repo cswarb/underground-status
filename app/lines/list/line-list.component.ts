@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 })
 export class lineListComponent implements OnInit {
 
-	@Input() popularItems;
+	@Input() allLineStatuses;
 	@Input() listType;
 	@Input() detailedLineInfo;
 	@Input() detailedViewToggle = false;

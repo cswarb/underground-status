@@ -72,6 +72,23 @@ export class lineService {
 			.catch(this.handleError);
 	}
 
+	getAllLineStatuses(type) {
+		let params: URLSearchParams = new URLSearchParams();
+		params.set("detail", this._appConstants.app_detail);
+		params.set("app_id", this._appConstants.app_id);
+		params.set("app_key", this._appConstants.app_key);
+			
+		return this.http
+			.get(tfl.api_base_url + "/Line/Mode/" + type + "/Status", 
+				{
+					headers: this.getHeaders()
+				}
+			)
+			.map((res) => res.json())
+			.toPromise()
+			.catch(this.handleError);
+	}
+
 	handleError() {
 		console.log("Error");
 	}

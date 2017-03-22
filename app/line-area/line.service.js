@@ -62,6 +62,19 @@ var lineService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
+    lineService.prototype.getAllLineStatuses = function (type) {
+        var params = new http_1.URLSearchParams();
+        params.set("detail", this._appConstants.app_detail);
+        params.set("app_id", this._appConstants.app_id);
+        params.set("app_key", this._appConstants.app_key);
+        return this.http
+            .get(tfl.api_base_url + "/Line/Mode/" + type + "/Status", {
+            headers: this.getHeaders()
+        })
+            .map(function (res) { return res.json(); })
+            .toPromise()
+            .catch(this.handleError);
+    };
     lineService.prototype.handleError = function () {
         console.log("Error");
     };
