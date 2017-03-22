@@ -22,7 +22,6 @@ export class lineListComponent implements OnInit {
 		
 	}
 
-	@Output() detailedLineEvent = new EventEmitter();
 	expandLineInfo(line) {
 		if(this.detailedViewToggle === true) {
 			this.detailedViewToggle = false;

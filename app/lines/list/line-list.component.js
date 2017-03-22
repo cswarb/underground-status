@@ -14,7 +14,6 @@ var lineListComponent = (function () {
     function lineListComponent(_lineService) {
         this._lineService = _lineService;
         this.detailedLineInfo = {};
-        this.detailedLineEvent = new core_1.EventEmitter();
     }
     lineListComponent.prototype.ngOnInit = function () {
     };
@@ -63,10 +62,6 @@ var lineListComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], lineListComponent.prototype, "listType", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], lineListComponent.prototype, "detailedLineEvent", void 0);
     lineListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
