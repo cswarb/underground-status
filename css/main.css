@@ -658,13 +658,25 @@ form {
   @media screen and (min-width: 60rem) {
     .searcharea__input {
       padding: 1rem; } }
-
-.searcharea__input__wrapper {
-  background-color: #fff;
-  width: 100%;
-  height: 5rem;
-  -webkit-animation: fadeInSoftDown 0.5s ease-in-out forwards;
-          animation: fadeInSoftDown 0.5s ease-in-out forwards; }
+  .searcharea__input__clear {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    right: 5%;
+    width: 25px;
+    height: 25px;
+    background: url("../img/clear.svg");
+    z-index: 3; }
+    .searcharea__input__clear:hover {
+      cursor: pointer; }
+  .searcharea__input__wrapper {
+    background-color: #fff;
+    width: 100%;
+    height: 5rem;
+    -webkit-animation: fadeInSoftDown 0.5s ease-in-out forwards;
+            animation: fadeInSoftDown 0.5s ease-in-out forwards; }
 
 .suggestion__wrapper {
   background-color: #FFFFFF;

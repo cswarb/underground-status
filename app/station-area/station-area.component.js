@@ -42,11 +42,12 @@ var stationAreaComponent = (function () {
         this.getAllDelays();
     };
     stationAreaComponent.prototype.searchResultHasUpdated = function (delta) {
-        console.log("delta2: ", delta);
         this.searchResults = delta;
     };
-    stationAreaComponent.prototype.clearSearchResults = function (delta) {
-        this.searchResults = [];
+    stationAreaComponent.prototype.clearTheSearchResult = function (delta) {
+        var index = this.searchResults.indexOf(delta);
+        this.searchResults.splice(index, 1);
+        // this.searchResults = [];
     };
     stationAreaComponent.prototype.getAllDelays = function () {
         var _this = this;
@@ -108,7 +109,7 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search (searchResultUpdated)=\"searchResultHasUpdated($event)\" \n\t            \t(clearSearchResults)=\"clearSearchResults($event)\" \n\t            \t[filterType]=\"filterType\" \n\t            \t[searchResults]=\"searchResults\" \n\t            \t[searchExample]=\"searchExample\" \n\t            \t[searchString]=\"searchString\" \n\t            \t[autoCompleteVals]=\"stationsList\">\n\t            </search>\n\n\t            <search-results [searchResults]=\"searchResults\"></search-results>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n\t            <search (searchResultUpdated)=\"searchResultHasUpdated($event)\" \n\t            \t[filterType]=\"filterType\" \n\t            \t[searchResults]=\"searchResults\" \n\t            \t[searchExample]=\"searchExample\" \n\t            \t[searchString]=\"searchString\" \n\t            \t[autoCompleteVals]=\"stationsList\">\n\t            </search>\n\n\t            <search-results (clearSearchResults)=\"clearTheSearchResult($event)\" [searchResults]=\"searchResults\"></search-results>\n            </section>\n                  \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService, line_service_1.lineService])
     ], stationAreaComponent);

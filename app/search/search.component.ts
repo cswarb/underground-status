@@ -49,9 +49,9 @@ export class searchComponent implements OnInit {
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe((searchTerm) => {
-            	console.log("subscribe ", searchTerm);
-            	if(searchTerm.length > 3) {
-            		if(this.filterType === "station") {
+            	if(!searchTerm) {return false};
+            	if(searchTerm.length > 3 && this.isValidStation(searchTerm)) {
+            		// if(this.filterType === "station") {
             			this._searchService.queryStation(searchTerm).then((res) => {
             				if(!res || res.httpStatusCode === 404) {return false};
 
@@ -65,15 +65,29 @@ export class searchComponent implements OnInit {
 		            	}, function(err){
 		            		console.log(err);
 		            	});
-            		} else {
-		            	this._searchService.queryLineList(searchTerm).then((res) => {
-		            		console.log(res);
-		            	}, function(err){
-		            		console.log(err);
-		            	});
-            		};
+            		// } else {
+		            // 	this._searchService.queryLineList(searchTerm).then((res) => {
+		            // 		console.log(res);
+		            // 	}, function(err){
+		            // 		console.log(err);
+		            // 	});
+            		// };
             	};
             };		
+	}
+
+	isValidStation(searchTerm) {
+		var found = false;
+		if(this._searchService.isNaptanId(searchTerm)) {
+			return true;
+		};
+		this.autoCompleteVals.forEach((element) => {
+			if(this._searchService.getNaptanId(searchTerm)) {
+				found = true
+			};
+			found = false;
+		});
+		return found;
 	}
 
 	searchResultChanged(delta) {
@@ -104,18 +118,21 @@ export class searchComponent implements OnInit {
 	}
 
 	hideAutocomplete(event) {
-		// console.log(this.myElement.nativeElement);
-		this.showAutocompleteUI = false;
-		if(false) {
-			this.autocompleteFilteredList = _.cloneDeep(this.autoCompleteVals);
-		};		
+		this.autocompleteFilteredList.length = 0;
+		this.showAutocompleteUI = false;	
+	}
+
+	clearInput(searchTerm) {
+		searchTerm.value = "";
+		this.modelChanged.next();
+		this.hideAutocomplete();
 	}
 
 	filterAutocomplete(search, event) {
 		search.value.length > 1 ? this.showAutocomplete() : this.hideAutocomplete();
 
 		if(event.isTrusted) {
-			this.autoCompleteVals = this.autoCompleteVals.filter((value, iterator) => {
+			this.autocompleteFilteredList = this.autoCompleteVals.filter((value, iterator) => {
 				if(value.stationName.match(new RegExp(search.value, "i"))) {
 					return value;
 				};

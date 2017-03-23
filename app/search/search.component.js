@@ -14,7 +14,6 @@ var Subject_1 = require('rxjs/Subject');
 require('rxjs/add/operator/debounceTime');
 require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
-var _ = require("lodash");
 var searchComponent = (function () {
     function searchComponent(_searchService, myElement) {
         var _this = this;
@@ -46,38 +45,48 @@ var searchComponent = (function () {
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe(function (searchTerm) {
-            console.log("subscribe ", searchTerm);
-            if (searchTerm.length > 3) {
-                if (_this.filterType === "station") {
-                    _this._searchService.queryStation(searchTerm).then(function (res) {
-                        if (!res || res.httpStatusCode === 404) {
-                            return false;
-                        }
-                        ;
-                        if (res.length < 1) {
-                            _this.hasSearchResults = false;
-                        }
-                        else {
-                            _this.hasSearchResults = true;
-                            _this.hideAutocomplete();
-                        }
-                        ;
-                        _this.handleStationDistruption(res);
-                    }, function (err) {
-                        console.log(err);
-                    });
-                }
-                else {
-                    _this._searchService.queryLineList(searchTerm).then(function (res) {
-                        console.log(res);
-                    }, function (err) {
-                        console.log(err);
-                    });
-                }
-                ;
+            if (!searchTerm) {
+                return false;
+            }
+            ;
+            if (searchTerm.length > 3 && _this.isValidStation(searchTerm)) {
+                // if(this.filterType === "station") {
+                _this._searchService.queryStation(searchTerm).then(function (res) {
+                    if (!res || res.httpStatusCode === 404) {
+                        return false;
+                    }
+                    ;
+                    if (res.length < 1) {
+                        _this.hasSearchResults = false;
+                    }
+                    else {
+                        _this.hasSearchResults = true;
+                        _this.hideAutocomplete();
+                    }
+                    ;
+                    _this.handleStationDistruption(res);
+                }, function (err) {
+                    console.log(err);
+                });
             }
             ;
         });
+    };
+    searchComponent.prototype.isValidStation = function (searchTerm) {
+        var _this = this;
+        var found = false;
+        if (this._searchService.isNaptanId(searchTerm)) {
+            return true;
+        }
+        ;
+        this.autoCompleteVals.forEach(function (element) {
+            if (_this._searchService.getNaptanId(searchTerm)) {
+                found = true;
+            }
+            ;
+            found = false;
+        });
+        return found;
     };
     searchComponent.prototype.searchResultChanged = function (delta) {
         this.searchResultUpdated.next(delta);
@@ -98,17 +107,18 @@ var searchComponent = (function () {
         this.showAutocompleteUI = true;
     };
     searchComponent.prototype.hideAutocomplete = function (event) {
-        // console.log(this.myElement.nativeElement);
+        this.autocompleteFilteredList.length = 0;
         this.showAutocompleteUI = false;
-        if (false) {
-            this.autocompleteFilteredList = _.cloneDeep(this.autoCompleteVals);
-        }
-        ;
+    };
+    searchComponent.prototype.clearInput = function (searchTerm) {
+        searchTerm.value = "";
+        this.modelChanged.next();
+        this.hideAutocomplete();
     };
     searchComponent.prototype.filterAutocomplete = function (search, event) {
         search.value.length > 1 ? this.showAutocomplete() : this.hideAutocomplete();
         if (event.isTrusted) {
-            this.autoCompleteVals = this.autoCompleteVals.filter(function (value, iterator) {
+            this.autocompleteFilteredList = this.autoCompleteVals.filter(function (value, iterator) {
                 if (value.stationName.match(new RegExp(search.value, "i"))) {
                     return value;
                 }

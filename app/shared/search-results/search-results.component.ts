@@ -8,8 +8,8 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 			<h4 class="ui-helper">Search for a station.</h4>
     	</div>
 		<div *ngIf="searchResults.length > 0">
-			<div (click)="clearResults()">X</div>
 			<div class="result__block" *ngFor="let result of searchResults" class="result__wrapper">
+				<div (click)="clearResult(result)">X</div>
 				<p class="result__item result__title">{{result?.commonName}}</p>
 				<p class="result__item result__description">{{result?.description}}</p>
 				<p class="result__item result__helper" [innerHTML]="result?.additionalInformation"></p>
@@ -27,7 +27,7 @@ export class searchResultsComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	clearResults(delta) {
+	clearResult(delta) {
 	    this.clearSearchResults.next(delta);
 	}
 

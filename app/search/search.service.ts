@@ -38,6 +38,18 @@ export class searchService {
 		return this.autoCompleteVals;
 	}
 
+	isNaptanId(naptanId) {
+		for (var key in this.autoCompleteVals) {
+		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
+
+		    var obj = this.autoCompleteVals[key];
+		    if(naptanId === obj.naptanId){
+		    	return true;
+		    };
+		}
+		return false;
+	}
+
 	getNaptanId(stationName) {
 		for (var key in this.autoCompleteVals) {
 		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
@@ -50,6 +62,7 @@ export class searchService {
 		        };
 		    }
 		}
+		return false;
 	}
 
 	queryStation(naptanId) {

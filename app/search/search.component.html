@@ -15,12 +15,13 @@
                 min="2"
                 max="30"
                 autofocus="autofocus"/>
+                <span class="searcharea__input__clear" (click)="clearInput(searchTerm)"></span>
             </div>
 
-            {{autocompleteFilteredList | json}}
+            <!-- {{autocompleteFilteredList | json}} -->
 
-            <div class="suggestion__wrapper" *ngIf="autoCompleteVals && showAutocompleteUI">
-                <div class="suggestion__value" *ngFor="let suggestion of autoCompleteVals">
+            <div class="suggestion__wrapper" *ngIf="autocompleteFilteredList && showAutocompleteUI">
+                <div class="suggestion__value" *ngFor="let suggestion of autocompleteFilteredList">
                     <button class="suggestion__select" (click)="selectStation(suggestion)">
                         <p class="suggestion__name">{{suggestion?.stationName}}</p>
                         <p class="suggestion__helper suggestion__helper--{{suggestion?.parentLine}}">{{suggestion?.parentLine}}</p>

@@ -16,7 +16,6 @@ import { delayService } from "../shared/delay/delay.service";
             
             <section class="undergroundline">
 	            <search (searchResultUpdated)="searchResultHasUpdated($event)" 
-	            	(clearSearchResults)="clearSearchResults($event)" 
 	            	[filterType]="filterType" 
 	            	[searchResults]="searchResults" 
 	            	[searchExample]="searchExample" 
@@ -24,7 +23,7 @@ import { delayService } from "../shared/delay/delay.service";
 	            	[autoCompleteVals]="stationsList">
 	            </search>
 
-	            <search-results [searchResults]="searchResults"></search-results>
+	            <search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></search-results>
             </section>
                   
         </article>
@@ -59,12 +58,13 @@ export class stationAreaComponent implements OnInit {
 	}
 
 	searchResultHasUpdated(delta) {
-		console.log("delta2: ", delta);
 		this.searchResults = delta;
 	}
 
-	clearSearchResults(delta) {
-		this.searchResults = [];
+	clearTheSearchResult(delta) {		
+		let index = this.searchResults.indexOf(delta);
+  		this.searchResults.splice(index, 1);  
+		// this.searchResults = [];
 	}
 
 	getAllDelays() {

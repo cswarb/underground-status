@@ -16,7 +16,7 @@ var searchResultsComponent = (function () {
     }
     searchResultsComponent.prototype.ngOnInit = function () {
     };
-    searchResultsComponent.prototype.clearResults = function (delta) {
+    searchResultsComponent.prototype.clearResult = function (delta) {
         this.clearSearchResults.next(delta);
     };
     __decorate([
@@ -31,7 +31,7 @@ var searchResultsComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'search-results',
-            template: "\n    \t<div *ngIf=\"searchResults.length < 1\" class=\"center\">\n\t\t\t<h4 class=\"ui-helper\">Search for a station.</h4>\n    \t</div>\n\t\t<div *ngIf=\"searchResults.length > 0\">\n\t\t\t<div (click)=\"clearResults()\">X</div>\n\t\t\t<div class=\"result__block\" *ngFor=\"let result of searchResults\" class=\"result__wrapper\">\n\t\t\t\t<p class=\"result__item result__title\">{{result?.commonName}}</p>\n\t\t\t\t<p class=\"result__item result__description\">{{result?.description}}</p>\n\t\t\t\t<p class=\"result__item result__helper\" [innerHTML]=\"result?.additionalInformation\"></p>\n\t\t\t</div>\n\t\t</div>\t\n    "
+            template: "\n    \t<div *ngIf=\"searchResults.length < 1\" class=\"center\">\n\t\t\t<h4 class=\"ui-helper\">Search for a station.</h4>\n    \t</div>\n\t\t<div *ngIf=\"searchResults.length > 0\">\n\t\t\t<div class=\"result__block\" *ngFor=\"let result of searchResults\" class=\"result__wrapper\">\n\t\t\t\t<div (click)=\"clearResult(result)\">X</div>\n\t\t\t\t<p class=\"result__item result__title\">{{result?.commonName}}</p>\n\t\t\t\t<p class=\"result__item result__description\">{{result?.description}}</p>\n\t\t\t\t<p class=\"result__item result__helper\" [innerHTML]=\"result?.additionalInformation\"></p>\n\t\t\t</div>\n\t\t</div>\t\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], searchResultsComponent);

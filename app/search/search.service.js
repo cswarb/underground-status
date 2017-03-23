@@ -64,6 +64,18 @@ var searchService = (function () {
     searchService.prototype.getAutoCompleteVals = function () {
         return this.autoCompleteVals;
     };
+    searchService.prototype.isNaptanId = function (naptanId) {
+        for (var key in this.autoCompleteVals) {
+            if (!this.autoCompleteVals.hasOwnProperty(key))
+                continue;
+            var obj = this.autoCompleteVals[key];
+            if (naptanId === obj.naptanId) {
+                return true;
+            }
+            ;
+        }
+        return false;
+    };
     searchService.prototype.getNaptanId = function (stationName) {
         for (var key in this.autoCompleteVals) {
             if (!this.autoCompleteVals.hasOwnProperty(key))
@@ -78,6 +90,7 @@ var searchService = (function () {
                 ;
             }
         }
+        return false;
     };
     searchService.prototype.queryStation = function (naptanId) {
         var params = new http_1.URLSearchParams();

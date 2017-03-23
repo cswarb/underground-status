@@ -297,12 +297,25 @@
 		@media screen and (min-width: 60rem) {
 			padding: 1rem;
 		}
-	}
-	&__input__wrapper {
-		background-color: #fff;
-	    width: 100%;
-	    height: 5rem;
-	    animation: fadeInSoftDown 0.5s ease-in-out forwards;
+		&__clear {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 5%;
+			width: 25px;
+			height: 25px;
+			background: url("../img/clear.svg");
+			z-index: 3;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		&__wrapper {
+			background-color: #fff;
+		    width: 100%;
+		    height: 5rem;
+		    animation: fadeInSoftDown 0.5s ease-in-out forwards;
+		}
 	}
 }
 
