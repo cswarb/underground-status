@@ -119,7 +119,6 @@
   	}
 }
 
-
 //Main underground section
 .undergroundline {
 	display: flex;
@@ -198,16 +197,6 @@
 			    animation: fadeOutUnderlay 2s ease-in-out forwards;
 			}
 		}
-		@for $i from 1 through 25 {
-			&:nth-child(#{$i}) {
-				&.loaded {
-					&:before {
-						background-color: lighten(#113b92, ($i * 4));
-					}
-				}
-				animation-delay: ($i * (0.15)) + s;
-			}
-		}
 		@media screen and (min-width: 30rem) {
 			padding: 3rem 4rem;
 		}
@@ -270,6 +259,21 @@
 				// background-image: url("../img/toggle.svg");
 				// background-size: 1.5rem auto;
 				// background-color: transparent;
+			}
+		}
+	}
+}
+
+line-list {
+	@for $i from 1 through 25 {
+		&:nth-child(#{$i}) {
+			.loaded {
+				&:before {
+					background-color: lighten(#113b92, ($i * 4));
+				}
+			}
+			.undergroundline__line {
+				animation-delay: ($i * (0.15)) + s;
 			}
 		}
 	}
