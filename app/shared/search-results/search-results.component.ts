@@ -9,7 +9,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
     	</div>
 		<div *ngIf="searchResults.length > 0">
 			<div class="result__block" *ngFor="let result of searchResults" class="result__wrapper">
-				<div (click)="clearResult(result)">X</div>
+				<div (click)="clearResult(result)" class="result__close"></div>
 				<p class="result__item result__title">{{result?.commonName}}</p>
 				<p class="result__item result__description">{{result?.description}}</p>
 				<p class="result__item result__helper" [innerHTML]="result?.additionalInformation"></p>

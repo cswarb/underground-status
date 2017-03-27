@@ -297,9 +297,9 @@ line-list {
 		font-size: 2rem;
 		font-family: 'JohnstonITCMedium', sans-serif;
 		text-transform: capitalize;
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 4rem 0.5rem 1rem;
 		@media screen and (min-width: 60rem) {
-			padding: 1rem;
+			padding: 1rem 5rem 1rem 1rem;
 		}
 		&__clear {
 			position: absolute;
@@ -386,6 +386,22 @@ line-list {
 	    display: block;
 	    margin: 2rem auto;
 	    padding: 2rem;
+	    position: relative;
+	    animation: fadeInSoftDown 0.5s ease-in-out forwards;
+	}
+	&__close {
+		position: absolute;
+	    right: 5%;
+	    top: 10%;
+	    width: 2rem;
+	    height: 2rem;
+	    display: inline-block;
+	    background: url("../img/clear.svg");
+	    background-repeat: no-repeat;
+	    background-size: auto;
+	    &:hover {
+	    	cursor: pointer;
+	    }
 	}
 	&__block {
 
