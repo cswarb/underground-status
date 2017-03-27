@@ -136,6 +136,14 @@ export class searchComponent implements OnInit {
 				if(value.stationName.match(new RegExp(search.value, "i"))) {
 					return value;
 				};
+			}).sort((a, b) => {
+				if(a.stationName < b.stationName) {
+					return -1;
+				};
+			    if(a.stationName > b.stationName) {
+			    	return 1;
+			    };
+			    return 0;
 			});
 		};
 	}

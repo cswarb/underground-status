@@ -123,6 +123,16 @@ var searchComponent = (function () {
                     return value;
                 }
                 ;
+            }).sort(function (a, b) {
+                if (a.stationName < b.stationName) {
+                    return -1;
+                }
+                ;
+                if (a.stationName > b.stationName) {
+                    return 1;
+                }
+                ;
+                return 0;
             });
         }
         ;
