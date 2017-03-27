@@ -28,7 +28,7 @@ var searchComponent = (function () {
         //Outputs to parent components
         this.searchResultUpdated = new core_1.EventEmitter();
         this.autocompleteFilteredList = [];
-        this.hasSearchResults = false;
+        this.hasInvalidData = false;
         this.showAutocompleteUI = false;
         //Create a Subject we can subscribe to when the mode changes
         this.modelChanged = new Subject_1.Subject();
@@ -45,26 +45,27 @@ var searchComponent = (function () {
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe(function (searchTerm) {
+            _this.hasInvalidData = false;
             if (!searchTerm) {
                 return false;
             }
             ;
             if (searchTerm.length > 3 && _this.isValidStation(searchTerm)) {
-                // if(this.filterType === "station") {
                 _this._searchService.queryStation(searchTerm).then(function (res) {
                     if (!res || res.httpStatusCode === 404) {
                         return false;
                     }
                     ;
                     if (res.length < 1) {
-                        _this.hasSearchResults = false;
+                        _this.autocompleteFilteredList.length = 0;
+                        _this.hasInvalidData = true;
                     }
                     else {
-                        _this.hasSearchResults = true;
+                        _this.hasInvalidData = false;
                         _this.hideAutocomplete();
+                        _this.handleStationDistruption(res);
                     }
                     ;
-                    _this.handleStationDistruption(res);
                 }, function (err) {
                     console.log(err);
                 });

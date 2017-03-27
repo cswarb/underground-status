@@ -29,7 +29,7 @@ export class searchComponent implements OnInit {
 	@Output() searchResultUpdated = new EventEmitter();
 
 	autocompleteFilteredList = [];
-	hasSearchResults = false;
+	hasInvalidData = false;
 	showAutocompleteUI = false;
 
 	//Create a Subject we can subscribe to when the mode changes
@@ -49,29 +49,25 @@ export class searchComponent implements OnInit {
             .debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
             .subscribe((searchTerm) => {
+
+            	this.hasInvalidData = false;
+
             	if(!searchTerm) {return false};
             	if(searchTerm.length > 3 && this.isValidStation(searchTerm)) {
-            		// if(this.filterType === "station") {
-            			this._searchService.queryStation(searchTerm).then((res) => {
-            				if(!res || res.httpStatusCode === 404) {return false};
+        			this._searchService.queryStation(searchTerm).then((res) => {
+        				if(!res || res.httpStatusCode === 404) {return false};
 
-		            		if(res.length < 1) {
-		            			this.hasSearchResults = false;
-		            		} else {
-		            			this.hasSearchResults = true;
-		            			this.hideAutocomplete();
-		            		};
-		            		this.handleStationDistruption(res);
-		            	}, function(err){
-		            		console.log(err);
-		            	});
-            		// } else {
-		            // 	this._searchService.queryLineList(searchTerm).then((res) => {
-		            // 		console.log(res);
-		            // 	}, function(err){
-		            // 		console.log(err);
-		            // 	});
-            		// };
+	            		if(res.length < 1) {
+	            			this.autocompleteFilteredList.length = 0;
+	            			this.hasInvalidData = true;
+	            		} else {
+	            			this.hasInvalidData = false;
+	            			this.hideAutocomplete();
+	            			this.handleStationDistruption(res);
+	            		};
+	            	}, function(err){
+	            		console.log(err);
+	            	});
             	};
             };		
 	}

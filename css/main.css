@@ -798,6 +798,10 @@ line-list:nth-child(25) .undergroundline__line {
   margin-bottom: 3px; }
   .suggestion__select:hover {
     cursor: pointer; }
+  .suggestion__select.disabled {
+    background: #FFFFFF; }
+    .suggestion__select.disabled:hover {
+      cursor: default; }
 
 .result__wrapper {
   background-color: #FFFFFF;
