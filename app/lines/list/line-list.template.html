@@ -1,4 +1,4 @@
-<article class="undergroundline__line undergroundline__line--{{sanitizeLineId(lineData?.id)}}" [ngClass]="{'loaded': lineData?.id}">
+<article class="undergroundline__line undergroundline__line--{{sanitizeLineId(lineData?.id)}}" [ngClass]="{'undergroundline__line--loaded': lineData?.id}">
     <div class="undergroundline__block">
         <h1 class="undergroundline__line__name">{{lineData?.name}}</h1>
         <div class="undergroundline__line__status">
@@ -10,11 +10,11 @@
         <div class="undergroundline__line__toggle">
             <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
                 <p class="button__icon__text" (click)="expandLineInfo(lineData)">More Detail</p>
-                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" alt=""/>
+                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" [ngClass]="{'undergroundline__line__toggleicon--expanded': detailedViewToggle}" alt=""/>
             </button>
         </div>
     </div>
-    <div class="undergroundline__block more-info" [ngClass]="{'expanded': detailedViewToggle}">
+    <div class="undergroundline__block undergroundline__block__more-info" [ngClass]="{'undergroundline__block--expanded': detailedViewToggle}">
         <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
     </div>
 </article>

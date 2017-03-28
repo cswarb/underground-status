@@ -144,11 +144,11 @@
 		justify-content: space-between;
 		align-items: center;
 		flex: 100%;
-		&.more-info {
+		&__more-info {
 			display: none;
-			&.expanded {
-				display: block;
-			}
+		}
+		&--expanded {
+			display: block;
 		}
 		&__content {
 			color: $white;
@@ -180,7 +180,7 @@
 		&.expanded {
 			height: auto;
 		}
-		&.loaded {
+		&--loaded {
 			&:before {
 				content: "";
 				width: 100%;
@@ -256,9 +256,9 @@
 		    	font-size: 1rem;
 		    }
 			&icon {
-				// background-image: url("../img/toggle.svg");
-				// background-size: 1.5rem auto;
-				// background-color: transparent;
+				&--expanded {
+					transform: rotate(180deg);
+				}
 			}
 		}
 	}
@@ -267,7 +267,7 @@
 line-list {
 	@for $i from 1 through 25 {
 		&:nth-child(#{$i}) {
-			.loaded {
+			.undergroundline__line--loaded {
 				&:before {
 					background-color: lighten(#113b92, ($i * 4));
 				}
@@ -375,7 +375,7 @@ line-list {
 	    &:hover {
 	    	cursor: pointer;
 	    }
-	    &.disabled {
+	    &--disabled {
 	    	background: $white;
 	    	&:hover {
 	    		cursor: default;

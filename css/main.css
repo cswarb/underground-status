@@ -365,10 +365,10 @@ form {
     -webkit-flex: 100%;
         -ms-flex: 100%;
             flex: 100%; }
-    .undergroundline__block.more-info {
+    .undergroundline__block__more-info {
       display: none; }
-      .undergroundline__block.more-info.expanded {
-        display: block; }
+    .undergroundline__block--expanded {
+      display: block; }
     .undergroundline__block__content {
       color: #FFFFFF;
       font-family: 'JohnstonITCBold', sans-serif;
@@ -401,7 +401,7 @@ form {
             animation: fadeInSoftDown 0.5s ease-in-out forwards; }
     .undergroundline__line.expanded {
       height: auto; }
-    .undergroundline__line.loaded:before {
+    .undergroundline__line--loaded:before {
       content: "";
       width: 100%;
       height: 100%;
@@ -512,176 +512,180 @@ form {
         display: inline-block;
         margin-right: 0.5rem;
         font-size: 1rem; }
+      .undergroundline__line__toggleicon--expanded {
+        -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+                transform: rotate(180deg); }
 
-line-list:nth-child(1) .loaded:before {
+line-list:nth-child(1) .undergroundline__line--loaded:before {
   background-color: #1342a4; }
 
 line-list:nth-child(1) .undergroundline__line {
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s; }
 
-line-list:nth-child(2) .loaded:before {
+line-list:nth-child(2) .undergroundline__line--loaded:before {
   background-color: #154ab7; }
 
 line-list:nth-child(2) .undergroundline__line {
   -webkit-animation-delay: 0.3s;
           animation-delay: 0.3s; }
 
-line-list:nth-child(3) .loaded:before {
+line-list:nth-child(3) .undergroundline__line--loaded:before {
   background-color: #1751c9; }
 
 line-list:nth-child(3) .undergroundline__line {
   -webkit-animation-delay: 0.45s;
           animation-delay: 0.45s; }
 
-line-list:nth-child(4) .loaded:before {
+line-list:nth-child(4) .undergroundline__line--loaded:before {
   background-color: #1a59db; }
 
 line-list:nth-child(4) .undergroundline__line {
   -webkit-animation-delay: 0.6s;
           animation-delay: 0.6s; }
 
-line-list:nth-child(5) .loaded:before {
+line-list:nth-child(5) .undergroundline__line--loaded:before {
   background-color: #2463e5; }
 
 line-list:nth-child(5) .undergroundline__line {
   -webkit-animation-delay: 0.75s;
           animation-delay: 0.75s; }
 
-line-list:nth-child(6) .loaded:before {
+line-list:nth-child(6) .undergroundline__line--loaded:before {
   background-color: #3670e8; }
 
 line-list:nth-child(6) .undergroundline__line {
   -webkit-animation-delay: 0.9s;
           animation-delay: 0.9s; }
 
-line-list:nth-child(7) .loaded:before {
+line-list:nth-child(7) .undergroundline__line--loaded:before {
   background-color: #487dea; }
 
 line-list:nth-child(7) .undergroundline__line {
   -webkit-animation-delay: 1.05s;
           animation-delay: 1.05s; }
 
-line-list:nth-child(8) .loaded:before {
+line-list:nth-child(8) .undergroundline__line--loaded:before {
   background-color: #5a8aec; }
 
 line-list:nth-child(8) .undergroundline__line {
   -webkit-animation-delay: 1.2s;
           animation-delay: 1.2s; }
 
-line-list:nth-child(9) .loaded:before {
+line-list:nth-child(9) .undergroundline__line--loaded:before {
   background-color: #6d97ee; }
 
 line-list:nth-child(9) .undergroundline__line {
   -webkit-animation-delay: 1.35s;
           animation-delay: 1.35s; }
 
-line-list:nth-child(10) .loaded:before {
+line-list:nth-child(10) .undergroundline__line--loaded:before {
   background-color: #7fa4f0; }
 
 line-list:nth-child(10) .undergroundline__line {
   -webkit-animation-delay: 1.5s;
           animation-delay: 1.5s; }
 
-line-list:nth-child(11) .loaded:before {
+line-list:nth-child(11) .undergroundline__line--loaded:before {
   background-color: #91b1f2; }
 
 line-list:nth-child(11) .undergroundline__line {
   -webkit-animation-delay: 1.65s;
           animation-delay: 1.65s; }
 
-line-list:nth-child(12) .loaded:before {
+line-list:nth-child(12) .undergroundline__line--loaded:before {
   background-color: #a3bef4; }
 
 line-list:nth-child(12) .undergroundline__line {
   -webkit-animation-delay: 1.8s;
           animation-delay: 1.8s; }
 
-line-list:nth-child(13) .loaded:before {
+line-list:nth-child(13) .undergroundline__line--loaded:before {
   background-color: #b6cbf6; }
 
 line-list:nth-child(13) .undergroundline__line {
   -webkit-animation-delay: 1.95s;
           animation-delay: 1.95s; }
 
-line-list:nth-child(14) .loaded:before {
+line-list:nth-child(14) .undergroundline__line--loaded:before {
   background-color: #c8d8f9; }
 
 line-list:nth-child(14) .undergroundline__line {
   -webkit-animation-delay: 2.1s;
           animation-delay: 2.1s; }
 
-line-list:nth-child(15) .loaded:before {
+line-list:nth-child(15) .undergroundline__line--loaded:before {
   background-color: #dae5fb; }
 
 line-list:nth-child(15) .undergroundline__line {
   -webkit-animation-delay: 2.25s;
           animation-delay: 2.25s; }
 
-line-list:nth-child(16) .loaded:before {
+line-list:nth-child(16) .undergroundline__line--loaded:before {
   background-color: #edf2fd; }
 
 line-list:nth-child(16) .undergroundline__line {
   -webkit-animation-delay: 2.4s;
           animation-delay: 2.4s; }
 
-line-list:nth-child(17) .loaded:before {
+line-list:nth-child(17) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(17) .undergroundline__line {
   -webkit-animation-delay: 2.55s;
           animation-delay: 2.55s; }
 
-line-list:nth-child(18) .loaded:before {
+line-list:nth-child(18) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(18) .undergroundline__line {
   -webkit-animation-delay: 2.7s;
           animation-delay: 2.7s; }
 
-line-list:nth-child(19) .loaded:before {
+line-list:nth-child(19) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(19) .undergroundline__line {
   -webkit-animation-delay: 2.85s;
           animation-delay: 2.85s; }
 
-line-list:nth-child(20) .loaded:before {
+line-list:nth-child(20) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(20) .undergroundline__line {
   -webkit-animation-delay: 3s;
           animation-delay: 3s; }
 
-line-list:nth-child(21) .loaded:before {
+line-list:nth-child(21) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(21) .undergroundline__line {
   -webkit-animation-delay: 3.15s;
           animation-delay: 3.15s; }
 
-line-list:nth-child(22) .loaded:before {
+line-list:nth-child(22) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(22) .undergroundline__line {
   -webkit-animation-delay: 3.3s;
           animation-delay: 3.3s; }
 
-line-list:nth-child(23) .loaded:before {
+line-list:nth-child(23) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(23) .undergroundline__line {
   -webkit-animation-delay: 3.45s;
           animation-delay: 3.45s; }
 
-line-list:nth-child(24) .loaded:before {
+line-list:nth-child(24) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(24) .undergroundline__line {
   -webkit-animation-delay: 3.6s;
           animation-delay: 3.6s; }
 
-line-list:nth-child(25) .loaded:before {
+line-list:nth-child(25) .undergroundline__line--loaded:before {
   background-color: white; }
 
 line-list:nth-child(25) .undergroundline__line {
@@ -798,9 +802,9 @@ line-list:nth-child(25) .undergroundline__line {
   margin-bottom: 3px; }
   .suggestion__select:hover {
     cursor: pointer; }
-  .suggestion__select.disabled {
+  .suggestion__select--disabled {
     background: #FFFFFF; }
-    .suggestion__select.disabled:hover {
+    .suggestion__select--disabled:hover {
       cursor: default; }
 
 .result__wrapper {
