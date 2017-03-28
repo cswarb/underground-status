@@ -165,7 +165,7 @@ var searchComponent = (function () {
     searchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'search',
+            selector: '[search]',
             templateUrl: './search.component.html'
         }), 
         __metadata('design:paramtypes', [search_service_1.searchService, core_1.ElementRef])

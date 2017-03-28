@@ -10,20 +10,20 @@ import { delayService } from "../shared/delay/delay.service";
     template: `
 		<article class="">
 
-            <filters></filters>
+            <div filters></div>
 
-            <emergency-delays [delays]="delays"></emergency-delays>
+            <div emergency-delays [delays]="delays"></div>
             
             <section class="undergroundline">
-	            <search (searchResultUpdated)="searchResultHasUpdated($event)" 
+	            <div search (searchResultUpdated)="searchResultHasUpdated($event)" 
 	            	[filterType]="filterType" 
 	            	[searchResults]="searchResults" 
 	            	[searchExample]="searchExample" 
 	            	[searchString]="searchString" 
 	            	[autoCompleteVals]="stationsList">
-	            </search>
+	            </div>
 
-	            <search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></search-results>
+	            <div search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></div>
             </section>
                   
         </article>

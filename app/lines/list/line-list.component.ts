@@ -6,7 +6,7 @@ import { lineService } from "../../line-area/line.service";
 
 @Component({
 	moduleId: module.id,
-    selector: 'line-list',
+    selector: '[line-list]',
     templateUrl: "./line-list.template.html"
 })
 export class lineListComponent implements OnInit {

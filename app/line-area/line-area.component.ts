@@ -9,14 +9,14 @@ import { delayService } from "../shared/delay/delay.service";
     template: `
 		<article class="">
 
-            <filters></filters>
+            <div filters></div>
 
-            <emergency-delays [delays]="delays"></emergency-delays>
+            <div emergency-delays [delays]="delays"></div>
             
             <section class="undergroundline">
             	<div class="undergroundline__lines">
     				<h2 class="undergroundline__title">All {{listType}}:</h2>
-	            	<line-list *ngFor="let line of allLineStatuses" [lineData]="line"></line-list>
+	            	<div line-list *ngFor="let line of allLineStatuses" [lineData]="line"></div>
            		</div>
             </section>
 

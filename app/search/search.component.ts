@@ -13,7 +13,7 @@ import * as _ from "lodash";
 
 @Component({
 	moduleId: module.id,
-    selector: 'search',
+    selector: '[search]',
     templateUrl: './search.component.html'
 })
 export class searchComponent implements OnInit {

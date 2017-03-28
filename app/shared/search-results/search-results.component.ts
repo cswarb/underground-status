@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 
 @Component({
 	moduleId: module.id,
-    selector: 'search-results',
+    selector: '[search-results]',
     template: `
     	<div *ngIf="searchResults.length < 1" class="center">
 			<h4 class="ui-helper">Search for a station.</h4>

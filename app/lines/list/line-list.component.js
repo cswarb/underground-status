@@ -65,7 +65,7 @@ var lineListComponent = (function () {
     lineListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'line-list',
+            selector: '[line-list]',
             templateUrl: "./line-list.template.html"
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService])

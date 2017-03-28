@@ -129,7 +129,7 @@
     width: 100%;
     overflow: hidden;
     @media screen and (min-width: 30rem) {
-		margin: 2rem 0;
+		margin: 2rem 0 0 0;
 	}
 	&__header {
 		width: 100%;
@@ -264,7 +264,7 @@
 	}
 }
 
-line-list {
+[line-list] {
 	@for $i from 1 through 25 {
 		&:nth-child(#{$i}) {
 			.undergroundline__line--loaded {
@@ -431,13 +431,13 @@ line-list {
 	}
 }
 
-filters, line-list, search-results, search {
+[filters], [line-list], [search-results], [search] {
 	display:block;
 	width:100%;
 }
 
 //Delay
-emergency-delays {
+[emergency-delays] {
 	width: 100%;
 	max-width: 38rem;
 	display: block;
@@ -467,6 +467,7 @@ emergency-delays {
 	&__text {
 		margin: 0;
 		padding: 2rem;
+		font-family: 'JohnstonITCMedium', sans-serif;
 	}
 }
 

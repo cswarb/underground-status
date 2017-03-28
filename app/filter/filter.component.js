@@ -17,7 +17,7 @@ var filterComponent = (function () {
     filterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'filters',
+            selector: '[filters]',
             templateUrl: './filter.component.html'
         }), 
         __metadata('design:paramtypes', [])

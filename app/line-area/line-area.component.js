@@ -44,7 +44,7 @@ var lineAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <filters></filters>\n\n            <emergency-delays [delays]=\"delays\"></emergency-delays>\n            \n            <section class=\"undergroundline\">\n            \t<div class=\"undergroundline__lines\">\n    \t\t\t\t<h2 class=\"undergroundline__title\">All {{listType}}:</h2>\n\t            \t<line-list *ngFor=\"let line of allLineStatuses\" [lineData]=\"line\"></line-list>\n           \t\t</div>\n            </section>\n\n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <div filters></div>\n\n            <div emergency-delays [delays]=\"delays\"></div>\n            \n            <section class=\"undergroundline\">\n            \t<div class=\"undergroundline__lines\">\n    \t\t\t\t<h2 class=\"undergroundline__title\">All {{listType}}:</h2>\n\t            \t<div line-list *ngFor=\"let line of allLineStatuses\" [lineData]=\"line\"></div>\n           \t\t</div>\n            </section>\n\n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [line_service_1.lineService, delay_service_1.delayService])
     ], lineAreaComponent);
