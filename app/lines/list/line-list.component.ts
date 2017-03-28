@@ -15,6 +15,7 @@ export class lineListComponent implements OnInit {
 	@Input() listType;
 
 	detailedLineInfo = {};
+	detailedViewLoading: boolean = false;
 
 	constructor(private _lineService: lineService){}
 	
@@ -25,12 +26,15 @@ export class lineListComponent implements OnInit {
 	expandLineInfo(line) {
 		if(this.detailedViewToggle === true) {
 			this.detailedViewToggle = false;
+			this.detailedViewLoading = false;
 		} else if(this.detailedLineInfo.hasOwnProperty("description")) {
 			this.detailedViewToggle = true;
+			this.detailedViewLoading = true;
 		} else {
 	    	this._lineService.getDetailedLineInfo(line.id).then((response) => {
 				if(!response) {return false};
 				this.detailedViewToggle = true;
+				this.detailedViewLoading = false;
 				if(typeof response === "object" && response.length < 1) {
 					this.detailedLineInfo = {
 						"description": "No delays found for " + line.name
@@ -42,6 +46,7 @@ export class lineListComponent implements OnInit {
 				};
 			}, (err) => {
 				this.detailedViewToggle = true;
+				this.detailedViewLoading = false;
 				this.detailedLineInfo = {
 					"description": "Error: Could not get any data."
 				};

@@ -243,6 +243,12 @@
 				font-family: 'JohnstonITCBold', sans-serif;
 			}
 		}
+		&__loadingicon {
+			display: none;
+			&--loading {
+				display: block;
+			}
+		}
 		&__toggle {
 			flex: 0.4;
 		    display: flex;

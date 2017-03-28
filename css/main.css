@@ -493,6 +493,10 @@ form {
             font-size: 1.25rem; } }
       .undergroundline__line__status--bold {
         font-family: 'JohnstonITCBold', sans-serif; }
+    .undergroundline__line__loadingicon {
+      display: none; }
+      .undergroundline__line__loadingicon--loading {
+        display: block; }
     .undergroundline__line__toggle {
       -webkit-flex: 0.4;
           -ms-flex: 0.4;

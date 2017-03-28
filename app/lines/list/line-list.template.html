@@ -8,9 +8,10 @@
             </p>
         </div>
         <div class="undergroundline__line__toggle">
-            <button type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
-                <p class="button__icon__text" (click)="expandLineInfo(lineData)">More Detail</p>
-                <img src="img/toggle.svg" class="button undergroundline__line__toggleicon icon" [ngClass]="{'undergroundline__line__toggleicon--expanded': detailedViewToggle}" alt=""/>
+            <button (click)="expandLineInfo(lineData)" type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+                <p class="button__icon__text">More Detail</p>
+                <img src="img/toggle.svg" [hidden]="detailedViewLoading" class="button undergroundline__line__toggleicon icon" [ngClass]="{'undergroundline__line__toggleicon--expanded': detailedViewToggle}" alt="toggle switch"/>
+                <img src="img/loading.svg" alt="loading" class="undergroundline__line__loadingicon" [ngClass]="{'undergroundline__line__loadingicon--loading': detailedViewLoading}"/>
             </button>
         </div>
     </div>
