@@ -13,11 +13,12 @@ export class lineListComponent implements OnInit {
 
 	@Input() lineData;
 	@Input() listType;
-
 	detailedLineInfo = {};
 	detailedViewLoading: boolean = false;
 
-	constructor(private _lineService: lineService){}
+	constructor(private _lineService: lineService){
+		
+	}
 	
 	ngOnInit() {
 		

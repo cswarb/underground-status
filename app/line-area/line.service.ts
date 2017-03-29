@@ -15,16 +15,20 @@ export class lineService {
 
 	getHeaders() {
 		let headers = new Headers();
-	    headers.append('Accept', 'application/json');
+	    headers.append("Accept", "application/json");
 	    return headers;
 	}
 
-	getDetailedLineInfo(lineId) {
+	/**
+	 * Used when the user clicks for more details of a specific line on the lineList components
+	 * @param  {string}
+	 * @return {promise}
+	 */
+	getDetailedLineInfo(lineId: string) {
 		let params: URLSearchParams = new URLSearchParams();
-
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
+		params.set("app_id", this._appConstants.app_api_id);
+		params.set("app_key", this._appConstants.app_api_key);
+		params.set("detail", this._appConstants.app_api_detailed_disruptions);
 			
 		return this.http
 			.get(this._appConstants.api_base_url + "/Line/" + lineId + "/Disruption", 
@@ -37,9 +41,13 @@ export class lineService {
 			.catch(this.handleError);
 	}
 
+	/**
+	 * Get all the possible lines
+	 * Used on the stationArea component to then find all stations from the line
+	 * @return {promise}
+	 */
 	getAllPossibleLines() {
 		let params: URLSearchParams = new URLSearchParams();
-
 		params.set("detail", this._appConstants.app_detail);
 		params.set("app_id", this._appConstants.app_id);
 		params.set("app_key", this._appConstants.app_key);
@@ -55,31 +63,19 @@ export class lineService {
 			.catch(this.handleError);
 	}
 
-	getPopularLineStatuses(ids) {
+	/**
+	 * Used by the lineArea component to get all tube line statuses
+	 * @param  {string}
+	 * @return {promise}
+	 */
+	getAllLineStatuses(type: string) {
 		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
+		params.set("app_id", this._appConstants.app_api_id);
+		params.set("app_key", this._appConstants.app_api_key);
+		params.set("detail", this._appConstants.app_api_detailed_disruptions);
 			
 		return this.http
-			.get(tfl.api_base_url + "/Line/" + ids + "/Status", 
-				{
-					headers: this.getHeaders()
-				}
-			)
-			.map((res) => res.json())
-			.toPromise()
-			.catch(this.handleError);
-	}
-
-	getAllLineStatuses(type) {
-		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
-			
-		return this.http
-			.get(tfl.api_base_url + "/Line/Mode/" + type + "/Status", 
+			.get(this._appConstants.api_base_url + "/Line/Mode/" + type + "/Status", 
 				{
 					headers: this.getHeaders()
 				}

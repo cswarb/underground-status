@@ -13,57 +13,39 @@ var http_1 = require('@angular/http');
 var app_constants_1 = require("../app.constants");
 var searchService = (function () {
     function searchService(http, _appConstants) {
-        var _this = this;
         this.http = http;
         this._appConstants = _appConstants;
         this.autoCompleteVals = [];
-        this.queryLineList = function (searchTerm) {
-            var params = new http_1.URLSearchParams();
-            params.set("detail", _this._appConstants.app_detail);
-            params.set("app_id", _this._appConstants.app_id);
-            params.set("app_key", _this._appConstants.app_key);
-            return _this.http
-                .get(_this._appConstants.api_base_url + "/Line/" + _this.cleanSearchTerm(searchTerm) + "/Status", {
-                headers: _this.getHeaders(),
-                search: params
-            })
-                .map(function (res) { return res.json(); })
-                .toPromise()
-                .catch(_this.handleError);
-        };
-        this.transformResponse = function (res) {
-            var lineData = [];
-            for (var i = 0; i < res.length; i++) {
-                var line = res[i];
-                console.log(line);
-                lineData.push(line);
-            }
-            ;
-            return lineData;
-            // let line = {
-            // 	name: res.name;
-            // };
-        };
-        this.queryStationList = function (searchTerm) {
-        };
-        this.cleanSearchTerm = function (searchTerm) {
-            return searchTerm;
-        };
-        this.handleError = function (error) {
-        };
         this.getHeaders = function () {
             var headers = new Headers();
             headers.append('Accept', 'application/json');
             return headers;
         };
+        this.handleError = function (error) {
+        };
     }
     ;
+    /**
+     * Set all possible stations.
+     * Used by the autocomplete search
+     * @return {array}
+     */
     searchService.prototype.setAutoCompleteVals = function (autoCompleteVals) {
         this.autoCompleteVals = autoCompleteVals;
     };
+    /**
+     * Return all possible stations.
+     * Used by the autocomplete search
+     * @return {array}
+     */
     searchService.prototype.getAutoCompleteVals = function () {
         return this.autoCompleteVals;
     };
+    /**
+     * See if a string passed in matches an existing one
+     * @param  {string}
+     * @return {boolean}
+     */
     searchService.prototype.isNaptanId = function (naptanId) {
         for (var key in this.autoCompleteVals) {
             if (!this.autoCompleteVals.hasOwnProperty(key))
@@ -76,6 +58,11 @@ var searchService = (function () {
         }
         return false;
     };
+    /**
+     * Get the naptanId from the stationName
+     * @param  {string}
+     * @return {string}
+     */
     searchService.prototype.getNaptanId = function (stationName) {
         for (var key in this.autoCompleteVals) {
             if (!this.autoCompleteVals.hasOwnProperty(key))
@@ -92,11 +79,17 @@ var searchService = (function () {
         }
         return false;
     };
+    /**
+     * Get a station disruption
+     * Used when clicking an autocomplete result
+     * @param  {string}
+     * @return {promise}
+     */
     searchService.prototype.queryStation = function (naptanId) {
         var params = new http_1.URLSearchParams();
         params.set("getFamily", false);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
+        params.set("app_id", this._appConstants.app_api_id);
+        params.set("app_key", this._appConstants.app_api_key);
         return this.http
             .get(this._appConstants.api_base_url + "/StopPoint/" + naptanId + "/Disruption", {
             headers: this.getHeaders(),

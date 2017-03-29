@@ -19,12 +19,17 @@ export class delayService {
 	    return headers;
 	}
 
-	getAllDelays(mode) {
+	/**
+	 * Get any delays to send to the display component
+	 * @param  {string}
+	 * @return {promise}
+	 */
+	getAllDelays(mode: string) {
 		let params: URLSearchParams = new URLSearchParams();
 
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
+		params.set("app_id", this._appConstants.app_api_id);
+		params.set("app_key", this._appConstants.app_api_key);
+		params.set("detail", this._appConstants.app_api_detailed_disruptions);
 			
 		return this.http
 			.get(this._appConstants.api_base_url + "/Line/Mode/" + mode + "/Disruption", 
@@ -37,8 +42,8 @@ export class delayService {
 			.catch(this.handleError);
 	}
 
-	handleError() {
-		console.log("Error");
+	handleError(err) {
+		console.log("Error", err);
 	}
 	
 }

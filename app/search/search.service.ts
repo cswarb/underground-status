@@ -12,32 +12,35 @@ export class searchService {
 
 	};
 
-	queryLineList = (searchTerm) => {
-		let params: URLSearchParams = new URLSearchParams();
-			params.set("detail", this._appConstants.app_detail);
-			params.set("app_id", this._appConstants.app_id);
-			params.set("app_key", this._appConstants.app_key);
-			
-		return this.http
-			.get(this._appConstants.api_base_url + "/Line/" + this.cleanSearchTerm(searchTerm)  + "/Status", 
-				{
-					headers: this.getHeaders(), 
-					search: params
-				}
-			)
-			.map((res) => res.json())
-			.toPromise()
-			.catch(this.handleError);
+	getHeaders = () => {
+		let headers = new Headers();
+	    headers.append('Accept', 'application/json');
+	    return headers;
 	};
 
+	/**
+	 * Set all possible stations.
+	 * Used by the autocomplete search
+	 * @return {array}
+	 */
 	setAutoCompleteVals(autoCompleteVals) {
 		this.autoCompleteVals = autoCompleteVals;
 	}
 
+	/**
+	 * Return all possible stations.
+	 * Used by the autocomplete search
+	 * @return {array}
+	 */
 	getAutoCompleteVals() {
 		return this.autoCompleteVals;
 	}
 
+	/**
+	 * See if a string passed in matches an existing one
+	 * @param  {string}
+	 * @return {boolean}
+	 */
 	isNaptanId(naptanId) {
 		for (var key in this.autoCompleteVals) {
 		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
@@ -50,7 +53,12 @@ export class searchService {
 		return false;
 	}
 
-	getNaptanId(stationName) {
+	/**
+	 * Get the naptanId from the stationName
+	 * @param  {string}
+	 * @return {string}
+	 */
+	getNaptanId(stationName: string) {
 		for (var key in this.autoCompleteVals) {
 		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
 
@@ -65,11 +73,18 @@ export class searchService {
 		return false;
 	}
 
-	queryStation(naptanId) {
+	/**
+	 * Get a station disruption
+	 * Used when clicking an autocomplete result
+	 * @param  {string}
+	 * @return {promise}
+	 */
+	queryStation(naptanId: string) {
 		let params: URLSearchParams = new URLSearchParams();
+
 			params.set("getFamily", false);
-			params.set("app_id", this._appConstants.app_id);
-			params.set("app_key", this._appConstants.app_key);
+			params.set("app_id", this._appConstants.app_api_id);
+			params.set("app_key", this._appConstants.app_api_key);
 			
 		return this.http
 			.get(this._appConstants.api_base_url + "/StopPoint/" + naptanId  + "/Disruption", 
@@ -83,39 +98,11 @@ export class searchService {
 			.catch(this.handleError);
 	}
 
-	transformResponse = (res: any) => {
-		let lineData = [];
-
-		for (var i = 0; i < res.length; i++) {
-			let line = res[i];
-			console.log(line);
-			lineData.push(line);
-		};
-
-		return lineData;
-
-		// let line = {
-		// 	name: res.name;
-		// };
-	};
-
-	queryStationList = (searchTerm) => {
-		
-	};
-
-	cleanSearchTerm = (searchTerm) => {
-		return searchTerm;
-	};
-
 	handleError = (error) => {
 
 	};
 
-	getHeaders = () => {
-		let headers = new Headers();
-	    headers.append('Accept', 'application/json');
-	    return headers;
-	};
+	
 
 }
 

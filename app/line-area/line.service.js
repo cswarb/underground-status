@@ -20,14 +20,19 @@ var lineService = (function () {
     }
     lineService.prototype.getHeaders = function () {
         var headers = new Headers();
-        headers.append('Accept', 'application/json');
+        headers.append("Accept", "application/json");
         return headers;
     };
+    /**
+     * Used when the user clicks for more details of a specific line on the lineList components
+     * @param  {string}
+     * @return {promise}
+     */
     lineService.prototype.getDetailedLineInfo = function (lineId) {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
+        params.set("app_id", this._appConstants.app_api_id);
+        params.set("app_key", this._appConstants.app_api_key);
+        params.set("detail", this._appConstants.app_api_detailed_disruptions);
         return this.http
             .get(this._appConstants.api_base_url + "/Line/" + lineId + "/Disruption", {
             headers: this.getHeaders()
@@ -36,6 +41,11 @@ var lineService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
+    /**
+     * Get all the possible lines
+     * Used on the stationArea component to then find all stations from the line
+     * @return {promise}
+     */
     lineService.prototype.getAllPossibleLines = function () {
         var params = new http_1.URLSearchParams();
         params.set("detail", this._appConstants.app_detail);
@@ -49,26 +59,18 @@ var lineService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
-    lineService.prototype.getPopularLineStatuses = function (ids) {
-        var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
-        return this.http
-            .get(tfl.api_base_url + "/Line/" + ids + "/Status", {
-            headers: this.getHeaders()
-        })
-            .map(function (res) { return res.json(); })
-            .toPromise()
-            .catch(this.handleError);
-    };
+    /**
+     * Used by the lineArea component to get all tube line statuses
+     * @param  {string}
+     * @return {promise}
+     */
     lineService.prototype.getAllLineStatuses = function (type) {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
+        params.set("app_id", this._appConstants.app_api_id);
+        params.set("app_key", this._appConstants.app_api_key);
+        params.set("detail", this._appConstants.app_api_detailed_disruptions);
         return this.http
-            .get(tfl.api_base_url + "/Line/Mode/" + type + "/Status", {
+            .get(this._appConstants.api_base_url + "/Line/Mode/" + type + "/Status", {
             headers: this.getHeaders()
         })
             .map(function (res) { return res.json(); })

@@ -24,26 +24,25 @@ var stationService = (function () {
         headers.append('Accept', 'application/json');
         return headers;
     };
+    /**
+     * Set stations array
+     * @param {array}
+     */
     stationService.prototype.setStations = function (stations) {
         this.stations = stations;
     };
+    /**
+     * Return station array
+     * @return {array}
+     */
     stationService.prototype.getStations = function () {
         return this.stations;
     };
-    stationService.prototype.getStationsFromLine = function (lineId) {
-        var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
-        return this.http
-            .get(this._appConstants.api_base_url + "/Line/" + lineId + "/StopPoints", {
-            headers: this.getHeaders(),
-            search: params
-        })
-            .map(function (res) { return res.json(); })
-            .toPromise()
-            .catch(this.handleError);
-    };
+    /**
+     * Test if the array key contains the tube type
+     * @param  {array}
+     * @return {boolean}
+     */
     stationService.prototype.isTubeStationType = function (val) {
         if (val.modes.indexOf("tube") > -1) {
             return true;
@@ -51,30 +50,18 @@ var stationService = (function () {
         ;
         return false;
     };
-    stationService.prototype.getAllPossibleStations = function () {
-        return this.stationsList;
-    };
-    stationService.prototype.getPopularStationStatuses = function (ids) {
+    /**
+     * Get all stations from a line
+     * @param  {string}
+     * @return {promise}
+     */
+    stationService.prototype.getStationsFromLine = function (lineId) {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
+        params.set("app_id", this._appConstants.app_api_id);
+        params.set("app_key", this._appConstants.app_api_key);
+        params.set("detail", this._appConstants.app_api_detailed_disruptions);
         return this.http
-            .get(tfl.api_base_url + "/Line/" + ids + "/Status", {
-            headers: this.getHeaders(),
-            search: params
-        })
-            .map(function (res) { return res.json(); })
-            .toPromise()
-            .catch(this.handleError);
-    };
-    stationService.prototype.getStation = function (id) {
-        var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
-        return this.http
-            .get(tfl.api_base_url + "/Line/" + id + "/Status", {
+            .get(this._appConstants.api_base_url + "/Line/" + lineId + "/StopPoints", {
             headers: this.getHeaders(),
             search: params
         })

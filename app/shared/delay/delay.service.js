@@ -23,11 +23,16 @@ var delayService = (function () {
         headers.append('Accept', 'application/json');
         return headers;
     };
+    /**
+     * Get any delays to send to the display component
+     * @param  {string}
+     * @return {promise}
+     */
     delayService.prototype.getAllDelays = function (mode) {
         var params = new http_1.URLSearchParams();
-        params.set("detail", this._appConstants.app_detail);
-        params.set("app_id", this._appConstants.app_id);
-        params.set("app_key", this._appConstants.app_key);
+        params.set("app_id", this._appConstants.app_api_id);
+        params.set("app_key", this._appConstants.app_api_key);
+        params.set("detail", this._appConstants.app_api_detailed_disruptions);
         return this.http
             .get(this._appConstants.api_base_url + "/Line/Mode/" + mode + "/Disruption", {
             headers: this.getHeaders()
@@ -36,8 +41,8 @@ var delayService = (function () {
             .toPromise()
             .catch(this.handleError);
     };
-    delayService.prototype.handleError = function () {
-        console.log("Error");
+    delayService.prototype.handleError = function (err) {
+        console.log("Error", err);
     };
     delayService = __decorate([
         core_1.Injectable(), 

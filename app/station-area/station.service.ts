@@ -9,7 +9,7 @@ import { appConstants } from "../app.constants";
 @Injectable()
 export class stationService {
 
-	stations = null;
+	stations: any = null;
 
 	constructor(private http: Http, private _appConstants: appConstants) {
 
@@ -21,33 +21,27 @@ export class stationService {
 	    return headers;
 	}
 
+	/**
+	 * Set stations array
+	 * @param {array}
+	 */
 	setStations(stations) {
 		this.stations = stations;
 	}
 
+	/**
+	 * Return station array
+	 * @return {array}
+	 */
 	getStations() {
 		return this.stations;
 	}
 
-	getStationsFromLine(lineId) {
-		let params: URLSearchParams = new URLSearchParams();
-
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
-			
-		return this.http
-			.get(this._appConstants.api_base_url + "/Line/" + lineId + "/StopPoints", 
-				{
-					headers: this.getHeaders(),
-					search: params
-				}
-			)
-			.map((res) => res.json())
-			.toPromise()
-			.catch(this.handleError);
-	}
-
+	/**
+	 * Test if the array key contains the tube type
+	 * @param  {array}
+	 * @return {boolean}
+	 */
 	isTubeStationType(val) {
 		if(val.modes.indexOf("tube") > -1) {
 			return true;
@@ -55,36 +49,20 @@ export class stationService {
 		return false;
 	}
 
-	getAllPossibleStations() {
-		return this.stationsList;
-	}
-
-	getPopularStationStatuses(ids) {
+	/**
+	 * Get all stations from a line
+	 * @param  {string}
+	 * @return {promise}
+	 */
+	getStationsFromLine(lineId: string) {
 		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
+
+		params.set("app_id", this._appConstants.app_api_id);
+		params.set("app_key", this._appConstants.app_api_key);
+		params.set("detail", this._appConstants.app_api_detailed_disruptions);
 			
 		return this.http
-			.get(tfl.api_base_url + "/Line/" + ids + "/Status", 
-				{
-					headers: this.getHeaders(),
-					search: params
-				}
-			)
-			.map((res) => res.json())
-			.toPromise()
-			.catch(this.handleError);
-	}
-
-	getStation(id) {
-		let params: URLSearchParams = new URLSearchParams();
-		params.set("detail", this._appConstants.app_detail);
-		params.set("app_id", this._appConstants.app_id);
-		params.set("app_key", this._appConstants.app_key);
-			
-		return this.http
-			.get(tfl.api_base_url + "/Line/" + id + "/Status", 
+			.get(this._appConstants.api_base_url + "/Line/" + lineId + "/StopPoints", 
 				{
 					headers: this.getHeaders(),
 					search: params
