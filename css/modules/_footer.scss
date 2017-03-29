@@ -1,0 +1,9 @@
+.footer {
+	background-color: $black;
+	color: $white;
+	&__text {
+		margin: 0;
+		padding: 2rem;
+		font-family: 'JohnstonITCMedium', sans-serif;
+	}
+}

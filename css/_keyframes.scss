@@ -1,4 +1,4 @@
-@-webkit-keyframes blockRevealRight {
+@keyframes blockRevealRight {
     0% {
         transform: translateX(-100%);
     }
@@ -16,7 +16,7 @@
     }
 }
 
-@-webkit-keyframes fadeOutUnderlay {
+@keyframes fadeOutUnderlay {
     0% {
         opacity: 1;
     }
@@ -29,7 +29,7 @@
     }
 }
 
-@-webkit-keyframes blockRevealLeft {
+@keyframes blockRevealLeft {
     0% {
         opacity: 0;
     }
@@ -50,7 +50,7 @@
 }
 
 
-@-webkit-keyframes fadeInSoftDown {
+@keyframes fadeInSoftDown {
     0% {
         opacity: 0;
         transform: translateY(-15%);

@@ -1,0 +1,166 @@
+[line-list] {
+	@for $i from 1 through 25 {
+		&:nth-child(#{$i}) {
+			.undergroundline__line--loaded {
+				&:before {
+					background-color: lighten(#113b92, ($i * 4));
+				}
+			}
+			.undergroundline__line {
+				animation-delay: ($i * (0.15)) + s;
+			}
+		}
+	}
+}
+
+.undergroundline {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-flow: column nowrap;
+    width: 100%;
+    overflow: hidden;
+    @media screen and (min-width: 30rem) {
+		margin: 2rem 0 0 0;
+	}
+	&__header {
+		width: 100%;
+	}
+	&__title {
+		margin: 2rem 2rem 1rem 2rem;
+		font-size: 2rem;
+	}
+	&__block {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		flex: 100%;
+		&__more-info {
+			display: none;
+		}
+		&--expanded {
+			display: block;
+		}
+		&__content {
+			color: $white;
+			font-family: 'JohnstonITCBold', sans-serif;
+			margin: 3rem 0 0 0;
+		}
+	}
+	&__wrapper {
+		display: flex;
+	}
+	&__lines {
+		width: 100%;
+		display: block;
+		margin: 2rem 0 0 0;
+		position: relative;
+		min-height: 10rem;
+	}
+	&__line {
+		padding: 2rem 1.5rem;
+		word-break: break-all;
+		color: $white;
+		background-color: $black;
+		display: block;
+	    width: 100%;
+	    flex-flow: row nowrap;
+	    align-items: center;
+		opacity: 0;
+		animation: fadeInSoftDown 0.5s ease-in-out forwards;
+		&.expanded {
+			height: auto;
+		}
+		&--loaded {
+			&:before {
+				content: "";
+				width: 100%;
+				height: 100%;
+				background-color: $tfl-blue;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 1;
+				display: flex;
+			    justify-content: center;
+			    align-items: center;
+			    color: $black;
+			    animation: fadeOutUnderlay 2s ease-in-out forwards;
+			}
+		}
+		@media screen and (min-width: 30rem) {
+			padding: 3rem 4rem;
+		}
+		@each $line, $color in $lines {
+			&--#{$line} {
+				background-color: $color;
+			}
+		}
+		&__name {
+			flex: 2;
+			font-size: 1.5rem;
+			margin: 0;
+			text-transform: capitalize;
+			color: $white;
+			font-family: 'JohnstonITCMedium', sans-serif;
+			margin-right: 0.5rem;
+			@media screen and (min-width: 30rem) {
+				// max-width: 50%;
+				font-size: 3rem;
+			}
+		}
+		&__status {
+			text-transform: uppercase;
+			flex: 1;
+			margin: 0;
+			color: $white;
+			margin: 0;
+			font-family: 'JohnstonITCBold', sans-serif;
+			display: flex;
+    		flex-flow: column nowrap;
+			&__badge, &__text {
+				color: $white;
+				display: inline-block;
+				margin: 0;
+				font-family: 'JohnstonITCBold', sans-serif;
+			}
+			&__text {
+				font-size: 0.8rem;
+				@media screen and (min-width: 60rem) {
+					font-size: 1.25rem;
+				}
+			}
+			&--bold {
+				font-family: 'JohnstonITCBold', sans-serif;
+			}
+		}
+		&__loadingicon {
+			display: none;
+			&--loading {
+				display: block;
+			}
+		}
+		&__toggle {
+			flex: 0.4;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    &__helper {
+		    	font-family: 'JohnstonITCBold', sans-serif;
+		    	color: $white;
+		    	display: inline-block;
+		    	margin-right: 0.5rem;
+		    	font-size: 1rem;
+		    }
+			&icon {
+				width: 1.5rem;
+				height: 1.5rem;
+				&--expanded {
+					transform: rotate(180deg);
+				}
+			}
+		}
+	}
+}

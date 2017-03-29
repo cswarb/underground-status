@@ -1,0 +1,104 @@
+.logo {
+	&__header {
+		display: inline-block;
+		margin-right: 0.5rem;
+	}
+	&__medium {
+		width: 2.8rem;
+		height: auto;
+	}
+}
+
+.navigation {
+	background-color: $tfl-blue;
+	min-height: 5rem;
+	display: flex;
+	justify-content: flex-start;
+	padding: 2rem 2rem;
+	align-items: center;
+	&__bar {
+    	display: flex;
+    	flex-flow: column nowrap;
+		width: 100%;
+		align-items: center;
+		justify-content: flex-start;
+		@media screen and (min-width: 30rem) {
+			flex-flow: row nowrap;
+			justify-content: space-between;
+		}
+		&__text {
+			position: relative;
+			overflow: hidden;
+			margin-bottom: 1rem;
+			display: block;
+			@media screen and (min-width: 30rem) {
+				margin-bottom: 0;
+			}
+			&:before {
+				content: "";
+				background-color: $white;
+				height: 100%;
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				animation: blockRevealRight 1s ease-in-out forwards;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			&:after {
+				content: "";
+				background-color: $white;
+				width: 0;
+				height: 100%;
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				animation: blockRevealLeft 1s ease-in-out forwards;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+		}
+		&__container {
+			list-style: none;
+		}
+    	&__items {
+			width: 100%;
+			text-align: left;
+			flex: 1;
+			@media screen and (min-width: 30rem) {
+				text-align: right;
+			}
+    	}
+    	&__item {
+    		overflow: hidden;
+    		font-size: 1.25rem;
+     		color: $white;
+     		display: inline-block;
+      		margin: 0 1rem;
+      		&:first-child {
+      			margin-left: 0;
+      		}
+      		&:last-child {
+      			margin-right: 0;
+      		}
+      		&--link {
+      			text-decoration: none;
+      			color: $white;
+      			&:visited {
+      				color: $white;
+      			}
+      		}
+    	}
+    	&__logo {
+    		flex: 1;
+    		width: auto;
+    		display: flex;
+    		align-items: center;
+			.navigation__bar__item {
+				font-size: 1.2rem;
+			}
+    	}
+  	}
+}

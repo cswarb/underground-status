@@ -1,0 +1,19 @@
+.loading-area {
+	position: relative;
+	background-color: $tfl-blue;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-flow: column nowrap;
+	align-items: center;
+	&__badge {
+		display: block;
+		margin-bottom: 1rem;
+		color: $white;
+	}
+	&__text {
+		color: $white;
+		font-size: 1.5rem;
+	}
+}
