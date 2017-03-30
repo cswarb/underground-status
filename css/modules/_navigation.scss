@@ -83,9 +83,10 @@
       		&:last-child {
       			margin-right: 0;
       		}
-      		&--link {
+      		&__link {
       			text-decoration: none;
       			color: $white;
+      			margin: 0.25rem;
       			&:visited {
       				color: $white;
       			}

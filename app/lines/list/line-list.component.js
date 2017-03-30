@@ -19,45 +19,47 @@ var lineListComponent = (function () {
     lineListComponent.prototype.ngOnInit = function () {
     };
     lineListComponent.prototype.expandLineInfo = function (line) {
-        var _this = this;
         if (this.detailedViewToggle === true) {
             this.detailedViewToggle = false;
-            this.detailedViewLoading = false;
         }
         else if (this.detailedLineInfo.hasOwnProperty("description")) {
             this.detailedViewToggle = true;
-            this.detailedViewLoading = true;
         }
         else {
-            this._lineService.getDetailedLineInfo(line.id).then(function (response) {
-                if (!response) {
-                    return false;
-                }
-                ;
-                _this.detailedViewToggle = true;
-                _this.detailedViewLoading = false;
-                if (typeof response === "object" && response.length < 1) {
-                    _this.detailedLineInfo = {
-                        "description": "No delays found for " + line.name
-                    };
-                }
-                else {
-                    _this.detailedLineInfo = {
-                        "description": response[0].description
-                    };
-                }
-                ;
-            }, function (err) {
-                _this.detailedViewToggle = true;
-                _this.detailedViewLoading = false;
-                _this.detailedLineInfo = {
-                    "description": "Error: Could not get any data."
-                };
-            });
+            this.detailedViewLoading = true;
+            this.getDetailedLineInfo(line);
         }
     };
     lineListComponent.prototype.sanitizeLineId = function (line) {
         return line.replace(/-/g, "");
+    };
+    lineListComponent.prototype.getDetailedLineInfo = function (line) {
+        var _this = this;
+        this._lineService.getDetailedLineInfo(line.id).then(function (response) {
+            if (!response) {
+                return false;
+            }
+            ;
+            _this.detailedViewToggle = true;
+            _this.detailedViewLoading = false;
+            if (typeof response === "object" && response.length < 1) {
+                _this.detailedLineInfo = {
+                    "description": "No delays found for " + line.name
+                };
+            }
+            else {
+                _this.detailedLineInfo = {
+                    "description": response[0].description
+                };
+            }
+            ;
+        }, function (err) {
+            _this.detailedViewToggle = true;
+            _this.detailedViewLoading = false;
+            _this.detailedLineInfo = {
+                "description": "Error: Could not get any data."
+            };
+        });
     };
     __decorate([
         core_1.Input(), 

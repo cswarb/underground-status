@@ -14,12 +14,8 @@ import { delayComponent } from "./shared/components/delays.component";
 
 //Modules
 import { homeModule } from "./home/home.module";
-import { adminModule } from "./admin/admin.module";
 
 //Global Services
-import { testService } from "./shared/services/test.service";
-import { AuthGuard } from "./shared/services/authguard.service";
-import { AuthService } from "./shared/services/auth.service";
 import { delayService } from "./shared/delay/delay.service";
 
 //Routing
@@ -37,7 +33,6 @@ import { appConstants } from "./app.constants";
     	ReactiveFormsModule,
 
         homeModule,
-        adminModule,
 
     	AppRoutingModule
     ],
@@ -49,9 +44,6 @@ import { appConstants } from "./app.constants";
     ],
     providers: [ //The service providers for this module
         appConstants,
-        testService,
-        AuthGuard,
-        AuthService,
         delayService
     ],
     bootstrap: [ //The components to be bootstraped by this module

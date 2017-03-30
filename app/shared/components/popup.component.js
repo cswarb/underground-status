@@ -29,10 +29,7 @@ var popupComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<div class=\"popup\">\n\t\t\t<h2>Popup</h2>\n\t\t\t<button type=\"button\" (click)=\"close()\">Close</button>\n\t\t</div>\t\n    ",
-            styles: [
-                "\n\t\t.popup {\n\t\t\tposition: fixed;\n\t\t\tbottom: 0;\n\t\t\tright: 1rem;\n\t\t\tbackground-color: #fff;\n\t\t\twidth: 20rem;\n\t\t\theight: auto;\n\t\t\tdisplay: block;\n\t\t\tborder: 1px solid grey;\n\t\t    border-radius: 3px;\n\t\t    padding: 1rem;\n\t\t    font-family: sans-serif;\n\t\t}\t\n    "
-            ],
+            template: "\n\t\t<div class=\"popup\">\n\t\t\t<button type=\"button\" class=\"popup__close\" (click)=\"close()\"></button>\n\t\t\t<figure>\n\t\t\t\t<img src=\"/img/map.png\" alt=\"\"/>\n\t\t\t\t<figcaption></figcaption>\n\t\t\t</figure>\n\t\t</div>\t\n    ",
             animations: [
                 animations_1.slideInDownAnimation
             ]

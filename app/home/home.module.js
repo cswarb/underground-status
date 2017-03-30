@@ -22,7 +22,6 @@ var search_module_1 = require("../search/search.module");
 var line_area_module_1 = require("../line-area/line-area.module");
 var station_area_module_1 = require("../station-area/station-area.module");
 //Global Services
-var test_service_1 = require("../shared/services/test.service");
 //Routing
 var home_routing_module_1 = require("./home-routing.module");
 var homeModule = (function () {
@@ -46,9 +45,7 @@ var homeModule = (function () {
             declarations: [
                 home_component_1.homeComponent
             ],
-            providers: [
-                test_service_1.testService
-            ],
+            providers: [],
             exports: [
                 home_component_1.homeComponent
             ],

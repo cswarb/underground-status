@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var authguard_service_1 = require('../shared/services/authguard.service');
 //Custom Components
 var admin_component_1 = require('./admin.component');
 var adminRoutingModule = (function () {
@@ -23,7 +22,7 @@ var adminRoutingModule = (function () {
                     {
                         path: 'admin',
                         component: admin_component_1.AdminComponent,
-                        canActivate: [authguard_service_1.AuthGuard]
+                        canActivate: [AuthGuard]
                     }
                 ])
             ],

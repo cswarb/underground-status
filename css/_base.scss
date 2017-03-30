@@ -11,8 +11,12 @@ a:focus, button:focus, input:focus {
 	outline: 3px solid #ffbf47;
 }
 
-a:visited {
-	color: $tfl-blue;
+a {
+	color: white;
+	text-decoration: none;
+	&:visited {
+		color: white;
+	}
 }
 
 body {

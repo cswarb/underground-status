@@ -27,7 +27,7 @@ import { wildCardComponent } from "./wildcard/wildcard.component";
           component: wildCardComponent 
       },
       { 
-          path: 'compose', 
+          path: 'map', 
           component: popupComponent,
           outlet: "popup" 
       }

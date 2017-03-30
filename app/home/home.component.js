@@ -9,22 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var test_service_1 = require("../shared/services/test.service");
 var homeComponent = (function () {
-    function homeComponent(_testService) {
-        this._testService = _testService;
+    function homeComponent() {
     }
     homeComponent.prototype.ngOnInit = function () {
-        this.getData();
-    };
-    homeComponent.prototype.getData = function () {
-        var _this = this;
-        this._testService.getPromiseData().then(function (response) {
-            console.log(response);
-            _this.lineData = response.data;
-        }, function (err) {
-            console.log("error: ", err);
-        });
     };
     homeComponent = __decorate([
         core_1.Component({
@@ -32,7 +20,7 @@ var homeComponent = (function () {
             selector: '',
             template: "\n    \t<router-outlet></router-outlet>\n    "
         }), 
-        __metadata('design:paramtypes', [test_service_1.testService])
+        __metadata('design:paramtypes', [])
     ], homeComponent);
     return homeComponent;
 }());

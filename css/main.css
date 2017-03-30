@@ -122,8 +122,11 @@
 a:focus, button:focus, input:focus {
   outline: 3px solid #ffbf47; }
 
-a:visited {
-  color: #113b92; }
+a {
+  color: white;
+  text-decoration: none; }
+  a:visited {
+    color: white; }
 
 body {
   margin: 0;
@@ -363,10 +366,11 @@ form {
         margin-left: 0; }
       .navigation__bar__item:last-child {
         margin-right: 0; }
-      .navigation__bar__item--link {
+      .navigation__bar__item__link {
         text-decoration: none;
-        color: #FFFFFF; }
-        .navigation__bar__item--link:visited {
+        color: #FFFFFF;
+        margin: 0.25rem; }
+        .navigation__bar__item__link:visited {
           color: #FFFFFF; }
     .navigation__bar__logo {
       -webkit-flex: 1;
@@ -872,6 +876,39 @@ form {
     background: #FFFFFF; }
     .suggestion__select--disabled:hover {
       cursor: default; }
+
+.popup {
+  position: fixed;
+  background-color: #fff;
+  width: 90%;
+  max-height: 90vh;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 1rem;
+  font-family: sans-serif;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  overflow: scroll; }
+  .popup__close {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    background: url("/img/clear.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    border: none;
+    outline: none; }
+    .popup__close:hover {
+      cursor: pointer; }
 
 [filters] {
   display: block;

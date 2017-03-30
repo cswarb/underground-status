@@ -20,11 +20,7 @@ var popup_component_1 = require('./shared/components/popup.component');
 var navigation_component_1 = require('./navigation/navigation.component');
 //Modules
 var home_module_1 = require("./home/home.module");
-var admin_module_1 = require("./admin/admin.module");
 //Global Services
-var test_service_1 = require("./shared/services/test.service");
-var authguard_service_1 = require("./shared/services/authguard.service");
-var auth_service_1 = require("./shared/services/auth.service");
 var delay_service_1 = require("./shared/delay/delay.service");
 //Routing
 var app_routes_1 = require('./app.routes');
@@ -42,7 +38,6 @@ var AppModule = (function () {
                 http_1.JsonpModule,
                 forms_1.ReactiveFormsModule,
                 home_module_1.homeModule,
-                admin_module_1.adminModule,
                 app_routes_1.AppRoutingModule
             ],
             declarations: [
@@ -53,9 +48,6 @@ var AppModule = (function () {
             ],
             providers: [
                 app_constants_1.appConstants,
-                test_service_1.testService,
-                authguard_service_1.AuthGuard,
-                auth_service_1.AuthService,
                 delay_service_1.delayService
             ],
             bootstrap: [

@@ -16,7 +16,6 @@ import { lineAreaModule } from "../line-area/line-area.module";
 import { stationAreaModule } from "../station-area/station-area.module";
 
 //Global Services
-import { testService } from "../shared/services/test.service";
 
 //Routing
 import { homeRoutingModule } from "./home-routing.module";
@@ -42,7 +41,7 @@ import { homeRoutingModule } from "./home-routing.module";
         homeComponent
     ],
     providers: [ //The service providers for this module
-        testService
+
     ],
     exports: [
         homeComponent

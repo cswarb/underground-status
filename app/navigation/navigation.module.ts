@@ -6,8 +6,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
 import { navigationComponent } from './navigation.component';
+import { popupComponent } from '../shared/components/popup.component';
 
-//Modules
+//Routing
 
 //Global Services
 

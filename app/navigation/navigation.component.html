@@ -10,10 +10,7 @@
                     <a class="navigation__bar__item--link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
                 </li> -->
                 <li class="navigation__bar__item">
-                    <a class="navigation__bar__item--link" [routerLink]="['/map']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Underground Map</a>
-                </li>
-                <li class="navigation__bar__item">
-                    <a class="navigation__bar__item--link" [routerLink]="['/admin']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Admin (Restricted Access)</a>
+                    <a class="navigation__bar__item__link" [routerLink]="[{ outlets: { popup: ['map'] } }]">Underground Map</a>
                 </li>
             </ul>
         </div>

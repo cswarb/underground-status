@@ -33,7 +33,7 @@ var AppRoutingModule = (function () {
                         component: wildcard_component_1.wildCardComponent
                     },
                     {
-                        path: 'compose',
+                        path: 'map',
                         component: popup_component_1.popupComponent,
                         outlet: "popup"
                     }

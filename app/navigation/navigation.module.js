@@ -15,7 +15,7 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
 var navigation_component_1 = require('./navigation.component');
-//Modules
+//Routing
 //Global Services
 //Routing
 var navigationModule = (function () {
