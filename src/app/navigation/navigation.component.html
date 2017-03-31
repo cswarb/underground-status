@@ -1,0 +1,18 @@
+<header class="navigation">
+    <nav class="navigation__bar">
+        <div class="navigation__bar__logo">
+            <img class="logo__header logo__medium" src="/assets/img/underground-white.svg" alt="Underground Logo"/>
+            <h1 class="navigation__bar__item"><a class="navigation__bar__item--link navigation__bar__text" href="/">Transport for London <span>Service Checker</span></a></h1>
+        </div>
+        <div class="navigation__bar__items">
+            <ul class="navigation__bar__container">
+                <!-- <li class="navigation__bar__item">
+                    <a class="navigation__bar__item--link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+                </li> -->
+                <li class="navigation__bar__item">
+                    <a class="navigation__bar__item__link" [routerLink]="[{ outlets: { popup: ['map'] } }]">Underground Map</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

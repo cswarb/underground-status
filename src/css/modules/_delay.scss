@@ -1,0 +1,20 @@
+[emergency-delays] {
+	width: 100%;
+	max-width: 38rem;
+	display: block;
+    margin: 4rem auto;
+	.delay {
+		&__wrapper {
+			width: 100%;
+			background: url("/assets/img/warning.svg") $white;
+			background-size: 2rem;
+		    background-repeat: no-repeat;
+		    background-position: 5% 50%;
+			margin: 1rem 0;
+			padding: 1rem 1rem 1rem 6rem;
+			text-align: center;
+			box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+			text-align: left;
+		}
+	}
+}

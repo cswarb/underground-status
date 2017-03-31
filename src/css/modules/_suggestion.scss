@@ -1,0 +1,59 @@
+.suggestion {
+	&__wrapper {
+		background-color: $white;
+		margin-top: 0.5rem;
+		box-shadow: 0px 0px 4px rgba(0,0,0,0.1);
+	}
+	&__value {
+		position: relative;
+		&:first-child > .suggestion__select {
+			padding-top: 2.5em;
+		}
+		&:last-child > .suggestion__select {
+			padding-bottom: 2.5em;
+		}
+	}
+	&__name, &__helper {
+		font-family: 'JohnstonITCMedium', sans-serif;
+	}
+	&__name {
+		color: $black;
+		margin: 0;
+    	font-size: 1.5rem;
+    	line-height: 1.25;
+	}
+	&__helper {
+		line-height: 1.25;
+	    margin: 0;
+	    color: #9ea4a7;
+	    text-transform: uppercase;
+	    font-size: 0.8rem;
+	    letter-spacing: 0.2px;
+	    @each $line, $color in $lines {
+			&--#{$line} {
+				color: $color;
+			}
+		}
+	}
+	&__select {
+		border: 0;
+	    background: $white url("/assets/img/select.svg");
+	    background-size: 1.4rem;
+	    background-position: 92% center;
+	    background-repeat: no-repeat;
+	    width: 100%;
+	    height: 100%;
+	    text-align: left;
+	    padding: 1.25rem 3rem;
+	    margin-bottom: 3px;
+	    &:hover {
+	    	cursor: pointer;
+	    }
+	    &--disabled {
+	    	background: $white;
+	    	&:hover {
+	    		cursor: default;
+	    	}
+	    }
+	}
+}
