@@ -18,10 +18,14 @@ import * as _ from "lodash";
 })
 export class searchComponent implements OnInit {
 
+	@Input() sharedSearchString: string;
+    @Output() sharedSearchStringChange = new EventEmitter(); 
+    //This @output needs to be referenced with the same variable as the input, 
+    //but with Change on the end for it to work
+
 	//Inputs from parent components
 	@Input() filterType = "station";
 	@Input() searchExample = "";
-	@Input() searchString = "";
 	@Input() autoCompleteVals = [];
 	@Input() searchResults = [];
 
@@ -86,10 +90,6 @@ export class searchComponent implements OnInit {
 		return found;
 	}
 
-	searchResultChanged(delta) {
-	    this.searchResultUpdated.next(delta);
-	}
-
 	handleStationDistruption(disruption) {
 		//Only return the results that are from the tube
 		this.searchResults = disruption.filter((value) => {
@@ -99,9 +99,17 @@ export class searchComponent implements OnInit {
 		this.searchResultChanged(this.searchResults);
 	}
 
+	searchResultChanged(delta) {
+		// pass the search results to the parent component to pass 
+		// to the search results component
+	    this.searchResultUpdated.next(delta);
+	}
+
 	search = (term) => {
-		//Force a model change, passing in the term
+		//Force a model change, passing in the term to search using the endpoint
 		this.modelChanged.next(term);
+		//update the 2 way binding between this, and the parent component
+		this.sharedSearchStringChange.emit(term);
 	}
 
 	selectStation(station) {

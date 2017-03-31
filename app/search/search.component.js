@@ -19,10 +19,12 @@ var searchComponent = (function () {
         var _this = this;
         this._searchService = _searchService;
         this.myElement = myElement;
+        this.sharedSearchStringChange = new core_1.EventEmitter();
+        //This @output needs to be referenced with the same variable as the input, 
+        //but with Change on the end for it to work
         //Inputs from parent components
         this.filterType = "station";
         this.searchExample = "";
-        this.searchString = "";
         this.autoCompleteVals = [];
         this.searchResults = [];
         //Outputs to parent components
@@ -34,8 +36,10 @@ var searchComponent = (function () {
         this.modelChanged = new Subject_1.Subject();
         this.debounceValue = 300;
         this.search = function (term) {
-            //Force a model change, passing in the term
+            //Force a model change, passing in the term to search using the endpoint
             _this.modelChanged.next(term);
+            //update the 2 way binding between this, and the parent component
+            _this.sharedSearchStringChange.emit(term);
         };
     }
     searchComponent.prototype.ngOnInit = function () {
@@ -89,9 +93,6 @@ var searchComponent = (function () {
         });
         return found;
     };
-    searchComponent.prototype.searchResultChanged = function (delta) {
-        this.searchResultUpdated.next(delta);
-    };
     searchComponent.prototype.handleStationDistruption = function (disruption) {
         //Only return the results that are from the tube
         this.searchResults = disruption.filter(function (value) {
@@ -99,6 +100,11 @@ var searchComponent = (function () {
         });
         //Cause a change to update the search result component
         this.searchResultChanged(this.searchResults);
+    };
+    searchComponent.prototype.searchResultChanged = function (delta) {
+        // pass the search results to the parent component to pass 
+        // to the search results component
+        this.searchResultUpdated.next(delta);
     };
     searchComponent.prototype.selectStation = function (station) {
         this.model = station.stationName;
@@ -140,16 +146,20 @@ var searchComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', String)
+    ], searchComponent.prototype, "sharedSearchString", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], searchComponent.prototype, "sharedSearchStringChange", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], searchComponent.prototype, "filterType", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], searchComponent.prototype, "searchExample", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], searchComponent.prototype, "searchString", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

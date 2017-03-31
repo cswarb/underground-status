@@ -8,7 +8,7 @@
                 class="searcharea__input"
                 name="search"
                 #searchTerm
-                [ngModel]='model'
+                [ngModel]='sharedSearchString'
                 (ngModelChange)='search($event)'
                 [placeholder]="'e.g. ' + searchExample"
                 (keyup)="filterAutocomplete(searchTerm, $event)"
@@ -17,8 +17,6 @@
                 autofocus="autofocus"/>
                 <span class="searcharea__input__clear" *ngIf="searchTerm.value.length > 0" (click)="clearInput(searchTerm)"></span>
             </div>
-
-            <!-- {{autocompleteFilteredList | json}} -->
 
             <div class="suggestion__wrapper" *ngIf="hasInvalidData">
                 <div class="suggestion__value">

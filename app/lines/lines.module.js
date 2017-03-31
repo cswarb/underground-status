@@ -15,6 +15,7 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 //Custom Components
 var line_list_component_1 = require('./list/line-list.component');
+var line_list_directive_1 = require('./list/line-list.directive');
 //Modules
 //Global Services
 //Routing
@@ -32,11 +33,13 @@ var linesModule = (function () {
                 forms_1.ReactiveFormsModule
             ],
             declarations: [
-                line_list_component_1.lineListComponent
+                line_list_component_1.lineListComponent,
+                line_list_directive_1.toggleLineDetailDirective
             ],
             providers: [],
             exports: [
-                line_list_component_1.lineListComponent
+                line_list_component_1.lineListComponent,
+                line_list_directive_1.toggleLineDetailDirective
             ],
             bootstrap: [],
             entryComponents: [

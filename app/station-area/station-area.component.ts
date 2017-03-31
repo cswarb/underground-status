@@ -19,8 +19,8 @@ import { delayService } from "../shared/delay/delay.service";
 	            	[filterType]="filterType" 
 	            	[searchResults]="searchResults" 
 	            	[searchExample]="searchExample" 
-	            	[searchString]="searchString" 
-	            	[autoCompleteVals]="stationsList">
+	            	[autoCompleteVals]="stationsList"
+	            	[(sharedSearchString)]="searchString">
 	            </div>
 
 	            <div search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></div>
@@ -64,7 +64,7 @@ export class stationAreaComponent implements OnInit {
 	clearTheSearchResult(delta) {		
 		let index = this.searchResults.indexOf(delta);
   		this.searchResults.splice(index, 1);  
-		// this.searchResults = [];
+		this.searchString = "";
 	}
 
 	getAllDelays() {

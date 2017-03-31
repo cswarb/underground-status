@@ -6,6 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 //Custom Components
 import { lineListComponent } from './list/line-list.component';
+import { toggleLineDetailDirective } from './list/line-list.directive';
 
 //Modules
 
@@ -23,12 +24,14 @@ import { lineListComponent } from './list/line-list.component';
     	ReactiveFormsModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        lineListComponent
+        lineListComponent,
+        toggleLineDetailDirective
     ],
     providers: [ //The service providers for this module
     ],
     exports: [
-        lineListComponent
+        lineListComponent,
+        toggleLineDetailDirective
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	

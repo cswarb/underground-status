@@ -47,7 +47,7 @@ var stationAreaComponent = (function () {
     stationAreaComponent.prototype.clearTheSearchResult = function (delta) {
         var index = this.searchResults.indexOf(delta);
         this.searchResults.splice(index, 1);
-        // this.searchResults = [];
+        this.searchString = "";
     };
     stationAreaComponent.prototype.getAllDelays = function () {
         var _this = this;
@@ -109,7 +109,7 @@ var stationAreaComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: '',
-            template: "\n\t\t<article class=\"\">\n\n            <div filters></div>\n\n            <div emergency-delays [delays]=\"delays\"></div>\n            \n            <section class=\"undergroundline\">\n\t            <div search (searchResultUpdated)=\"searchResultHasUpdated($event)\" \n\t            \t[filterType]=\"filterType\" \n\t            \t[searchResults]=\"searchResults\" \n\t            \t[searchExample]=\"searchExample\" \n\t            \t[searchString]=\"searchString\" \n\t            \t[autoCompleteVals]=\"stationsList\">\n\t            </div>\n\n\t            <div search-results (clearSearchResults)=\"clearTheSearchResult($event)\" [searchResults]=\"searchResults\"></div>\n            </section>\n                  \n        </article>\n    "
+            template: "\n\t\t<article class=\"\">\n\n            <div filters></div>\n\n            <div emergency-delays [delays]=\"delays\"></div>\n            \n            <section class=\"undergroundline\">\n\t            <div search (searchResultUpdated)=\"searchResultHasUpdated($event)\" \n\t            \t[filterType]=\"filterType\" \n\t            \t[searchResults]=\"searchResults\" \n\t            \t[searchExample]=\"searchExample\" \n\t            \t[autoCompleteVals]=\"stationsList\"\n\t            \t[(sharedSearchString)]=\"searchString\">\n\t            </div>\n\n\t            <div search-results (clearSearchResults)=\"clearTheSearchResult($event)\" [searchResults]=\"searchResults\"></div>\n            </section>\n                  \n        </article>\n    "
         }), 
         __metadata('design:paramtypes', [station_service_1.stationService, delay_service_1.delayService, line_service_1.lineService])
     ], stationAreaComponent);

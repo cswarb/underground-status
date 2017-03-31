@@ -45,6 +45,11 @@
 			color: $tfl-blue;
 			margin-top: 4rem;
 	    	display: block;
+	    	> a {
+	    		&:visited {
+	    			color: $tfl-blue;
+	    		}
+	    	}
 		}
 	}
 }

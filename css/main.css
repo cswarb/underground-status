@@ -959,6 +959,8 @@ form {
     color: #113b92;
     margin-top: 4rem;
     display: block; }
+    [search-results] .result__helper > a:visited {
+      color: #113b92; }
 
 [emergency-delays] {
   width: 100%;
