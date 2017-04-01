@@ -41,7 +41,7 @@
 				display: block;
 				position: absolute;
 				overflow: hidden;
-				animation: blockRevealRight 1s ease-in-out forwards;
+				animation: blockRevealRight 1s ease-in-out 0.3s 1 normal both running;
 				top: 0;
 				left: 0;
 				width: 100%;
@@ -54,7 +54,7 @@
 				display: block;
 				position: absolute;
 				overflow: hidden;
-				animation: blockRevealLeft 1s ease-in-out forwards;
+				animation: blockRevealLeft 1s ease-in-out 0.3s 1 normal both running;
 				top: 0;
 				left: 0;
 				width: 100%;
