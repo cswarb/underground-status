@@ -2,8 +2,8 @@
 	background-color: $black;
 	color: $white;
 	&__text {
+		font-family: 'JohnstonITCMedium', sans-serif;
 		margin: 0;
 		padding: 2rem;
-		font-family: 'JohnstonITCMedium', sans-serif;
 	}
 }

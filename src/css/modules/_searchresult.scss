@@ -3,25 +3,26 @@
 	width:100%;
 	.result {
 		&__wrapper {
+		    animation: fadeInSoftDown 0.5s ease-in-out forwards;
 			background-color: $white;
-			width: 100%;
-		    max-width: 45rem;
 		    display: block;
 		    margin: 2rem auto;
+		    max-width: 45rem;
 		    padding: 2rem;
 		    position: relative;
-		    animation: fadeInSoftDown 0.5s ease-in-out forwards;
+			width: 100%;
 		}
 		&__close {
+		    background: url("/assets/img/clear.svg");
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    background-size: auto;
+		    display: inline-block;
+		    height: 2rem;
 			position: absolute;
 		    right: 5%;
 		    top: 10%;
 		    width: 2rem;
-		    height: 2rem;
-		    display: inline-block;
-		    background: url("/assets/img/clear.svg");
-		    background-repeat: no-repeat;
-		    background-size: auto;
 		    &:hover {
 		    	cursor: pointer;
 		    }
@@ -34,17 +35,17 @@
 			margin: 0;
 		}
 		&__title {
-			font-size: 1.5rem;
 			color: $black;
+			font-size: 1.5rem;
 		}
 		&__description {
-			margin-top: 1rem;
 			font-size: 1.2rem;
+			margin-top: 1rem;
 		}
 		&__helper {
 			color: $tfl-blue;
-			margin-top: 4rem;
 	    	display: block;
+			margin-top: 4rem;
 	    	> a {
 	    		&:visited {
 	    			color: $tfl-blue;

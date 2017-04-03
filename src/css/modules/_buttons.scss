@@ -10,12 +10,12 @@
 
 	}
 	&__filter {
-		flex: 1;
-		padding: 2rem 2rem;
-		font-size: 1rem;
-		font-family: 'JohnstonITCBold', sans-serif;
-		text-transform: uppercase;
 		background-color: darken($background-grey, 5%);
+		flex: 1;
+		font-family: 'JohnstonITCBold', sans-serif;
+		font-size: 1rem;
+		padding: 2rem 2rem;
+		text-transform: uppercase;
 		@media screen and (min-width: 60rem) {
 			font-size: 1.8rem;
 			padding: 3rem;
@@ -29,16 +29,16 @@
 		}
 	}
 	&__icon {
+		align-items: center;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
-		align-items: center;
 		&__text {
-			font-family: 'JohnstonITCBold', sans-serif;
 			color: $white;
 			display: none;
-			margin: 0 0.5rem 0 0;
+			font-family: 'JohnstonITCBold', sans-serif;
 			font-size: 0.95rem;
+			margin: 0 0.5rem 0 0;
 			@media screen and (min-width: 60rem) {
 				display: inline;
 			}

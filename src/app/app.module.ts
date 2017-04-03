@@ -8,6 +8,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { wildCardComponent } from './wildcard/wildcard.component';
 import { popupComponent } from './shared/components/popup.component';
+import { popupDirective } from './shared/components/popup.directive';
 
 import { navigationComponent } from './navigation/navigation.component';
 
@@ -39,6 +40,7 @@ import { appConstants } from "./app.constants";
         AppComponent,
         wildCardComponent,
         popupComponent,
+        popupDirective,
         navigationComponent
     ],
     providers: [ //The service providers for this module

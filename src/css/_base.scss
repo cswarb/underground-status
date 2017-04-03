@@ -20,15 +20,16 @@ a {
 }
 
 body {
-	margin:  0;
-	padding: 0;
 	background-color: $background-grey;
 	font-family: 'JohnstonITCMedium', sans-serif;
+	margin:  0;
 	min-height: 100vh;
+	padding: 0;
+	width: 100%;
 	&.fixed {
+		left:0;
 		position: fixed;
 		top:0;
-		left:0;
 	}
 }
 
@@ -37,16 +38,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 img {
-	max-width: 100%;
 	display: block;
+	max-width: 100%;
 }
 
 p {
-	letter-spacing: -0.1px;
-    font-family: 'Avenir 55 Roman', sans-serif;
-    line-height: 1.75;
     color: #5d6065;
+    font-family: 'Avenir 55 Roman', sans-serif;
     font-size: 1.125rem;
+	letter-spacing: -0.1px;
+    line-height: 1.75;
     &.grey {
     	color: #8c9396;
     }
@@ -56,8 +57,8 @@ ul {
 	margin: 0;
 	padding: 0;
 	> li {
-		margin: 0.5rem 0;
 		line-height: 1.75;
+		margin: 0.5rem 0;
 	}
 }
 
@@ -68,6 +69,6 @@ pre {
 }
 
 form {
-	width: 100%;
 	height: auto;
+	width: 100%;
 }
