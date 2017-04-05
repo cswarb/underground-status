@@ -7,10 +7,10 @@ import { HttpModule, JsonpModule } from '@angular/http';
 //Custom Components
 import { AppComponent } from './app.component';
 import { wildCardComponent } from './wildcard/wildcard.component';
-import { popupComponent } from './shared/components/popup.component';
-import { popupDirective } from './shared/components/popup.directive';
+import { popupComponent } from './shared/popup/popup.component';
+import { popupDirective } from './shared/popup/popup.directive';
 
-import { navigationComponent } from './navigation/navigation.component';
+import { navigationComponent } from './shared/navigation/navigation.component';
 
 //Modules
 import { homeModule } from "./home/home.module";

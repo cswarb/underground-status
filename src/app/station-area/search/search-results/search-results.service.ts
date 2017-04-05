@@ -3,7 +3,7 @@ import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-import { appConstants } from "../../app.constants";
+import { appConstants } from "../../../app.constants";
 
 
 @Injectable()

@@ -8,9 +8,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { homeComponent } from './home.component';
 
 //Modules
-import { linesModule } from "../lines/lines.module";
+import { lineListModule } from "../line-area/line-list/line-list.module";
 import { filterModule } from "../filter/filter.module";
-import { searchModule } from "../search/search.module";
+import { searchModule } from "../station-area/search/search.module";
 
 import { lineAreaModule } from "../line-area/line-area.module";
 import { stationAreaModule } from "../station-area/station-area.module";
@@ -28,7 +28,7 @@ import { homeRoutingModule } from "./home-routing.module";
     	JsonpModule,
     	ReactiveFormsModule,
 
-        linesModule,
+        lineListModule,
         filterModule,
         searchModule,
 

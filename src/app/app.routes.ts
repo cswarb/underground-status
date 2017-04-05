@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 // import { aboutModule } from "./about/about.module";
 import { homeModule } from "./home/home.module";
 
-import { popupComponent } from './shared/components/popup.component';
+import { popupComponent } from './shared/popup/popup.component';
 import { wildCardComponent } from "./wildcard/wildcard.component";
 
 

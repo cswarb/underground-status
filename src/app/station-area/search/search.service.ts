@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, Headers } from '@angular/http';
 
-import { appConstants } from "../app.constants";
+import { appConstants } from "../../app.constants";
 
 @Injectable()
 export class searchService {

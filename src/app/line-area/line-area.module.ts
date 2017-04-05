@@ -8,9 +8,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { lineAreaComponent } from './line-area.component';
 
 //Modules
-import { linesModule } from "../lines/lines.module";
+import { lineListModule } from "./line-list/line-list.module";
 import { filterModule } from "../filter/filter.module";
-import { searchModule } from "../search/search.module";
+// import { searchModule } from "../search/search.module";
 import { delayModule } from "../shared/delay/delay.module";
 
 //Global Services
@@ -27,9 +27,9 @@ import { lineService } from "./line.service";
     	JsonpModule,
     	ReactiveFormsModule,
 
-        linesModule,
+        lineListModule,
         filterModule,
-        searchModule,
+        // searchModule,
         delayModule
     ],
     declarations: [ //The components, directives, and pipes for this module

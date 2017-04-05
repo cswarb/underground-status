@@ -4,16 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { homeRoutingModule } from "../../home/home-routing.module";
+import { searchResultsModule } from "./search-results/search-results.module";
+
 //Custom Components
-import { lineListComponent } from './list/line-list.component';
-import { toggleLineDetailDirective } from './list/line-list.directive';
+import { searchComponent } from './search.component';
 
-//Modules
-
-//Global Services
-
-//Routing
-// import { popularLinesRoutingModule } from "./popular-lines-routing.module";
+//services
+import { searchService } from './search.service';
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -21,23 +19,24 @@ import { toggleLineDetailDirective } from './list/line-list.directive';
     	FormsModule,
     	HttpModule,
     	JsonpModule,
-    	ReactiveFormsModule
+    	ReactiveFormsModule,
+        homeRoutingModule,
+        searchResultsModule
     ],
     declarations: [ //The components, directives, and pipes for this module
-        lineListComponent,
-        toggleLineDetailDirective
+        searchComponent
     ],
     providers: [ //The service providers for this module
+        searchService
     ],
     exports: [
-        lineListComponent,
-        toggleLineDetailDirective
+        searchComponent
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	
     ],
     entryComponents: [
-        lineListComponent
+        searchComponent
     ]
 })
-export class linesModule { }
+export class searchModule { }
