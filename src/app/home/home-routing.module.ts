@@ -1,24 +1,24 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
 //Custom Components
-import { homeComponent } from './home.component';
-import { lineAreaComponent } from '../line-area/line-area.component';
-import { stationAreaComponent } from '../station-area/station-area.component';
+import { homeComponent } from "./home.component";
+import { lineAreaComponent } from "../line-area/line-area.component";
+import { stationAreaComponent } from "../station-area/station-area.component";
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: 'status',
+        path: "status",
         component: homeComponent,
         children: [
           {
-            path: 'lines',
+            path: "lines",
             component: lineAreaComponent
           },
           {
-            path: 'stations',
+            path: "stations",
             component: stationAreaComponent
           }
         ]

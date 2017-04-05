@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
 	moduleId: module.id,
-	selector: 'wildcard',
+	selector: "wildcard",
 	template: `
 		<h1>Ooops</h1>
 	`

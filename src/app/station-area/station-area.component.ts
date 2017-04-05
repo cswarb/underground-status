@@ -1,12 +1,12 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { stationService } from "./station.service";
 import { lineService } from "../line-area/line.service";
 import { delayService } from "../shared/delay/delay.service";
 
 @Component({
 	moduleId: module.id,
-    selector: '',
+    selector: "",
     template: `
 		<article class="">
 

@@ -1,12 +1,12 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, HostBinding } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, HostBinding } from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { RouterModule, Router } from "@angular/router";
 
-import { slideInDownAnimation }   from '../../animations';
+import { slideInDownAnimation }   from "../../animations";
 
 @Component({
 	moduleId: module.id,
-    selector: '',
+    selector: "",
     template: `
     	<div class="popup__background" (click)="close()"></div>
 		<div class="popup">

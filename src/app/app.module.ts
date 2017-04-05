@@ -1,16 +1,16 @@
 //Core imports
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule }   from "@angular/forms";
+import { HttpModule, JsonpModule } from "@angular/http";
 
 //Custom Components
-import { AppComponent } from './app.component';
-import { wildCardComponent } from './wildcard/wildcard.component';
-import { popupComponent } from './shared/popup/popup.component';
-import { popupDirective } from './shared/popup/popup.directive';
+import { AppComponent } from "./app.component";
+import { wildCardComponent } from "./wildcard/wildcard.component";
+import { popupComponent } from "./shared/popup/popup.component";
+import { popupDirective } from "./shared/popup/popup.directive";
 
-import { navigationComponent } from './shared/navigation/navigation.component';
+import { navigationComponent } from "./shared/navigation/navigation.component";
 
 //Modules
 import { homeModule } from "./home/home.module";
@@ -19,7 +19,7 @@ import { homeModule } from "./home/home.module";
 import { delayService } from "./shared/delay/delay.service";
 
 //Routing
-import { AppRoutingModule } from './app.routes';
+import { AppRoutingModule } from "./app.routes";
 
 //Constants
 import { appConstants } from "./app.constants";

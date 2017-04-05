@@ -2,18 +2,18 @@ import { Component, Input, Output, OnInit, EventEmitter, ElementRef } from "@ang
 
 import { searchService } from "./search.service";
 
-import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
+import { Subscription } from "rxjs/Subscription";
+import { Subject } from "rxjs/Subject";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/switchMap";
 
 import * as _ from "lodash";
 
 @Component({
 	moduleId: module.id,
-    selector: '[search]',
-    templateUrl: './search.component.html'
+    selector: "[search]",
+    templateUrl: "./search.component.html"
 })
 export class searchComponent implements OnInit {
 

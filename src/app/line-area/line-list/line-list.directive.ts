@@ -1,7 +1,7 @@
-import { Directive, OnInit, OnChanges, ChangeDetectionStrategy, HostListener, ElementRef, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
+import { Directive, OnInit, OnChanges, ChangeDetectionStrategy, HostListener, ElementRef, ChangeDetectorRef, Input, Output, EventEmitter } from "@angular/core";
 
 @Directive({
-	selector: '[toggleLineDetail]'
+	selector: "[toggleLineDetail]"
 })
 export class toggleLineDetailDirective {
 
@@ -9,7 +9,7 @@ export class toggleLineDetailDirective {
 
     }
 
-    @HostListener('click', ['$event']) onClick($event) {
+    @HostListener("click", ["$event"]) onClick($event) {
 	    this.toggle($event);
 	}
 

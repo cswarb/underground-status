@@ -1,12 +1,12 @@
 //Core imports
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule, JsonpModule } from "@angular/http";
 
 //Custom Components
-import { navigationComponent } from './navigation.component';
-import { popupComponent } from '../popup/popup.component';
+import { navigationComponent } from "./navigation.component";
+import { popupComponent } from "../popup/popup.component";
 
 //Routing
 

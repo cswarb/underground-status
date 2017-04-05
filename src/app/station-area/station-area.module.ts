@@ -1,14 +1,13 @@
 //Core imports
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule, JsonpModule } from "@angular/http";
 
 //Custom Components
-import { stationAreaComponent } from './station-area.component';
+import { stationAreaComponent } from "./station-area.component";
 
 //Modules
-// import { linesModule } from "../lines/lines.module";
 import { filterModule } from "../filter/filter.module";
 import { searchModule } from "./search/search.module";
 import { delayModule } from "../shared/delay/delay.module";
@@ -29,7 +28,6 @@ import { lineService } from "../line-area/line.service";
     	JsonpModule,
     	ReactiveFormsModule,
 
-        // linesModule,
         filterModule,
         searchModule,
         delayModule,

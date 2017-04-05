@@ -1,9 +1,9 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
+import { FormControl } from "@angular/forms";
 
 @Component({
 	moduleId: module.id,
-    selector: '',
+    selector: "",
     template: `
     	<router-outlet></router-outlet>
     `

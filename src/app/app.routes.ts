@@ -1,12 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from "@angular/core";
 
 //Import all components at the top level that require routing
 //or modules (must set up child routes file and inital components array in module definition)
 // import { aboutModule } from "./about/about.module";
 import { homeModule } from "./home/home.module";
 
-import { popupComponent } from './shared/popup/popup.component';
+import { popupComponent } from "./shared/popup/popup.component";
 import { wildCardComponent } from "./wildcard/wildcard.component";
 
 
@@ -18,16 +18,16 @@ import { wildCardComponent } from "./wildcard/wildcard.component";
         (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
       */
       { 
-          path: '',
-          redirectTo: '/status/lines',
-          pathMatch: 'full' 
+          path: "",
+          redirectTo: "/status/lines",
+          pathMatch: "full" 
       },
       { 
-          path: '**', 
+          path: "**", 
           component: wildCardComponent 
       },
       { 
-          path: 'map', 
+          path: "map", 
           component: popupComponent,
           outlet: "popup" 
       }

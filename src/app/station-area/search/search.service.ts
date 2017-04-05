@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams, Headers } from '@angular/http';
+import { Injectable } from "@angular/core";
+import { Http, Response, URLSearchParams, Headers } from "@angular/http";
 
 import { appConstants } from "../../app.constants";
 
@@ -14,7 +14,7 @@ export class searchService {
 
 	getHeaders = () => {
 		let headers = new Headers();
-	    headers.append('Accept', 'application/json');
+	    headers.append("Accept", "application/json");
 	    return headers;
 	};
 
@@ -103,7 +103,4 @@ export class searchService {
 
 	};
 
-	
-
 }
-
