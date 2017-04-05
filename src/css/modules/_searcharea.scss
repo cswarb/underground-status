@@ -3,12 +3,19 @@
 	width: 100%;
 	.searcharea {
 		&__wrapper {
-			margin: 0 auto;
+			margin: 0rem auto 5rem auto;
 		    @media screen and (min-width: 30rem) {
 				width: 85%;
 			}
 			@media screen and (min-width: 60rem) {
 				width: 45%;
+			}
+		}
+		&__helper {
+			min-height: 3rem;
+			// margin: 2rem;
+			&__text {
+				margin: 0;
 			}
 		}
 		&__input {

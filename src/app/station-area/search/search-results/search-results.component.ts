@@ -4,9 +4,6 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 	moduleId: module.id,
     selector: "[search-results]",
     template: `
-    	<div *ngIf="searchResults.length < 1" class="center">
-			<h4 class="ui-helper">Search for a station.</h4>
-    	</div>
 		<div *ngIf="searchResults.length > 0">
 			<div class="result__block" *ngFor="let result of searchResults" class="result__wrapper">
 				<div (click)="clearResult(result)" class="result__close"></div>

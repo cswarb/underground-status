@@ -2,6 +2,11 @@
 
     <form action="">
         <div class="searcharea__wrapper">
+        
+            <div class="center searcharea__helper">
+                <h4 *ngIf="searchTerm.value.length < 1" class="ui-helper searcharea__helper__text">Search for a station.</h4>
+            </div>
+
             <div class="searcharea__input__wrapper">
                 <input type="text"
                 autocomplete="off"
