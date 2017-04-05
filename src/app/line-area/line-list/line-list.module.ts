@@ -13,7 +13,6 @@ import { toggleLineDetailDirective } from "./line-list.directive";
 //Global Services
 
 //Routing
-// import { popularLinesRoutingModule } from "./popular-lines-routing.module";
 
 @NgModule({
     imports: [ //All the required additional modules for this module

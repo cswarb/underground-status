@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule }   from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 //Custom Components
 import { AppComponent } from "./app.component";
@@ -31,6 +32,7 @@ import { appConstants } from "./app.constants";
     	HttpModule,
     	JsonpModule,
     	ReactiveFormsModule,
+        BrowserAnimationsModule,
 
         homeModule,
 

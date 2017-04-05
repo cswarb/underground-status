@@ -2,7 +2,7 @@ import { animate, AnimationEntryMetadata, state, style, transition, trigger } fr
 
 // Component transition animations
 export const slideInDownAnimation: AnimationEntryMetadata =
-  trigger("routeAnimation", [
+  trigger("popupAnimation", [
     state("*",
       style({
         opacity: 1,

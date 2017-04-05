@@ -7,6 +7,12 @@ import { slideInDownAnimation }   from "../../animations";
 @Component({
 	moduleId: module.id,
     selector: "",
+    animations: [
+    	slideInDownAnimation
+    ],
+  	host: {
+  		"[@popupAnimation]": "true"
+  	},
     template: `
     	<div class="popup__background" (click)="close()"></div>
 		<div class="popup">

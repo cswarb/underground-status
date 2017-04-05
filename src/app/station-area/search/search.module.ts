@@ -4,7 +4,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
 
-import { homeRoutingModule } from "../../home/home-routing.module";
 import { searchResultsModule } from "./search-results/search-results.module";
 
 //Custom Components
@@ -20,7 +19,6 @@ import { searchService } from "./search.service";
     	HttpModule,
     	JsonpModule,
     	ReactiveFormsModule,
-        homeRoutingModule,
         searchResultsModule
     ],
     declarations: [ //The components, directives, and pipes for this module

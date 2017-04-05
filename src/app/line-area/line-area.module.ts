@@ -10,7 +10,6 @@ import { lineAreaComponent } from "./line-area.component";
 //Modules
 import { lineListModule } from "./line-list/line-list.module";
 import { filterModule } from "../filter/filter.module";
-// import { searchModule } from "../search/search.module";
 import { delayModule } from "../shared/delay/delay.module";
 
 //Global Services
@@ -29,7 +28,6 @@ import { lineService } from "./line.service";
 
         lineListModule,
         filterModule,
-        // searchModule,
         delayModule
     ],
     declarations: [ //The components, directives, and pipes for this module
