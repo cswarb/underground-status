@@ -13,7 +13,7 @@ import { popupComponent } from "../popup/popup.component";
 //Global Services
 
 //Routing
-
+import { AppRoutingModule } from "../../app.routes";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -21,7 +21,8 @@ import { popupComponent } from "../popup/popup.component";
         FormsModule,
         HttpModule,
         JsonpModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AppRoutingModule
     ],
     declarations: [ //The components, directives, and pipes for this module
         navigationComponent

@@ -11,10 +11,10 @@ import { wildCardComponent } from "./wildcard/wildcard.component";
 import { popupComponent } from "./shared/popup/popup.component";
 import { popupDirective } from "./shared/popup/popup.directive";
 
-import { navigationComponent } from "./shared/navigation/navigation.component";
 
 //Modules
 import { homeModule } from "./home/home.module";
+import { navigationModule } from "./shared/navigation/navigation.module";
 
 //Global Services
 import { delayService } from "./shared/delay/delay.service";
@@ -35,6 +35,7 @@ import { appConstants } from "./app.constants";
         BrowserAnimationsModule,
 
         homeModule,
+        navigationModule,
 
     	AppRoutingModule
     ],
@@ -42,8 +43,7 @@ import { appConstants } from "./app.constants";
         AppComponent,
         wildCardComponent,
         popupComponent,
-        popupDirective,
-        navigationComponent
+        popupDirective
     ],
     providers: [ //The service providers for this module
         appConstants,
