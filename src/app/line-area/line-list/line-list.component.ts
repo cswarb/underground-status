@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 import { Router, Params } from "@angular/router";
 import { FormControl } from "@angular/forms";
 
-import { lineService } from "../../line-area/line.service";
+import { lineFacade } from "../../line-area/line-facade.service";
 
 @Component({
 	moduleId: module.id,
@@ -17,7 +17,7 @@ export class lineListComponent implements OnInit {
 	detailedViewLoading: boolean = false;
 	detailedViewToggle: boolean;
 
-	constructor(private _lineService: lineService){
+	constructor(private _lineFacade: lineFacade){
 		
 	}
 	
@@ -41,7 +41,7 @@ export class lineListComponent implements OnInit {
 	}
 
 	getDetailedLineInfo(line) {
-		this._lineService.getDetailedLineInfo(line.id).then((response) => {
+		this._lineFacade.getDetailedLineInfo(line.id).then((response) => {
 			if(!response) {return false};
 			this.detailedViewToggle = true;
 			this.detailedViewLoading = false;

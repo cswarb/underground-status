@@ -9,6 +9,7 @@ import { searchResultsComponent } from "./search-results.component";
 
 //Services
 import { searchResultsService } from "./search-results.service";
+import { searchResultsFacade } from "./search-results-facade.service";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -22,7 +23,8 @@ import { searchResultsService } from "./search-results.service";
         searchResultsComponent
     ],
     providers: [ //The service providers for this module
-        searchResultsService
+        searchResultsService,
+        searchResultsFacade
     ],
     exports: [
         searchResultsComponent

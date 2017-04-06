@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { lineService } from "./line.service";
-import { delayService } from "../shared/delay/delay.service";
+import { lineFacade } from "./line-facade.service";
+import { delayFacade } from "../shared/delay/delay-facade.service";
 
 @Component({
 	moduleId: module.id,
@@ -33,7 +33,7 @@ export class lineAreaComponent implements OnInit {
 	delays: any = [];
 	allLineStatuses: any = [];
 
-	constructor(private _lineService: lineService, private _delayService: delayService) {}
+	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade) {}
 	
 	ngOnInit() {
 		this.getAllLinesStatuses();
@@ -41,7 +41,7 @@ export class lineAreaComponent implements OnInit {
 	}
 
 	getAllDelays() {
-		this._delayService.getAllDelays("tube").then((response) => {
+		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
 			console.log(err);
@@ -49,7 +49,7 @@ export class lineAreaComponent implements OnInit {
 	}
 
 	getAllLinesStatuses() {
-		this._lineService.getAllLineStatuses("tube").then((response) => {
+		this._lineFacade.getAllLineStatuses("tube").then((response) => {
 			this.allLineStatuses = response;
 		}, (err) => {
 			console.log("error: ", err);

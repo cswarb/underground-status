@@ -11,6 +11,7 @@ import { searchComponent } from "./search.component";
 
 //services
 import { searchService } from "./search.service";
+import { searchFacade } from "./search-facade.service";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -25,7 +26,8 @@ import { searchService } from "./search.service";
         searchComponent
     ],
     providers: [ //The service providers for this module
-        searchService
+        searchService,
+        searchFacade
     ],
     exports: [
         searchComponent

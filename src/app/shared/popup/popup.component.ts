@@ -13,16 +13,7 @@ import { slideInDownAnimation }   from "../../animations";
   	host: {
   		"[@popupAnimation]": "true"
   	},
-    template: `
-    	<div class="popup__background" (click)="close()"></div>
-		<div class="popup">
-			<button type="button" class="popup__close" (click)="close()"></button>
-			<figure>
-				<img src="/assets/img/map.png" alt=""/>
-				<figcaption></figcaption>
-			</figure>
-		</div>	
-    `
+  	templateUrl: "./popup.component.html"
 })
 export class popupComponent implements OnInit {
 

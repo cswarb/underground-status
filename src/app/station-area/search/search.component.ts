@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter, ElementRef } from "@angular/core";
 
-import { searchService } from "./search.service";
+import { searchFacade } from "./search-facade.service";
 
 import { Subscription } from "rxjs/Subscription";
 import { Subject } from "rxjs/Subject";
@@ -42,11 +42,11 @@ export class searchComponent implements OnInit {
 	searchTerm: string;
 	debounceValue: number = 300;
 
-	constructor(private _searchService: searchService, private myElement: ElementRef) {
+	constructor(private _searchFacade: searchFacade, private myElement: ElementRef) {
 	}
 
 	ngOnInit() {
-		this._searchService.setAutoCompleteVals(this.autoCompleteVals);
+		this._searchFacade.setAutoCompleteVals(this.autoCompleteVals);
 
 		this.modelChanged.debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
             .distinctUntilChanged() // only emit if value is different from previous value
@@ -56,7 +56,7 @@ export class searchComponent implements OnInit {
 
             	if(!searchTerm) {return false};
             	if(searchTerm.length > 3 && this.isValidStation(searchTerm)) {
-        			this._searchService.queryStation(searchTerm).then((res) => {
+        			this._searchFacade.queryStation(searchTerm).then((res) => {
         				if(!res || res.httpStatusCode === 404) {return false};
 
 	            		if(res.length < 1) {
@@ -76,11 +76,11 @@ export class searchComponent implements OnInit {
 
 	isValidStation(searchTerm) {
 		var found = false;
-		if(this._searchService.isNaptanId(searchTerm)) {
+		if(this._searchFacade.isNaptanId(searchTerm)) {
 			return true;
 		};
 		this.autoCompleteVals.forEach((element) => {
-			if(this._searchService.getNaptanId(searchTerm)) {
+			if(this._searchFacade.getNaptanId(searchTerm)) {
 				found = true
 			};
 			found = false;

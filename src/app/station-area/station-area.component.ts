@@ -1,33 +1,13 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { stationService } from "./station.service";
-import { lineService } from "../line-area/line.service";
-import { delayService } from "../shared/delay/delay.service";
+import { stationFacade } from "./station-facade.service";
+import { lineFacade } from "../line-area/line-facade.service";
+import { delayFacade } from "../shared/delay/delay-facade.service";
 
 @Component({
 	moduleId: module.id,
     selector: "",
-    template: `
-		<article class="">
-
-            <div filters></div>
-
-            <div emergency-delays [delays]="delays"></div>
-            
-            <section class="undergroundline">
-	            <div search (searchResultUpdated)="searchResultHasUpdated($event)" 
-	            	[filterType]="filterType" 
-	            	[searchResults]="searchResults" 
-	            	[searchExample]="searchExample" 
-	            	[autoCompleteVals]="stationsList"
-	            	[(sharedSearchString)]="searchString">
-	            </div>
-
-	            <div search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></div>
-            </section>
-                  
-        </article>
-    `
+    templateUrl: "./station-area.component.html"
 })
 export class stationAreaComponent implements OnInit {
 
@@ -42,16 +22,16 @@ export class stationAreaComponent implements OnInit {
 	stationsList = [];
 	itemsProcessed = 0;
 
-	constructor(private _stationService: stationService, private _delayService: delayService, private _lineService: lineService) {}
+	constructor(private _stationFacade: stationFacade, private _delayFacade: delayFacade, private _lineFacade: lineFacade) {}
 	
 	ngOnInit() {
 		//Determine if we should get a new list of stations, or ones from cache
-		if(!this._stationService.getStations()) {
+		if(!this._stationFacade.getStations()) {
 			this.getAllLines(() => {
 				this.getAllStations();	
 			});			
 		} else {
-			this.stationsList = this._stationService.getStations();
+			this.stationsList = this._stationFacade.getStations();
 		};
 
 		//Get all the delays
@@ -69,7 +49,7 @@ export class stationAreaComponent implements OnInit {
 	}
 
 	getAllDelays() {
-		this._delayService.getAllDelays("tube").then((response) => {
+		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
 			console.log(err);
@@ -80,7 +60,7 @@ export class stationAreaComponent implements OnInit {
 		let stations = stationsForLine;
 
 		stations.map((value, iterator) => {
-			if(this._stationService.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
+			if(this._stationFacade.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
 				this.stationsList.push({
 					"parentLine": lineId,
 					"stationName": value.commonName,
@@ -92,16 +72,16 @@ export class stationAreaComponent implements OnInit {
 
 	stationListReady() {
 		//Set the stations to cache them
-		this._stationService.setStations(this.stationsList);
+		this._stationFacade.setStations(this.stationsList);
 		//Assign them to the components model value
-		this.stationsList = this._stationService.getStations();
+		this.stationsList = this._stationFacade.getStations();
 	}
 
 	getAllStations() {
 		//Go through each of the lines, get all stations from them, and create a lookup object
 		//so we can use this data as autocomplete data, search and filter stations at a later point in time
 		this.allLines.forEach((lineId) => {
-			this._stationService.getStationsFromLine(lineId).then((response) => {
+			this._stationFacade.getStationsFromLine(lineId).then((response) => {
 				this.itemsProcessed++;
 				this.createStationLookup(lineId, response);
 				if(this.itemsProcessed === this.allLines.length){
@@ -113,7 +93,7 @@ export class stationAreaComponent implements OnInit {
 
 	getAllLines(callback) {
 		//Get all the possible lines
-		this._lineService.getAllPossibleLines().then((response) => {
+		this._lineFacade.getAllPossibleLines().then((response) => {
 			//Convert to array of line id only
 			this.allLines = response.map(function(value, iterator){
 				return value.id;

@@ -9,8 +9,6 @@ import { appConstants } from "../app.constants";
 @Injectable()
 export class stationService {
 
-	stations: any = null;
-
 	constructor(private http: Http, private _appConstants: appConstants) {
 
 	}
@@ -19,34 +17,6 @@ export class stationService {
 		let headers = new Headers();
 	    headers.append("Accept", "application/json");
 	    return headers;
-	}
-
-	/**
-	 * Set stations array
-	 * @param {array}
-	 */
-	setStations(stations) {
-		this.stations = stations;
-	}
-
-	/**
-	 * Return station array
-	 * @return {array}
-	 */
-	getStations() {
-		return this.stations;
-	}
-
-	/**
-	 * Test if the array key contains the tube type
-	 * @param  {array}
-	 * @return {boolean}
-	 */
-	isTubeStationType(val) {
-		if(val.modes.indexOf("tube") > -1) {
-			return true;
-		};
-		return false;
 	}
 
 	/**

@@ -1,0 +1,19 @@
+<article class="">
+
+    <div filters></div>
+
+    <div emergency-delays [delays]="delays"></div>
+    
+    <section class="undergroundline">
+        <div search (searchResultUpdated)="searchResultHasUpdated($event)" 
+        	[filterType]="filterType" 
+        	[searchResults]="searchResults" 
+        	[searchExample]="searchExample" 
+        	[autoCompleteVals]="stationsList"
+        	[(sharedSearchString)]="searchString">
+        </div>
+
+        <div search-results (clearSearchResults)="clearTheSearchResult($event)" [searchResults]="searchResults"></div>
+    </section>
+          
+</article>

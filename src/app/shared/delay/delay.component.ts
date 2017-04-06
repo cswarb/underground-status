@@ -3,18 +3,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 @Component({
 	moduleId: module.id,
     selector: "[emergency-delays]",
-    template: `
-    	<div *ngIf="delays?.length < 1" class="center">
-			<h4 class="ui-helper">Currently no delays reported on any lines</h4>
-    	</div>
-		<div *ngFor="let delay of delays" class="delay">
-			<div class="delay__wrapper">
-				<p>{{delay?.description}}</p>
-				<p *ngIf="delay.affectedRoutes.length > 0">{{delay?.affectedRoutes}}</p>
-				<p *ngIf="delay.affectedStops.length > 0">{{delay?.affectedStops}}</p>
-			</div>
-		</div>	
-    `
+    templateUrl: "./delay.component.html"
 })
 export class delayComponent implements OnInit {
 

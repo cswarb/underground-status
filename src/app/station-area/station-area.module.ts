@@ -15,7 +15,9 @@ import { searchResultsModule } from "./search/search-results/search-results.modu
 
 //Global Services
 import { stationService } from "./station.service";
+import { stationFacade } from "./station-facade.service";
 import { lineService } from "../line-area/line.service";
+import { lineFacade } from "../line-area/line-facade.service";
 
 //Routing
 // import { homeRoutingModule } from "../home/home-routing.module";
@@ -38,7 +40,9 @@ import { lineService } from "../line-area/line.service";
     ],
     providers: [ //The service providers for this module
         stationService,
-        lineService
+        stationFacade,
+        lineService,
+        lineFacade
     ],
     exports: [
         stationAreaComponent

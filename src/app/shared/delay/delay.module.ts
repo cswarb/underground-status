@@ -6,6 +6,8 @@ import { HttpModule, JsonpModule } from "@angular/http";
 
 //Custom Components
 import { delayComponent } from "./delay.component";
+import { delayService } from "./delay.service";
+import { delayFacade } from "./delay-facade.service";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -19,6 +21,8 @@ import { delayComponent } from "./delay.component";
         delayComponent
     ],
     providers: [ //The service providers for this module
+        delayService,
+        delayFacade
     ],
     exports: [
         delayComponent

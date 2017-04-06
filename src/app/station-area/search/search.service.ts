@@ -6,8 +6,6 @@ import { appConstants } from "../../app.constants";
 @Injectable()
 export class searchService {
 
-	autoCompleteVals = [];
-
 	constructor(private http: Http, private _appConstants: appConstants) {
 
 	};
@@ -17,61 +15,6 @@ export class searchService {
 	    headers.append("Accept", "application/json");
 	    return headers;
 	};
-
-	/**
-	 * Set all possible stations.
-	 * Used by the autocomplete search
-	 * @return {array}
-	 */
-	setAutoCompleteVals(autoCompleteVals) {
-		this.autoCompleteVals = autoCompleteVals;
-	}
-
-	/**
-	 * Return all possible stations.
-	 * Used by the autocomplete search
-	 * @return {array}
-	 */
-	getAutoCompleteVals() {
-		return this.autoCompleteVals;
-	}
-
-	/**
-	 * See if a string passed in matches an existing one
-	 * @param  {string}
-	 * @return {boolean}
-	 */
-	isNaptanId(naptanId) {
-		for (var key in this.autoCompleteVals) {
-		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
-
-		    var obj = this.autoCompleteVals[key];
-		    if(naptanId === obj.naptanId){
-		    	return true;
-		    };
-		}
-		return false;
-	}
-
-	/**
-	 * Get the naptanId from the stationName
-	 * @param  {string}
-	 * @return {string}
-	 */
-	getNaptanId(stationName: string) {
-		for (var key in this.autoCompleteVals) {
-		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
-
-		    var obj = this.autoCompleteVals[key];
-		    for (var prop in obj) {
-		        if(!obj.hasOwnProperty(prop)) continue;
-		        if(stationName === obj[prop].stationName) {
-		        	return obj[prop].naptanId;
-		        };
-		    }
-		}
-		return false;
-	}
 
 	/**
 	 * Get a station disruption
@@ -97,7 +40,7 @@ export class searchService {
 			.map((res) => res.json())
 			.toPromise()
 			.catch(this.handleError);
-	}
+	};
 
 	handleError = (error) => {
 
