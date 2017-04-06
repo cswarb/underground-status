@@ -45,9 +45,9 @@ export class lineListComponent implements OnInit {
 
 	public hasReason() {
 		if(this.lineData.lineStatuses[0].reason) {
-			return false;
+			return true;
 		};
-		return true;
+		return false;
 	}
 
 	private getDetailedLineInfo(line) {
