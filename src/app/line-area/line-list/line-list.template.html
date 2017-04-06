@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="undergroundline__line__toggle">
-            <button toggleLineDetail (click)="expandLineInfo(lineData)" type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+            <button toggleLineDetail (click)="expandLineInfo(lineData)" [ngClass]="{'hidden': hasReason()}" type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
                 <p class="button__icon__text">More Detail</p>
                 <img src="/assets/img/toggle.svg" *ngIf="!detailedViewLoading" class="button undergroundline__line__toggleicon icon" [ngClass]="{'undergroundline__line__toggleicon--expanded': detailedViewToggle}" alt="toggle switch"/>
                 <img src="/assets/img/loading.svg" alt="loading" class="undergroundline__line__loadingicon" [ngClass]="{'undergroundline__line__loadingicon--loading': detailedViewLoading}"/>
