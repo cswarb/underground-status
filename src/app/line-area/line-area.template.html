@@ -1,0 +1,14 @@
+<article class="">
+
+    <div filters></div>
+
+    <div emergency-delays [delays]="delays"></div>
+    
+    <section class="undergroundline">
+    	<div class="undergroundline__lines">
+			<h2 class="undergroundline__title">All {{listType}}:</h2>
+        	<div line-list *ngFor="let line of allLineStatuses" [lineData]="line"></div>
+   		</div>
+    </section>
+
+</article>

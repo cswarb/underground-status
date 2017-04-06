@@ -1,14 +1,14 @@
-$background-grey: #e6e6e6;
-$background-lighter-grey: #eaeaea;
+$background-grey: #E6E6E6;
+$background-lighter-grey: #EAEAEA;
 $black: #000000;
 $white: #FFFFFF;
 
-$tfl-blue: #113b92;
+$tfl-blue: #113B92;
 
 $lines: (
-	bakerloo: #B4671D,
+	bakerloo: #C37428,
 	central: #ED3022,
-	circle: #FFDA2D,
+	circle: #F9D733,
 	district: #00853F,
 	hammersmithcity: #F5A3B7,
 	jubilee: #939BA1,
@@ -17,7 +17,9 @@ $lines: (
 	piccadilly: #1A3E93,
 	victoria: #009CDB,
 	waterloocity: #86CEBC,
-	dlr: #64C7C8,
-	overground: #F79D57,
-	emirates: #E94E66
+	overground: #FF6600,
+	emirates: #E94E66,
+	dlr: #00AFAD,
+	tram: #8AD243,
+	tflrail: $tfl-blue
 );

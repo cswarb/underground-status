@@ -3,4 +3,11 @@ export class appConstants {
   	app_api_id = "cd8b67bd";
   	app_api_key = "e64e8650106cda51cac3339611c63202";
   	app_api_detailed_disruptions = "true";
+  	app_travel_modes = {
+  		"tube": "tube",
+  		"dlr": "dlr",
+  		"overground": "overground",
+  		"tfl-rail": "tflrail",
+  		"tram": "tram"
+  	}
 }

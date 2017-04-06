@@ -3,25 +3,12 @@ import { FormControl } from "@angular/forms";
 import { lineFacade } from "./line-facade.service";
 import { delayFacade } from "../shared/delay/delay-facade.service";
 
+import { appConstants } from "../app.constants";
+
 @Component({
 	moduleId: module.id,
     selector: "",
-    template: `
-		<article class="">
-
-            <div filters></div>
-
-            <div emergency-delays [delays]="delays"></div>
-            
-            <section class="undergroundline">
-            	<div class="undergroundline__lines">
-    				<h2 class="undergroundline__title">All {{listType}}:</h2>
-	            	<div line-list *ngFor="let line of allLineStatuses" [lineData]="line"></div>
-           		</div>
-            </section>
-
-        </article>
-    `
+    templateUrl: "./line-area.template.html"
 })
 export class lineAreaComponent implements OnInit {
 
@@ -33,10 +20,30 @@ export class lineAreaComponent implements OnInit {
 	delays: any = [];
 	allLineStatuses: any = [];
 
-	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade) {}
+	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade, private _appConstants: appConstants) {}
 	
 	ngOnInit() {
-		this.getAllLinesStatuses();
+		this.getAllLinesStatuses().then((lines) => {
+			this.getDlrStatus().then((dlr) => {
+				this.getOvergroundStatus().then((overground) => {
+					this.getRailStatus().then((rail) => {
+						this.getTramStatus().then((tram) => {
+							this.allLineStatuses = lines.concat(overground).concat(dlr).concat(rail).concat(tram);
+						}, (err) => {
+							this.handleError(err);
+						});
+					}, (err) => {
+						this.handleError(err);
+					});
+				}, (err) => {
+					this.handleError(err);
+				});
+			}, (err) => {
+				this.handleError(err);
+			});
+		}, (err) => {
+			this.handleError(err);
+		});
 		this.getAllDelays();
 	}
 
@@ -44,16 +51,32 @@ export class lineAreaComponent implements OnInit {
 		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
-			console.log(err);
+			this.handleError(err);
 		});
 	}
 
 	getAllLinesStatuses() {
-		this._lineFacade.getAllLineStatuses("tube").then((response) => {
-			this.allLineStatuses = response;
-		}, (err) => {
-			console.log("error: ", err);
-		});
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tube"]);
+	}
+
+	getDlrStatus() {
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["dlr"]);
+	}
+
+	getOvergroundStatus() {
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["overground"]);
+	}
+
+	getRailStatus() {
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tfl-rail"]);
+	}
+
+	getTramStatus() {
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tram"]);
+	}
+
+	handleError(err) {
+		console.log("error: ", err);
 	}
 
 }
