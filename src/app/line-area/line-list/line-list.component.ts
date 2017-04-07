@@ -11,11 +11,10 @@ import { lineFacade } from "../../line-area/line-facade.service";
 })
 export class lineListComponent implements OnInit {
 
-	@Input() lineData: any;
-	@Input() listType: any;
+	@Input() lineData: any = {};
 	detailedLineInfo: any = {};
 	detailedViewLoading: boolean = false;
-	detailedViewToggle: boolean;
+	detailedViewToggle: boolean = false;
 
 	constructor(private _lineFacade: lineFacade){
 		
@@ -25,7 +24,7 @@ export class lineListComponent implements OnInit {
 		
 	}
 
-	public expandLineInfo(line) {
+	public expandLineInfo(line: any): void {
 		if(this.detailedViewToggle === true) {
 			this.detailedViewToggle = false;
 		} else if(this.detailedLineInfo.hasOwnProperty("description")) {
@@ -35,7 +34,7 @@ export class lineListComponent implements OnInit {
 		};
 	}
 
-	public sanitizeLineId(lineData) {
+	public sanitizeLineId(lineData: any): string {
 		if(lineData.modeName === "tube") {
 			return lineData.id.replace(/-/g, "");
 		} else {
@@ -43,14 +42,14 @@ export class lineListComponent implements OnInit {
 		};
 	}
 
-	public hasReason() {
+	public hasReason(): boolean {
 		if(this.lineData.lineStatuses[0].reason) {
 			return true;
 		};
 		return false;
 	}
 
-	private getDetailedLineInfo(line) {
+	private getDetailedLineInfo(line: any): void {
 		if(this.lineData.lineStatuses[0].hasOwnProperty("reason")) {
 			this.detailedLineInfo = {
 				"description": this.lineData.lineStatuses[0].reason

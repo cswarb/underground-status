@@ -13,14 +13,13 @@ export class stationAreaComponent implements OnInit {
 
 	filterType: string = "station";
 	searchExample: string = "Bank";
-	listType: string = "Stations";
 	searchString: string = "";
-	searchResults = [];
-	allLines = [];
-	delays = [];
+	searchResults: any = [];
+	allLines: any = [];
+	delays: any = [];
 
-	stationsList = [];
-	itemsProcessed = 0;
+	stationsList: any = [];
+	itemsProcessed: number = 0;
 
 	constructor(private _stationFacade: stationFacade, private _delayFacade: delayFacade, private _lineFacade: lineFacade) {}
 	
@@ -38,17 +37,17 @@ export class stationAreaComponent implements OnInit {
 		this.getAllDelays();		
 	}
 
-	searchResultHasUpdated(delta) {
+	public searchResultHasUpdated(delta: any): void {
 		this.searchResults = delta;
 	}
 
-	clearTheSearchResult(delta) {		
+	public clearTheSearchResult(delta: any): void {		
 		let index = this.searchResults.indexOf(delta);
   		this.searchResults.splice(index, 1);  
 		this.searchString = "";
 	}
 
-	getAllDelays() {
+	private getAllDelays(): void {
 		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
@@ -56,10 +55,10 @@ export class stationAreaComponent implements OnInit {
 		});
 	}
 
-	createStationLookup(lineId, stationsForLine) {
+	private createStationLookup(lineId: number, stationsForLine: any): void {
 		let stations = stationsForLine;
 
-		stations.map((value, iterator) => {
+		stations.map((value: any, iterator: number) => {
 			if(this._stationFacade.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
 				this.stationsList.push({
 					"parentLine": lineId,
@@ -70,14 +69,14 @@ export class stationAreaComponent implements OnInit {
 		});
 	}
 
-	stationListReady() {
+	private stationListReady(): void {
 		//Set the stations to cache them
 		this._stationFacade.setStations(this.stationsList);
 		//Assign them to the components model value
 		this.stationsList = this._stationFacade.getStations();
 	}
 
-	getAllStations() {
+	private getAllStations(): void {
 		//Go through each of the lines, get all stations from them, and create a lookup object
 		//so we can use this data as autocomplete data, search and filter stations at a later point in time
 		this.allLines.forEach((lineId) => {
@@ -91,11 +90,11 @@ export class stationAreaComponent implements OnInit {
 		});
 	}
 
-	getAllLines(callback) {
+	private getAllLines(callback: any): any {
 		//Get all the possible lines
-		this._lineFacade.getAllPossibleLines().then((response) => {
+		return this._lineFacade.getAllPossibleLines().then((response) => {
 			//Convert to array of line id only
-			this.allLines = response.map(function(value, iterator){
+			this.allLines = response.map(function(value: any, iterator: number){
 				return value.id;
 			});
 			callback();

@@ -13,7 +13,7 @@ export class stationService {
 
 	}
 
-	getHeaders() {
+	getHeaders(): Headers {
 		let headers = new Headers();
 	    headers.append("Accept", "application/json");
 	    return headers;
@@ -24,7 +24,7 @@ export class stationService {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getStationsFromLine(lineId: string) {
+	getStationsFromLine(lineId: string): Promise<any> {
 		let params: URLSearchParams = new URLSearchParams();
 
 		params.set("app_id", this._appConstants.app_api_id);
@@ -43,8 +43,9 @@ export class stationService {
 			.catch(this.handleError);
 	}
 
-	handleError(err) {
-		console.log("Error", err);
+	handleError(error: any): Promise<any> {
+		console.log("Error: ", error);
+		return Promise.reject(error.message || error);
 	}
 	
 }

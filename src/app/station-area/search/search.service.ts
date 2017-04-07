@@ -10,7 +10,7 @@ export class searchService {
 
 	};
 
-	getHeaders = () => {
+	getHeaders(): Headers {
 		let headers = new Headers();
 	    headers.append("Accept", "application/json");
 	    return headers;
@@ -22,7 +22,7 @@ export class searchService {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	queryStation(naptanId: string) {
+	queryStation(naptanId: string): Promise<any> {
 		let params: URLSearchParams = new URLSearchParams();
 		// let myBool: boolean = false;
 
@@ -42,8 +42,9 @@ export class searchService {
 			.catch(this.handleError);
 	};
 
-	handleError = (error) => {
-
+	handleError(error: any): Promise<any> {
+		console.log("Error: ", error);
+		return Promise.reject(error.message || error);
 	};
 
 }

@@ -12,9 +12,7 @@ import { appConstants } from "../app.constants";
 })
 export class lineAreaComponent implements OnInit {
 
-	lineData: any;
-	filterType: string = "line";
-	searchExample: string = "Circle";
+	lineData: any = [];
 	listType: string = "Lines";
 	searchString: string = "";
 	delays: any = [];
@@ -47,7 +45,7 @@ export class lineAreaComponent implements OnInit {
 		this.getAllDelays();
 	}
 
-	getAllDelays() {
+	private getAllDelays() {
 		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
@@ -55,27 +53,27 @@ export class lineAreaComponent implements OnInit {
 		});
 	}
 
-	getAllLinesStatuses() {
+	private getAllLinesStatuses(): any {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tube"]);
 	}
 
-	getDlrStatus() {
+	private getDlrStatus(): any {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["dlr"]);
 	}
 
-	getOvergroundStatus() {
+	private getOvergroundStatus(): any {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["overground"]);
 	}
 
-	getRailStatus() {
+	private getRailStatus(): any {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tfl-rail"]);
 	}
 
-	getTramStatus() {
+	private getTramStatus(): any {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tram"]);
 	}
 
-	handleError(err) {
+	handleError(err: any) {
 		console.log("error: ", err);
 	}
 

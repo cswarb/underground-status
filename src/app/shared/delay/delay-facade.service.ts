@@ -19,7 +19,7 @@ export class delayFacade {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getAllDelays(mode: string) {
+	getAllDelays(mode: string): any {
 		return this._delayService.getAllDelays(mode);
 	}
 	

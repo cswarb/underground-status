@@ -74,7 +74,7 @@ export class searchComponent implements OnInit {
         });	
 	}
 
-	isValidStation(searchTerm) {
+	private isValidStation(searchTerm) {
 		var found = false;
 		if(this._searchFacade.isNaptanId(searchTerm)) {
 			return true;
@@ -88,7 +88,7 @@ export class searchComponent implements OnInit {
 		return found;
 	}
 
-	handleStationDistruption(disruption) {
+	private handleStationDistruption(disruption) {
 		//Only return the results that are from the tube
 		this.searchResults = disruption.filter((value) => {
 			return value.mode === "tube";
@@ -97,40 +97,40 @@ export class searchComponent implements OnInit {
 		this.searchResultChanged(this.searchResults);
 	}
 
-	searchResultChanged(delta) {
+	private searchResultChanged(delta) {
 		// pass the search results to the parent component to pass 
 		// to the search results component
 	    this.searchResultUpdated.next(delta);
 	}
 
-	search = (term) => {
+	public search = (term) => {
 		//Force a model change, passing in the term to search using the endpoint
 		this.modelChanged.next(term);
 		//update the 2 way binding between this, and the parent component
 		this.sharedSearchStringChange.emit(term);
 	}
 
-	selectStation(station) {
+	public selectStation(station) {
 		this.sharedSearchString = station.stationName;
 		this.modelChanged.next(station.naptanId);
 	}
 
-	showAutocomplete() {
+	private showAutocomplete() {
 		this.showAutocompleteUI = true;
 	}
 
-	hideAutocomplete() {
+	private hideAutocomplete() {
 		this.autocompleteFilteredList.length = 0;
 		this.showAutocompleteUI = false;	
 	}
 
-	clearInput(searchTerm) {
+	public clearInput(searchTerm): void {
 		searchTerm.value = "";
 		this.modelChanged.next();
 		this.hideAutocomplete();
 	}
 
-	filterAutocomplete(search, event) {
+	public filterAutocomplete(search, event): void {
 		search.value.length > 1 ? this.showAutocomplete() : this.hideAutocomplete();
 
 		if(event.isTrusted) {

@@ -19,7 +19,7 @@ export class lineFacade {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getDetailedLineInfo(lineId: string) {
+	getDetailedLineInfo(lineId: string): any {
 		return this._lineService.getDetailedLineInfo(lineId);
 	}
 
@@ -28,7 +28,7 @@ export class lineFacade {
 	 * Used on the stationArea component to then find all stations from the line
 	 * @return {promise}
 	 */
-	getAllPossibleLines() {
+	getAllPossibleLines(): any {
 		return this._lineService.getAllPossibleLines();
 	}
 
@@ -37,7 +37,7 @@ export class lineFacade {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getAllLineStatuses(type: string) {
+	getAllLineStatuses(type: string): any {
 		return this._lineService.getAllLineStatuses(type);
 	}
 	

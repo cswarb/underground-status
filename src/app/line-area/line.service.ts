@@ -13,7 +13,7 @@ export class lineService {
 
 	}
 
-	getHeaders() {
+	getHeaders(): Headers {
 		let headers = new Headers();
 	    headers.append("Accept", "application/json");
 	    return headers;
@@ -24,7 +24,7 @@ export class lineService {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getDetailedLineInfo(lineId: string) {
+	getDetailedLineInfo(lineId: string): Promise<any> {
 		let params: URLSearchParams = new URLSearchParams();
 		params.set("app_id", this._appConstants.app_api_id);
 		params.set("app_key", this._appConstants.app_api_key);
@@ -46,7 +46,7 @@ export class lineService {
 	 * Used on the stationArea component to then find all stations from the line
 	 * @return {promise}
 	 */
-	getAllPossibleLines() {
+	getAllPossibleLines(): Promise<any> {
 		let params: URLSearchParams = new URLSearchParams();
 		params.set("detail", this._appConstants.app_api_detailed_disruptions);
 		params.set("app_id", this._appConstants.app_api_id);
@@ -68,7 +68,7 @@ export class lineService {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	getAllLineStatuses(type: string) {
+	getAllLineStatuses(type: string): Promise<any> {
 		let params: URLSearchParams = new URLSearchParams();
 		params.set("app_id", this._appConstants.app_api_id);
 		params.set("app_key", this._appConstants.app_api_key);
@@ -85,8 +85,9 @@ export class lineService {
 			.catch(this.handleError);
 	}
 
-	handleError() {
-		console.log("Error");
+	handleError(error: any): Promise<any> {
+		console.log("Error: ", error);
+		return Promise.reject(error.message || error);
 	}
 	
 }

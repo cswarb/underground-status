@@ -7,7 +7,7 @@ import { searchService } from "./search.service";
 @Injectable()
 export class searchFacade {
 
-	autoCompleteVals = [];
+	autoCompleteVals: any = [];
 
 	constructor(private _searchService: searchService) {
 
@@ -18,7 +18,7 @@ export class searchFacade {
 	 * Used by the autocomplete search
 	 * @return {array}
 	 */
-	setAutoCompleteVals(autoCompleteVals) {
+	setAutoCompleteVals(autoCompleteVals): void {
 		this.autoCompleteVals = autoCompleteVals;
 	}
 
@@ -27,7 +27,7 @@ export class searchFacade {
 	 * Used by the autocomplete search
 	 * @return {array}
 	 */
-	getAutoCompleteVals() {
+	getAutoCompleteVals(): any {
 		return this.autoCompleteVals;
 	}
 
@@ -36,7 +36,7 @@ export class searchFacade {
 	 * @param  {string}
 	 * @return {boolean}
 	 */
-	isNaptanId(naptanId) {
+	isNaptanId(naptanId): boolean {
 		for (var key in this.autoCompleteVals) {
 		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
 
@@ -53,7 +53,7 @@ export class searchFacade {
 	 * @param  {string}
 	 * @return {string}
 	 */
-	getNaptanId(stationName: string) {
+	getNaptanId(stationName: string): any {
 		for (var key in this.autoCompleteVals) {
 		    if (!this.autoCompleteVals.hasOwnProperty(key)) continue;
 
@@ -74,7 +74,7 @@ export class searchFacade {
 	 * @param  {string}
 	 * @return {promise}
 	 */
-	queryStation(naptanId: string) {
+	queryStation(naptanId: string): any {
 		return this._searchService.queryStation(naptanId);
 	}
 

@@ -15,7 +15,7 @@ export class searchResultsComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	clearResult(delta) {
+	public clearResult(delta): void {
 	    this.clearSearchResults.next(delta);
 	}
 

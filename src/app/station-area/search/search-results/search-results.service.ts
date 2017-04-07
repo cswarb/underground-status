@@ -5,7 +5,6 @@ import "rxjs/add/operator/map";
 import "rxjs/Rx";
 import { appConstants } from "../../../app.constants";
 
-
 @Injectable()
 export class searchResultsService {
 
