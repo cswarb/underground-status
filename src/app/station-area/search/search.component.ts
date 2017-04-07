@@ -23,23 +23,23 @@ export class searchComponent implements OnInit {
     //but with Change on the end for it to work
 
 	//Inputs from parent components
-	@Input() filterType = "station";
-	@Input() searchExample = "";
-	@Input() autoCompleteVals = [];
-	@Input() searchResults = [];
+	@Input() filterType: string = "station";
+	@Input() searchExample: string = "";
+	@Input() autoCompleteVals: any = [];
+	@Input() searchResults: any = [];
 
 	//Outputs to parent components
 	@Output() searchResultUpdated = new EventEmitter();
 
-	autocompleteFilteredList = [];
-	hasInvalidData = false;
-	showAutocompleteUI = false;
+	autocompleteFilteredList: any = [];
+	hasInvalidData: boolean = false;
+	showAutocompleteUI: boolean = false;
 
 	//Create a Subject we can subscribe to when the mode changes
 	modelChanged: Subject<any> = new Subject();
 
 	//Local variables
-	searchTerm: string;
+	searchTerm: string = "";
 	debounceValue: number = 300;
 
 	constructor(private _searchFacade: searchFacade, private myElement: ElementRef) {

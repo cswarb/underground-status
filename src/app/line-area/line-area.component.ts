@@ -21,31 +21,31 @@ export class lineAreaComponent implements OnInit {
 	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade, private _appConstants: appConstants) {}
 	
 	ngOnInit() {
-		this.getAllLinesStatuses().then((lines) => {
-			this.getDlrStatus().then((dlr) => {
-				this.getOvergroundStatus().then((overground) => {
-					this.getRailStatus().then((rail) => {
-						this.getTramStatus().then((tram) => {
-							this.allLineStatuses = lines.concat(overground).concat(dlr).concat(rail).concat(tram);
-						}, (err) => {
-							this.handleError(err);
-						});
-					}, (err) => {
-						this.handleError(err);
-					});
-				}, (err) => {
-					this.handleError(err);
-				});
-			}, (err) => {
-				this.handleError(err);
-			});
-		}, (err) => {
-			this.handleError(err);
-		});
+		this.generateLineList();
 		this.getAllDelays();
 	}
 
-	private getAllDelays() {
+	private generateLineList(): void {
+		Promise.all([
+			this.getAllLinesStatuses(), 
+			this.getDlrStatus(),
+			this.getOvergroundStatus(),
+			this.getRailStatus(),
+			this.getTramStatus()
+		]).then((response: any) => { 
+			this.concatArray(response);
+		}).catch((error) => {
+			this.handleError(error);
+		});
+	}
+
+	private concatArray(lineArray: any): void {
+		lineArray.map((value, iterator) => {
+			this.allLineStatuses = this.allLineStatuses.concat(value);
+		});
+	}
+
+	private getAllDelays(): void {
 		this._delayFacade.getAllDelays("tube").then((response) => {
 			this.delays = response;
 		}, (err) => {
@@ -73,8 +73,8 @@ export class lineAreaComponent implements OnInit {
 		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tram"]);
 	}
 
-	handleError(err: any) {
-		console.log("error: ", err);
+	handleError(error: any) {
+		console.log("error: ", error);
 	}
 
 }
