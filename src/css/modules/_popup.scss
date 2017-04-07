@@ -1,7 +1,7 @@
 .popup {
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0);
     border-radius: 3px;
-	border: 1px solid grey;
+	border: none;
 	display: block;
     font-family: sans-serif;
     left: 0;
@@ -14,28 +14,29 @@
     top: 50%;
     transform: translateY(-50%);
 	width: 90%;
-    z-index: 5;
+    z-index: 6;
     &__background {
-    	background-color: rgba(0,0,0,0.4);
+    	background-color: rgba(10, 35, 88, 0.7);
     	height: 100%;
     	left: 0;
     	position: absolute;
     	top: 0;
     	width: 100%;
-   		z-index: 3;
+   		z-index: 5;
     }
     &__close {
-	    background: url("/assets/img/clear.svg");
+	    background: url("/assets/img/clear-white.svg");
 	    background-repeat: no-repeat;
 	    background-size: auto;
 	    border: none;
-	    display: inline-block;
+	    display: block;
 	    height: 2rem;
 	    outline: none;
-	    position: absolute;
-	    right: 5%;
-	    top: 10%;
+	    position: fixed;
+	    right: 3.5%;
+	    top: 7%;
 	    width: 2rem;
+	    z-index: 7;
 	    &:hover {
 			cursor: pointer;
 		}

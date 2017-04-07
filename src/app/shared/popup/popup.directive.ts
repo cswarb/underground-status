@@ -1,30 +1,37 @@
 import { Directive, OnInit, OnChanges, ChangeDetectionStrategy, HostListener, ElementRef, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
+import { Router, Routes, RouterModule, NavigationEnd } from "@angular/router";
 
 @Directive({
 	selector: '[udgPopupDir]'
 })
 export class popupDirective {
 
-    constructor(private el: ElementRef) {
+    acceptedUrls = ["/status/lines(popup:map)", "/status/stations(popup:map)"]
 
+    constructor(private el: ElementRef, private router: Router) {
+        router.events.subscribe((val) => {
+             if (val instanceof NavigationEnd) {
+                if(this.canLoadModal(val["url"])) {
+                    this.show();
+                } else {
+                    this.hide();
+                };
+            };
+        });
     }
 
-    @HostListener('click', ['$event']) onClick($event) {
-        if($event.target.classList.contains("active")) {
-	       this.hide($event);
-        } else {
-            this.show($event);
-        };
-	}
+    canLoadModal(url) {
+        return this.acceptedUrls.some((val) => {
+            return val == url;
+        });
+    }
 
-    show($event) {
+    show() {
         document.querySelector("body").classList.add("fixed");
     }
 
-    hide($event) {
+    hide() {
     	document.querySelector("body").classList.remove("fixed");
     }
 
 }
-
-

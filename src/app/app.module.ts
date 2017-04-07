@@ -10,6 +10,7 @@ import { AppComponent } from "./app.component";
 import { wildCardComponent } from "./wildcard/wildcard.component";
 import { popupComponent } from "./shared/popup/popup.component";
 import { popupDirective } from "./shared/popup/popup.directive";
+import { popupComponentResolver } from "./shared/popup/popup-resolver.service";
 
 
 //Modules
@@ -47,7 +48,8 @@ import { appConstants } from "./app.constants";
     ],
     providers: [ //The service providers for this module
         appConstants,
-        delayService
+        delayService,
+        popupComponentResolver
     ],
     bootstrap: [ //The components to be bootstraped by this module
     	AppComponent

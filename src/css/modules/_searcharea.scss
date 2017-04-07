@@ -13,9 +13,9 @@
 		}
 		&__helper {
 			min-height: 3rem;
-			// margin: 2rem;
 			&__text {
 				margin: 0;
+				padding-top: 1px;//font bug?
 			}
 		}
 		&__input {

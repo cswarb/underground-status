@@ -7,34 +7,38 @@ import { NgModule } from "@angular/core";
 import { homeModule } from "./home/home.module";
 
 import { popupComponent } from "./shared/popup/popup.component";
+	import { popupComponentResolver } from "./shared/popup/popup-resolver.service";
 import { wildCardComponent } from "./wildcard/wildcard.component";
 
 
 //Either configure routes in this Routing Module or within the module itself but not in both.
 @NgModule({
-  imports: [
-    RouterModule.forRoot([
-      /* Define app module routes here, e.g., to lazily load a module
-        (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
-      */
-      { 
-          path: "",
-          redirectTo: "/status/lines",
-          pathMatch: "full" 
-      },
-      { 
-          path: "**", 
-          component: wildCardComponent 
-      },
-      { 
-          path: "map", 
-          component: popupComponent,
-          outlet: "popup" 
-      }
-    ])
-  ],
-  exports: [
-  	RouterModule
-  ]
+	imports: [
+		RouterModule.forRoot([
+			/* Define app module routes here, e.g., to lazily load a module
+			(do not place feature module routes here, use an own -routing.module.ts in the feature instead)
+			*/
+			{ 
+				path: "",
+				redirectTo: "/status/lines",
+				pathMatch: "full" 
+			},
+			{ 
+				path: "**", 
+				component: wildCardComponent 
+			},
+			{ 
+			path: "map", 
+			component: popupComponent,
+			outlet: "popup",
+				resolve: {
+					resolveData: popupComponentResolver
+				}
+			}
+		])
+	],
+	exports: [
+		RouterModule
+	]
 })
 export class AppRoutingModule { }
