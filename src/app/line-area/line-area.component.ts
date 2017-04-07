@@ -28,8 +28,8 @@ export class lineAreaComponent implements OnInit {
 	private generateLineList(): void {
 		Promise.all([
 			this.getAllLinesStatuses(), 
-			this.getDlrStatus(),
 			this.getOvergroundStatus(),
+			this.getDlrStatus(),
 			this.getRailStatus(),
 			this.getTramStatus()
 		]).then((response: any) => { 

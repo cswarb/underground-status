@@ -1,8 +1,12 @@
 <div class="popup__background" (click)="close()"></div>
 <button type="button" class="popup__close" (click)="close()"></button>
 <div class="popup">
-	<figure>
-		<img src="/assets/img/map.png" alt="Underground Map" title="Underground Map"/>
-		<figcaption></figcaption>
+	<figure class="popup__wrapper">
+		<img class="popup__image" src="/assets/img/map.png" alt="Underground Map" title="Underground Map"/>
+		<figcaption class="popup__description"></figcaption>
 	</figure>
 </div>	
+<div class="popup__image__controls">
+	<div class="popup__image__control popup__image__controls--zoomin">+</div>
+	<div class="popup__image__control popup__image__controls--zoomout">-</div>
+</div>
