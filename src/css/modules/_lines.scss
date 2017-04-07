@@ -1,5 +1,5 @@
 [line-list] {
-	@for $i from 1 through 25 {
+	@for $i from 1 through length($lines) {
 		&:nth-child(#{$i}) {
 			.undergroundline__line--loaded {
 				&:before {
