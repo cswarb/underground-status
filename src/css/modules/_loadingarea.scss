@@ -11,6 +11,14 @@
 		color: $white;
 		display: block;
 		margin-bottom: 1rem;
+		// animation: bounce 1s ease-in-out 0s infinite normal both running;
+		animation: bounce 5s ease-in-out 0s infinite normal both running;
+
+
+	// shape-inside: polygon(0 0,  500px 0, 350px 300px, 150px 300px);
+	// -webkit-clip-path: polygon(10px 10px, 500px 10px, 650px 300px, 150px 300px);
+	// shape-padding: 20px;
+		  
 	}
 	&__text {
 		color: $white;
