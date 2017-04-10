@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { Resolve, ActivatedRoute } from "@angular/router";
 import { stationFacade } from "./station-facade.service";
 import { lineFacade } from "../line-area/line-facade.service";
 import { delayFacade } from "../shared/delay/delay-facade.service";
@@ -16,25 +17,29 @@ export class stationAreaComponent implements OnInit {
 	searchString: string = "";
 	searchResults: any = [];
 	allLines: any = [];
-	delays: any = [];
 
 	stationsList: any = [];
 	itemsProcessed: number = 0;
 
-	constructor(private _stationFacade: stationFacade, private _delayFacade: delayFacade, private _lineFacade: lineFacade) {}
+	constructor(private _stationFacade: stationFacade, private _delayFacade: delayFacade, private _lineFacade: lineFacade, private route: ActivatedRoute) {}
 	
 	ngOnInit() {
 		//Determine if we should get a new list of stations, or ones from cache
 		if(!this._stationFacade.getStations()) {
-			this.getAllLines(() => {
+			this.getResolveData(() => {
 				this.getAllStations();	
 			});			
 		} else {
+			//Get from cache
 			this.stationsList = this._stationFacade.getStations();
-		};
+		};		
+	}
 
-		//Get all the delays
-		this.getAllDelays();		
+	private getResolveData(callback: any): void {
+		this.allLines = this.route.snapshot.data["resolveData"].map(function(value: any, iterator: number) {
+			return value.id;
+		});
+		callback();
 	}
 
 	public searchResultHasUpdated(delta: any): void {
@@ -45,14 +50,6 @@ export class stationAreaComponent implements OnInit {
 		let index = this.searchResults.indexOf(delta);
   		this.searchResults.splice(index, 1);  
 		this.searchString = "";
-	}
-
-	private getAllDelays(): void {
-		this._delayFacade.getAllDelays("tube").then((response) => {
-			this.delays = response;
-		}, (err) => {
-			console.log(err);
-		});
 	}
 
 	private createStationLookup(lineId: number, stationsForLine: any): void {
@@ -87,19 +84,6 @@ export class stationAreaComponent implements OnInit {
 					this.stationListReady();
 				};
 			});
-		});
-	}
-
-	private getAllLines(callback: any): any {
-		//Get all the possible lines
-		return this._lineFacade.getAllPossibleLines().then((response) => {
-			//Convert to array of line id only
-			this.allLines = response.map(function(value: any, iterator: number){
-				return value.id;
-			});
-			callback();
-		}, (err) => {
-			console.log("error: ", err);
 		});
 	}
 

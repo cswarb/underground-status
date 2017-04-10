@@ -8,6 +8,7 @@ import { HttpModule, JsonpModule } from "@angular/http";
 import { delayComponent } from "./delay.component";
 import { delayService } from "./delay.service";
 import { delayFacade } from "./delay-facade.service";
+import { delayResolver } from "./delay-resolver.service";
 
 @NgModule({
     imports: [ //All the required additional modules for this module
@@ -22,7 +23,8 @@ import { delayFacade } from "./delay-facade.service";
     ],
     providers: [ //The service providers for this module
         delayService,
-        delayFacade
+        delayFacade,
+        delayResolver
     ],
     exports: [
         delayComponent

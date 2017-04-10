@@ -24,6 +24,12 @@ export class lineListComponent implements OnInit {
 		
 	}
 
+	public isNow(validityArray: any): boolean {
+		return validityArray.some((value, iterator) => {
+			return !value.isNow;
+		});
+	}
+
 	public expandLineInfo(line: any): void {
 		if(this.detailedViewToggle === true) {
 			this.detailedViewToggle = false;

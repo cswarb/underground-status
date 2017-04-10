@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, HostBinding } from "@angular/core";
+import { Resolve, ActivatedRoute } from "@angular/router";
 
 @Component({
 	moduleId: module.id,
@@ -7,12 +8,12 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 })
 export class delayComponent implements OnInit {
 
-	@Input() delays = [];
+	delays: any = [];
 
-	constructor(){}	
+	constructor(private route: ActivatedRoute){}	
 
 	ngOnInit() {
-		
+		this.delays = this.route.snapshot.data["resolveDataDelays"];
 	}
 
 }

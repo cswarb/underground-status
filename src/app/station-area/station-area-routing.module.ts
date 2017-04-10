@@ -9,7 +9,10 @@ import { stationAreaComponent } from "./station-area.component";
     RouterModule.forChild([
       {
         path: "",
-        component: stationAreaComponent
+        component: stationAreaComponent,
+        resolve: {
+          
+        }
       }
     ])
   ],

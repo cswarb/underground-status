@@ -15,6 +15,7 @@ import { searchResultsModule } from "./search/search-results/search-results.modu
 
 //Global Services
 import { stationService } from "./station.service";
+import { stationAreaResolver } from "./station-area-resolver.service";
 import { stationFacade } from "./station-facade.service";
 import { lineService } from "../line-area/line.service";
 import { lineFacade } from "../line-area/line-facade.service";
@@ -42,7 +43,8 @@ import { lineFacade } from "../line-area/line-facade.service";
         stationService,
         stationFacade,
         lineService,
-        lineFacade
+        lineFacade,
+        stationAreaResolver
     ],
     exports: [
         stationAreaComponent

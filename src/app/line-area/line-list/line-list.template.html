@@ -2,9 +2,17 @@
     <div class="undergroundline__block">
         <h1 class="undergroundline__line__name">{{lineData?.name}}</h1>
         <div class="undergroundline__line__status">
-            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->
-            <p class="undergroundline__line__status__text" *ngFor="let status of lineData.lineStatuses">    
-                {{status.statusSeverityDescription}}
+            <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->            
+            <p class="undergroundline__line__status__text" *ngFor="let status of lineData.lineStatuses"> 
+                <span *ngIf="!isNow(status.validityPeriods)">{{status.statusSeverityDescription}}</span>
+                <span *ngIf="isNow(status.validityPeriods)">
+                    <!-- <br/> -->
+                    <span>Upcoming - {{status.statusSeverityDescription}}</span>
+                    <!-- <br/>
+                    <span *ngFor="let dates of status.validityPeriods">From: {{dates.fromDate}}</span>
+                    <br/>
+                    <span *ngFor="let dates of status.validityPeriods">To: {{dates.toDate}}</span> -->
+                </span>
             </p>
         </div>
         <div class="undergroundline__line__toggle">

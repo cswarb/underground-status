@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { Resolve, ActivatedRoute } from "@angular/router";
 import { lineFacade } from "./line-facade.service";
 import { delayFacade } from "../shared/delay/delay-facade.service";
 
@@ -15,62 +16,22 @@ export class lineAreaComponent implements OnInit {
 	lineData: any = [];
 	listType: string = "Lines";
 	searchString: string = "";
-	delays: any = [];
 	allLineStatuses: any = [];
 
-	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade, private _appConstants: appConstants) {}
+	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade, private route: ActivatedRoute, private _appConstants: appConstants) {}
 	
 	ngOnInit() {
-		this.generateLineList();
-		this.getAllDelays();
+		this.getResolveData();
 	}
 
-	private generateLineList(): void {
-		Promise.all([
-			this.getAllLinesStatuses(), 
-			this.getOvergroundStatus(),
-			this.getDlrStatus(),
-			this.getRailStatus(),
-			this.getTramStatus()
-		]).then((response: any) => { 
-			this.concatArray(response);
-		}).catch((error) => {
-			this.handleError(error);
-		});
+	private getResolveData(): void {
+		this.concatArray(this.route.snapshot.data["resolveData"]);
 	}
 
 	private concatArray(lineArray: any): void {
 		lineArray.map((value, iterator) => {
 			this.allLineStatuses = this.allLineStatuses.concat(value);
 		});
-	}
-
-	private getAllDelays(): void {
-		this._delayFacade.getAllDelays("tube").then((response) => {
-			this.delays = response;
-		}, (err) => {
-			this.handleError(err);
-		});
-	}
-
-	private getAllLinesStatuses(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tube"]);
-	}
-
-	private getDlrStatus(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["dlr"]);
-	}
-
-	private getOvergroundStatus(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["overground"]);
-	}
-
-	private getRailStatus(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tfl-rail"]);
-	}
-
-	private getTramStatus(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tram"]);
 	}
 
 	handleError(error: any) {
