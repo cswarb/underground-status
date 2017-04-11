@@ -3,25 +3,28 @@
     <form action="">
         <div class="searcharea__wrapper">
         
-            <div class="center searcharea__helper">
-                <h4 *ngIf="searchTerm.value.length < 2" class="ui-helper searcharea__helper__text">Search for a station.</h4>
-            </div>
+            <form [formGroup]="autocompleteForm">
+                <div class="center searcharea__helper">
+                    <h4 *ngIf="autocompleteForm.controls.searchQuery.errors?.minlength" class="ui-helper searcharea__helper__text">Search for a station.</h4>
+                </div>
 
-            <div class="searcharea__input__wrapper">
-                <input type="text"
-                autocomplete="off"
-                class="searcharea__input"
-                name="search"
-                #searchTerm
-                [ngModel]='sharedSearchString'
-                (ngModelChange)='search($event)'
-                [placeholder]="'e.g. ' + searchExample"
-                (keyup)="filterAutocomplete(searchTerm, $event)"
-                min="2"
-                max="30"
-                autofocus="autofocus"/>
-                <span class="searcharea__input__clear" *ngIf="searchTerm.value.length > 0" (click)="clearInput(searchTerm)"></span>
-            </div>
+                <div class="searcharea__input__wrapper">
+                    <input type="text"
+                    autocomplete="off"
+                    class="searcharea__input"
+                    name="search"
+                    #searchTerm
+                    [ngModel]='sharedSearchString'
+                    (ngModelChange)='search($event)'
+                    [placeholder]="'e.g. ' + searchExample"
+                    (keyup)="filterAutocomplete(searchTerm, $event)"
+                    min="2"
+                    max="30"
+                    formControlName="searchQuery"
+                    autofocus="autofocus"/>
+                    <span class="searcharea__input__clear" *ngIf="searchTerm.value.length > 0" (click)="clearInput(searchTerm)"></span>
+                </div>
+            </form>
 
             <div class="suggestion__wrapper" *ngIf="hasInvalidData">
                 <div class="suggestion__value">
@@ -33,7 +36,7 @@
 
             <div class="suggestion__wrapper" *ngIf="autocompleteFilteredList && showAutocompleteUI">
                 <div class="suggestion__value" *ngFor="let suggestion of autocompleteFilteredList">
-                    <button class="suggestion__select" (click)="selectStation(suggestion)">
+                    <button class="suggestion__select" (click)="selectStation(searchTerm, suggestion)">
                         <p class="suggestion__name">{{suggestion?.stationName}}</p>
                         <p class="suggestion__helper suggestion__helper--{{suggestion?.parentLine}}">{{suggestion?.parentLine}}</p>
                     </button>

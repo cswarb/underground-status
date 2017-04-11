@@ -1,9 +1,10 @@
 [search] {
 	display: block;
+	margin-bottom: 3rem;
 	width: 100%;
 	.searcharea {
 		&__wrapper {
-			margin: 0rem auto 5rem auto;
+			margin: 0 auto;
 		    @media screen and (min-width: 30rem) {
 				width: 85%;
 			}

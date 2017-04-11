@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter, ElementRef } from "@angular/core";
+import { ReactiveFormsModule, FormBuilder, FormsModule, FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { searchFacade } from "./search-facade.service";
 
@@ -16,6 +17,8 @@ import * as _ from "lodash";
     templateUrl: "./search.component.html"
 })
 export class searchComponent implements OnInit {
+
+	autocompleteForm: FormGroup;
 
 	@Input() sharedSearchString: string;
     @Output() sharedSearchStringChange = new EventEmitter(); 
@@ -42,10 +45,13 @@ export class searchComponent implements OnInit {
 	searchTerm: string = "";
 	debounceValue: number = 300;
 
-	constructor(private _searchFacade: searchFacade, private myElement: ElementRef) {
+	constructor(private fb: FormBuilder, private _searchFacade: searchFacade, private myElement: ElementRef) {
+		
 	}
 
 	ngOnInit() {
+		this.setupForm();
+
 		this._searchFacade.setAutoCompleteVals(this.autoCompleteVals);
 
 		this.modelChanged.debounceTime(this.debounceValue) // wait 300ms after the last event before emitting last event
@@ -56,22 +62,32 @@ export class searchComponent implements OnInit {
 
             	if(!searchTerm) {return false};
             	if(searchTerm.length > 3 && this.isValidStation(searchTerm)) {
-        			this._searchFacade.queryStation(searchTerm).then((res) => {
-        				if(!res || res.httpStatusCode === 404) {return false};
-
-	            		if(res.length < 1) {
-	            			this.autocompleteFilteredList.length = 0;
-	            			this.hasInvalidData = true;
-	            		} else {
-	            			this.hasInvalidData = false;
-	            			this.hideAutocomplete();
-	            			this.handleStationDistruption(res);
-	            		};
-	            	}, function(err){
-	            		console.log(err);
-	            	});
+        			this.doSearch(searchTerm);
             	};
         });	
+	}
+
+	setupForm() {
+		this.autocompleteForm = this.fb.group({
+	      "searchQuery" : ["", Validators.minLength(2)]
+	    });
+	}
+
+	private doSearch(searchTerm: string) {
+		this._searchFacade.queryStation(searchTerm).then((res) => {
+			if(!res || res.httpStatusCode === 404) {return false};
+
+    		if(res.length < 1) {
+    			this.autocompleteFilteredList.length = 0;
+    			this.hasInvalidData = true;
+    		} else {
+    			this.hasInvalidData = false;
+    			this.hideAutocomplete();
+    			this.handleStationDistruption(res);
+    		};
+    	}, function(err){
+    		console.log(err);
+    	});
 	}
 
 	private isValidStation(searchTerm) {
@@ -107,11 +123,11 @@ export class searchComponent implements OnInit {
 		//Force a model change, passing in the term to search using the endpoint
 		this.modelChanged.next(term);
 		//update the 2 way binding between this, and the parent component
-		this.sharedSearchStringChange.emit(term);
+		this.sharedSearchStringChange.next(term);
 	}
 
-	public selectStation(station) {
-		this.sharedSearchString = station.stationName;
+	public selectStation(searchTerm, station) {
+		searchTerm.value = station.stationName;
 		this.modelChanged.next(station.naptanId);
 	}
 
