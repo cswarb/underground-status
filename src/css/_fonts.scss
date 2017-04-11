@@ -1,14 +1,19 @@
 @font-face {
-  font-family: 'JohnstonITCLight';
-  src: url('/assets/fonts/JohnstonITCStd-Light.otf') format('opentype');
+  font-family: "P22-Book";
+  src: url("/assets/fonts/p22/p22underground-book-p22.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'JohnstonITCMedium';
-  src: url('/assets/fonts/JohnstonITCStd-Medium.otf') format('opentype');
+  font-family: "P22-Demi";
+  src: url("/assets/fonts/p22/p22underground-demi-p22.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'JohnstonITCBold';
-  src: url('/assets/fonts/JohnstonITCStd-Bold.otf') format('opentype');
+  font-family: "P22-Light";
+  src: url("/assets/fonts/p22/p22underground-light-p22.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "P22-Medium";
+  src: url("/assets/fonts/p22/p22underground-medium-p22.ttf") format("truetype");
 }

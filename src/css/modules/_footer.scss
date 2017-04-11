@@ -2,7 +2,7 @@
 	background-color: $black;
 	color: $white;
 	&__text {
-		font-family: 'JohnstonITCMedium', sans-serif;
+		font-family: $font-stack-demi;
 		margin: 0;
 		padding: 2rem;
 	}
