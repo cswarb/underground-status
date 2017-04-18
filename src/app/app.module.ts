@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { wildCardComponent } from "./wildcard/wildcard.component";
 import { popupComponent } from "./shared/popup/popup.component";
+import { popupComponentDirective } from "./shared/popup/popup.component.directive";
 import { popupComponentResolver } from "./shared/popup/popup-resolver.service";
 
 
@@ -42,7 +43,8 @@ import { appConstants } from "./app.constants";
     declarations: [ //The components, directives, and pipes for this module
         AppComponent,
         wildCardComponent,
-        popupComponent
+        popupComponent,
+        popupComponentDirective
     ],
     providers: [ //The service providers for this module
         appConstants,

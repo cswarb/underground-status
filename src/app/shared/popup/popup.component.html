@@ -2,11 +2,11 @@
 <button type="button" class="popup__close" (click)="close()"></button>
 <div class="popup">
 	<figure class="popup__wrapper">
-		<img class="popup__image" src="/assets/img/map.png" alt="Underground Map" title="Underground Map"/>
+		<img id="udg-map" class="popup__image" src="/assets/img/map.png" alt="Underground Map" title="Underground Map"/>
 		<figcaption class="popup__description"></figcaption>
 	</figure>
 </div>	
-<div class="popup__image__controls">
+<div udg-zoom class="popup__image__controls">
 	<div class="popup__image__control popup__image__controls--zoomin">+</div>
 	<div class="popup__image__control popup__image__controls--zoomout">-</div>
 </div>
