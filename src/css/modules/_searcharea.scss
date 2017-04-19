@@ -21,14 +21,14 @@
 		}
 		&__input {
 			border: 0;
-			font-family: $font-stack-demi;
+			font-family: $font-stack-sailec;
 			font-size: 2rem;
 			height: 100%;
 			padding: 0.5rem 4rem 0.5rem 1rem;
 			text-transform: capitalize;
 			width: 100%;
 			@media screen and (min-width: 60rem) {
-				padding: 1rem 5rem 1rem 1rem;
+				padding: 1.4rem 5rem 1rem 1rem;
 			}
 			&__clear {
 				background: url("/assets/img/clear.svg");

@@ -17,3 +17,22 @@
   font-family: "P22-Medium";
   src: url("/assets/fonts/p22/p22underground-medium-p22.ttf") format("truetype");
 }
+
+
+@font-face {
+  font-family: "SailecMedium";
+  src: url('/assets/fonts/Sailec-Medium/Sailec-Medium.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/Sailec-Medium/Sailec-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/Sailec-Medium/Sailec-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/Sailec-Medium/Sailec-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/Sailec-Medium/Sailec-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: "ApercuMedium";
+  src: url('/assets/fonts/apercu/ApercuPro-Medium.eot'); /* IE9 Compat Modes */
+  src: url('/assets/fonts/apercu/ApercuPro-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/assets/fonts/apercu/ApercuPro-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/assets/fonts/apercu/ApercuPro-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/assets/fonts/apercu/ApercuPro-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+}

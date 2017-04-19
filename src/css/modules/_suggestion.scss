@@ -18,13 +18,14 @@
 	}
 	&__name {
 		color: $black;
+		font-family: $font-stack-sailec;
     	font-size: 1.5rem;
     	line-height: 1.25;
 		margin: 0;
 	}
 	&__helper {
 	    color: #9ea4a7;
-	    font-family: $font-stack-noto;
+	    font-family: $font-stack-sailec;
 	    font-size: 0.8rem;
 		line-height: 1.25;
 	    letter-spacing: 0.2px;
