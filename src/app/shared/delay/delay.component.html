@@ -2,6 +2,8 @@
 	<h4 class="ui-helper">Currently no delays reported on any lines</h4>
 </div>
 
+{{delays | json}}
+
 <div *ngFor="let delay of delays" class="delay">
 	<div class="delay__wrapper">
 		<p>{{delay?.description}}</p>
@@ -9,3 +11,5 @@
 		<p *ngIf="delay?.affectedStops?.length > 0">{{delay?.affectedStops}}</p>
 	</div>
 </div>
+
+<button (click)="check()">chk</button>
