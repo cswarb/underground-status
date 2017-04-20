@@ -7,7 +7,7 @@ export class appConstants {
   		"tube": "tube",
   		"dlr": "dlr",
   		"overground": "overground",
-  		"tfl-rail": "tflrail",
+  		"tflRail": "tflrail",
   		"tram": "tram"
   	}
 }

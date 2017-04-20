@@ -14,7 +14,9 @@ export class stationAreaComponent implements OnInit {
 
 	filterType: string = "station";
 	searchExample: string = "Bank";
-	searchString: string = "";
+	searchString: any = {
+		"search": ""
+	};
 	searchResults: any = [];
 	allLines: any = [];
 
@@ -46,10 +48,10 @@ export class stationAreaComponent implements OnInit {
 		this.searchResults = delta;
 	}
 
-	public clearTheSearchResult(delta: any): void {		
+	public clearTheSearchResult(delta: any): void {	
 		let index = this.searchResults.indexOf(delta);
   		this.searchResults.splice(index, 1);  
-		this.searchString = "";
+		this.searchString.search = "";
 	}
 
 	private createStationLookup(lineId: number, stationsForLine: any): void {

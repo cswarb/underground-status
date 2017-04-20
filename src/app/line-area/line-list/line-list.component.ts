@@ -4,6 +4,8 @@ import { FormControl } from "@angular/forms";
 
 import { lineFacade } from "../../line-area/line-facade.service";
 
+import { lineDataModel } from "./lineData.model";
+
 @Component({
 	moduleId: module.id,
     selector: "[line-list]",

@@ -16,7 +16,20 @@ export class delayResolver implements Resolve<any> {
 	}
 
 	resolve(route: ActivatedRouteSnapshot) {
-		return this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.tube);
+		return Promise.all([
+			this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.tube),
+			this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.dlr),
+			this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.overground),
+			this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.tflRail),
+			this._delayFacade.getAllDelays(this._appConstants.app_travel_modes.tram)
+		]).catch((error) => {
+			this.handleError(error);
+		});
+	}
+
+	private handleError(error: any): Promise<any> {
+		console.log("Error: ", error);
+		return Promise.reject(error.message || error);
 	}
 	
 }

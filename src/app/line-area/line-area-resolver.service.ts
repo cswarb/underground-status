@@ -40,7 +40,7 @@ export class lineAreaResolver implements Resolve<any> {
 	}
 
 	private getRailStatus(): any {
-		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tfl-rail"]);
+		return this._lineFacade.getAllLineStatuses(this._appConstants.app_travel_modes["tflRail"]);
 	}
 
 	private getTramStatus(): any {

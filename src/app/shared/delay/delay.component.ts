@@ -13,7 +13,17 @@ export class delayComponent implements OnInit {
 	constructor(private route: ActivatedRoute){}	
 
 	ngOnInit() {
-		this.delays = this.route.snapshot.data["resolveDataDelays"];
+		this.getResolveData();
+	}
+
+	private getResolveData(): void {
+		this.concatArray(this.route.snapshot.data["resolveDataDelays"]);
+	}
+
+	private concatArray(delayArray: any): void {
+		delayArray.map((value, iterator) => {
+			this.delays = this.delays.concat(value);
+		});
 	}
 
 }

@@ -3,26 +3,20 @@
     <form action="">
         <div class="searcharea__wrapper">
         
-            <form [formGroup]="autocompleteForm">
-                <div class="center searcharea__helper">
-                    <h4 *ngIf="autocompleteForm.controls.searchQuery.errors?.minlength" class="ui-helper searcharea__helper__text">Search for a station.</h4>
-                </div>
-
+            <form>
                 <div class="searcharea__input__wrapper">
                     <input type="text"
                     autocomplete="off"
                     class="searcharea__input"
                     name="search"
                     #searchTerm
-                    [ngModel]='sharedSearchString'
-                    (ngModelChange)='search($event)'
+                    [(ngModel)]='sharedSearchString.search'
                     [placeholder]="'e.g. ' + searchExample"
-                    (keyup)="filterAutocomplete(searchTerm, $event)"
+                    (keyup)="filterAutocomplete(sharedSearchString.search, $event)"
                     min="2"
                     max="30"
-                    formControlName="searchQuery"
                     autofocus="autofocus"/>
-                    <span class="searcharea__input__clear" *ngIf="searchTerm.value.length > 0" (click)="clearInput(searchTerm)"></span>
+                    <span class="searcharea__input__clear" *ngIf="sharedSearchString.search.length > 0" (click)="clearInput(sharedSearchString.search)"></span>
                 </div>
             </form>
 
@@ -36,7 +30,7 @@
 
             <div class="suggestion__wrapper" *ngIf="autocompleteFilteredList && showAutocompleteUI">
                 <div class="suggestion__value" *ngFor="let suggestion of autocompleteFilteredList">
-                    <button class="suggestion__select" (click)="selectStation(searchTerm, suggestion)">
+                    <button class="suggestion__select" (click)="selectStation(sharedSearchString.search, suggestion)">
                         <p class="suggestion__name">{{suggestion?.stationName}}</p>
                         <p class="suggestion__helper suggestion__helper--{{suggestion?.parentLine}}">{{suggestion?.parentLine}}</p>
                     </button>
@@ -47,7 +41,3 @@
     </form>
 
 </header>
-
-<!-- <footer>
-    
-</footer> -->
