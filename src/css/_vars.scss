@@ -24,6 +24,25 @@ $lines: (
 	tflrail: $tfl-blue
 );
 
+$alt-lines: (
+	bakerloo: #EAB18C,
+	central: #EF8253,
+	circle: #FF5B44,
+	district: #CE2737,
+	hammersmithcity: #7D002F,
+	jubilee: #54002F,
+	metropolitan: #2E102A,
+	northern: #1B131A,
+	piccadilly: #1A1F2B,
+	victoria: #4B5F6D,
+	waterloocity: #D0E4F2,
+	overground: #85A5CC,
+	emirates: #4A6491,
+	dlr: #30395C,
+	tflrail: #1A1F2B,
+	tram: #0B0F19
+);
+
 $font-stack-light: "P22-Light", sans-serif;
 $font-stack-book: "P22-Book", sans-serif;
 $font-stack-medium: "P22-Medium", sans-serif;
