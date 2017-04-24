@@ -39,25 +39,7 @@ export class delayService {
 					headers: this.getHeaders()
 				}
 			)
-			.map((res) => {
-				let delayArray = res.json();
-				let temporaryDelayArray = [];
-				delayArray.map((value, iterator) => {
-					if(value.length < 1) {return false};
-					//Create the delayModel map
-					temporaryDelayArray = temporaryDelayArray.concat(new delayModel(
-						value.$type,
-						value.category,
-						value.type,
-						value.categxoryDescription,
-						value.description,
-						value.affectedRoutes,
-						value.affectedStops,
-						value.closureText)
-					);
-				});
-				return delayArray;
-			})
+			.map((res) => res.json())
 			.toPromise()
 			.catch(this.handleError);
 	}
