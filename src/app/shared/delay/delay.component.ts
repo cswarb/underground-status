@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, HostBinding } from "@angular/core";
 import { Resolve, ActivatedRoute } from "@angular/router";
 
-import { delayModel } from "./delayModel";
+import { delayModel } from "./delay.model";
 
 @Component({
 	moduleId: module.id,

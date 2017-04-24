@@ -5,6 +5,8 @@ import "rxjs/add/operator/map";
 import "rxjs/Rx";
 import { appConstants } from "../../app.constants";
 
+import { delayModel } from "./delay.model";
+
 
 @Injectable()
 export class delayService {
@@ -37,7 +39,25 @@ export class delayService {
 					headers: this.getHeaders()
 				}
 			)
-			.map((res) => res.json())
+			.map((res) => {
+				let delayArray = res.json();
+				let temporaryDelayArray = [];
+				delayArray.map((value, iterator) => {
+					if(value.length < 1) {return false};
+					//Create the delayModel map
+					temporaryDelayArray = temporaryDelayArray.concat(new delayModel(
+						value.$type,
+						value.category,
+						value.type,
+						value.categxoryDescription,
+						value.description,
+						value.affectedRoutes,
+						value.affectedStops,
+						value.closureText)
+					);
+				});
+				return delayArray;
+			})
 			.toPromise()
 			.catch(this.handleError);
 	}
