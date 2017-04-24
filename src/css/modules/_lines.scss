@@ -75,6 +75,7 @@
 		&.expanded {
 			height: auto;
 		}
+
 		&--loaded {
 			&:before {
 			    align-items: center;
@@ -98,6 +99,13 @@
 		@each $line, $color in $lines {
 			&--#{$line} {
 				background-color: $color;
+			}
+		}
+		&--alt {
+			@each $line, $color in $alt-lines {
+				&--#{$line} {
+					background-color: $color;
+				}
 			}
 		}
 		&__name {

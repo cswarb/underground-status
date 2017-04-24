@@ -25,23 +25,8 @@ export class delayComponent implements OnInit {
 	private concatArray(delayArray: any): void {
 		delayArray.map((value, iterator) => {
 			if(value.length < 1) {return false};
-			console.log(value[0]["category"]);
-			this.delays = this.delays.concat(
-				new delayModel(
-					[value][0]["$type"],
-					[value][0]["category"],
-					[value][0]["type"],
-					[value][0]["categoryDescription"],
-					[value][0]["description"],
-					[value][0]["affectedRoutes"],
-					[value][0]["affectedStops"],
-					[value][0]["closureText"]
-				)
-			);
+			this.delays = this.delays.concat(value);
 		});
 	}
-
-	check() {
-		console.log(this);
-	}
+	
 }
