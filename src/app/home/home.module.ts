@@ -1,5 +1,5 @@
 //Core imports
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule, JsonpModule } from "@angular/http";
@@ -16,6 +16,7 @@ import { lineAreaModule } from "../line-area/line-area.module";
 import { stationAreaModule } from "../station-area/station-area.module";
 
 //Global Services
+import { lineService } from "../line-area/line.service";
 
 //Routing
 import { homeRoutingModule } from "./home-routing.module";
@@ -41,7 +42,7 @@ import { homeRoutingModule } from "./home-routing.module";
         homeComponent
     ],
     providers: [ //The service providers for this module
-
+        lineService
     ],
     exports: [
         homeComponent
@@ -53,4 +54,11 @@ import { homeRoutingModule } from "./home-routing.module";
         homeComponent
     ]
 })
-export class homeModule { }
+export class homeModule {
+    public static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: homeModule,
+            providers: [lineService]
+        };
+    };
+}

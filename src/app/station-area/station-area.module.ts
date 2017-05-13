@@ -17,7 +17,7 @@ import { searchResultsModule } from "./search/search-results/search-results.modu
 import { stationService } from "./station.service";
 import { stationAreaResolver } from "./station-area-resolver.service";
 import { stationFacade } from "./station-facade.service";
-import { lineService } from "../line-area/line.service";
+// import { lineService } from "../line-area/line.service";
 import { lineFacade } from "../line-area/line-facade.service";
 
 //Routing
@@ -42,7 +42,6 @@ import { lineFacade } from "../line-area/line-facade.service";
     providers: [ //The service providers for this module
         stationService,
         stationFacade,
-        lineService,
         lineFacade,
         stationAreaResolver
     ],

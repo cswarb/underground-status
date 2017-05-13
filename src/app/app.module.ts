@@ -35,7 +35,7 @@ import { appConstants } from "./app.constants";
     	ReactiveFormsModule,
         BrowserAnimationsModule,
 
-        homeModule,
+        homeModule.forRoot(),
         navigationModule,
 
     	AppRoutingModule

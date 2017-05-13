@@ -13,7 +13,7 @@ import { filterModule } from "../filter/filter.module";
 import { delayModule } from "../shared/delay/delay.module";
 
 //Global Services
-import { lineService } from "./line.service";
+// import { lineService } from "./line.service";
 import { lineAreaResolver } from "./line-area-resolver.service";
 
 //Routing
@@ -35,7 +35,6 @@ import { lineAreaResolver } from "./line-area-resolver.service";
         lineAreaComponent
     ],
     providers: [ //The service providers for this module
-        lineService,
         lineAreaResolver
     ],
     exports: [
