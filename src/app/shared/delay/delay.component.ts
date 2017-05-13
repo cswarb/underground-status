@@ -23,10 +23,10 @@ export class delayComponent implements OnInit {
 	}
 
 	private concatArray(delayArray: any): void {
-		delayArray.map((value, iterator) => {
-			if(value.length < 1) {return false};
+		delayArray.forEach((value, iterator) => {
+			if(value.length < 1) { return false; };
 			//Create the delayModel map
-			this.delays = this.delays.concat(new delayModel(
+			const obj = new delayModel(
 				value[iterator].$type,
 				value[iterator].category,
 				value[iterator].type,
@@ -34,8 +34,10 @@ export class delayComponent implements OnInit {
 				value[iterator].description,
 				value[iterator].affectedRoutes,
 				value[iterator].affectedStops,
-				value[iterator].closureText)
+				value[iterator].closureText
 			);
+
+			this.delays = this.delays.concat(obj);
 		});
 	}
 	
