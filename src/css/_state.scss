@@ -1,0 +1,6 @@
+.loading-area {
+	&.fixed {
+		position: fixed;
+		z-index: 10;
+	}
+}
