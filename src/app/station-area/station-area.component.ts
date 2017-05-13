@@ -4,6 +4,8 @@ import { Resolve, ActivatedRoute } from "@angular/router";
 import { stationFacade } from "./station-facade.service";
 import { lineFacade } from "../line-area/line-facade.service";
 import { delayFacade } from "../shared/delay/delay-facade.service";
+import { stationListModel } from "./station-list.model";
+import { stationInfoModel } from "./station-info.model";
 
 @Component({
 	moduleId: module.id,
@@ -17,13 +19,16 @@ export class stationAreaComponent implements OnInit {
 	searchString: any = {
 		"search": ""
 	};
-	searchResults: any = [];
-	allLines: any = [];
+	searchResults: stationInfoModel[] = [];
+	allLines: Array<string> = [];
 
-	stationsList: any = [];
+	private stationsList: stationListModel[] = [];
 	itemsProcessed: number = 0;
 
-	constructor(private _stationFacade: stationFacade, private _delayFacade: delayFacade, private _lineFacade: lineFacade, private route: ActivatedRoute) {}
+	constructor(private _stationFacade: stationFacade,
+		private _delayFacade: delayFacade,
+		private _lineFacade: lineFacade,
+		private route: ActivatedRoute) {}
 	
 	ngOnInit() {
 		//Determine if we should get a new list of stations, or ones from cache
@@ -38,7 +43,7 @@ export class stationAreaComponent implements OnInit {
 	}
 
 	private getResolveData(callback: any): void {
-		this.allLines = this.route.snapshot.data["resolveData"].map(function(value: any, iterator: number) {
+		this.allLines = this.route.snapshot.data["lines"].map(function(value: any, iterator: number) {
 			return value.id;
 		});
 		callback();
@@ -54,15 +59,15 @@ export class stationAreaComponent implements OnInit {
 		this.searchString.search = "";
 	}
 
-	private createStationLookup(lineId: number, stationsForLine: any): void {
+	private createStationLookup(lineId: string, stationsForLine: any): void {
 		let stations = stationsForLine;
 
-		stations.map((value: any, iterator: number) => {
+		stations.map((value: stationListModel, iterator: number) => {
 			if(this._stationFacade.isTubeStationType(value) && value.hasOwnProperty("commonName") && value.hasOwnProperty("naptanId")) {
 				this.stationsList.push({
 					"parentLine": lineId,
-					"stationName": value.commonName,
-					"naptanId": value.naptanId
+					"stationName": value["commonName"],
+					"naptanId": value["naptanId"]
 				});
 			};
 		});

@@ -21,16 +21,16 @@ import { delayResolver } from "../shared/delay/delay-resolver.service";
             path: "lines",
             component: lineAreaComponent,
             resolve: {
-              resolveData: lineAreaResolver,
-              resolveDataDelays: delayResolver
+              lines: lineAreaResolver,
+              delays: delayResolver
             }
           },
           {
             path: "stations",
             component: stationAreaComponent,
             resolve: {
-              resolveData: stationAreaResolver,
-              resolveDataDelays: delayResolver
+              lines: stationAreaResolver,
+              delays: delayResolver
             }
           }
         ]

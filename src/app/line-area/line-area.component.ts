@@ -6,6 +6,8 @@ import { delayFacade } from "../shared/delay/delay-facade.service";
 
 import { appConstants } from "../app.constants";
 
+import { lineDataModel } from "./line-data.model";
+
 @Component({
 	moduleId: module.id,
     selector: "",
@@ -13,10 +15,9 @@ import { appConstants } from "../app.constants";
 })
 export class lineAreaComponent implements OnInit {
 
-	lineData: any = [];
 	listType: string = "Lines";
 	searchString: string = "";
-	allLineStatuses: any = [];
+	allLineStatuses: lineDataModel[] = [];
 
 	constructor(private _lineFacade: lineFacade, private _delayFacade: delayFacade, private route: ActivatedRoute, private _appConstants: appConstants) {}
 	
@@ -25,7 +26,7 @@ export class lineAreaComponent implements OnInit {
 	}
 
 	private getResolveData(): void {
-		this.concatArray(this.route.snapshot.data["resolveData"]);
+		this.concatArray(this.route.snapshot.data["lines"]);
 	}
 
 	private concatArray(lineArray: any): void {

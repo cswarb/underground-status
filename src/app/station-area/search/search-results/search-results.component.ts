@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef, Input, Output, HostBinding, EventEmitter } from "@angular/core";
 
+import { stationInfoModel } from "../../station-info.model";
+
 @Component({
 	moduleId: module.id,
     selector: "[search-results]",
@@ -7,7 +9,7 @@ import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRe
 })
 export class searchResultsComponent implements OnInit {
 
-	@Input() searchResults = [];
+	@Input() searchResults: stationInfoModel[] = [];
 	@Output() clearSearchResults = new EventEmitter();
 
 	constructor(){}	

@@ -20,6 +20,4 @@ export class stationAreaResolver implements Resolve<any> {
 		return this._lineFacade.getAllPossibleLines();
 	}
 
-
-	
 }

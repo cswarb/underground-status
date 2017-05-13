@@ -9,6 +9,10 @@ import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
 import "rxjs/add/operator/switchMap";
 
+import { stationListModel } from "../station-list.model";
+import { stationInfoModel } from "../station-info.model";
+
+
 import * as _ from "lodash";
 
 @Component({
@@ -20,19 +24,19 @@ export class searchComponent implements OnInit {
 
 	autocompleteForm: FormGroup;
 
-	@Input() sharedSearchString: any;
-    @Output() sharedSearchStringChange = new EventEmitter(); 
+	@Input() sharedSearchString: string;
+    @Output() sharedSearchStringChange: EventEmitter<any> = new EventEmitter(); 
     //This @output needs to be referenced with the same variable as the input, 
     //but with Change on the end for it to work
 
 	//Inputs from parent components
 	@Input() filterType: string = "station";
 	@Input() searchExample: string = "";
-	@Input() autoCompleteVals: any = [];
-	@Input() searchResults: any = [];
+	@Input() autoCompleteVals: stationListModel[] = [];
+	@Input() searchResults: stationInfoModel[] = [];
 
 	//Outputs to parent components
-	@Output() searchResultUpdated = new EventEmitter();
+	@Output() searchResultUpdated: EventEmitter<any> = new EventEmitter();
 
 	autocompleteFilteredList: any = [];
 	hasInvalidData: boolean = false;
@@ -44,9 +48,9 @@ export class searchComponent implements OnInit {
 	//Local variables
 	debounceValue: number = 300;
 
-	constructor(private fb: FormBuilder, private _searchFacade: searchFacade, private myElement: ElementRef) {
-		
-	}
+	constructor(private fb: FormBuilder,
+		private _searchFacade: searchFacade,
+		private myElement: ElementRef) { }
 
 	ngOnInit() {
 		this._searchFacade.setAutoCompleteVals(this.autoCompleteVals);

@@ -19,7 +19,7 @@ export class delayComponent implements OnInit {
 	}
 
 	private getResolveData(): void {
-		this.concatArray(this.route.snapshot.data["resolveDataDelays"]);
+		this.concatArray(this.route.snapshot.data["delays"]);
 	}
 
 	private concatArray(delayArray: any): void {
