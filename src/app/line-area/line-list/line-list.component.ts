@@ -72,7 +72,6 @@ export class lineListComponent implements OnInit {
 	}
 
 	public hasReason(): boolean {
-		console.log("hasReason()");
 		if(this.lineData.lineStatuses[0].reason) {
 			return true;
 		};
