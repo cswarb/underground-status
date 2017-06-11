@@ -3,9 +3,9 @@
         <h1 class="undergroundline__line__name">{{lineData?.name}}</h1>
         <div class="undergroundline__line__status">
             <!-- <p class="undergroundline__line__status__badge undergroundline__line__status--bold">Status:</p> -->            
-            <p class="undergroundline__line__status__text" *ngFor="let status of lineData.lineStatuses"> 
-                <span *ngIf="!isNow(status.validityPeriods)">{{status.statusSeverityDescription}}</span>
-                <span *ngIf="isNow(status.validityPeriods)">
+            <p class="undergroundline__line__status__text" *ngFor="let status of statusSeverityDescriptionArray"> 
+                <span *ngIf="!isFuture(status.validityPeriods)">{{status.statusSeverityDescription}}</span>
+                <span *ngIf="isFuture(status.validityPeriods)">
                     <!-- <br/> -->
                     <span>Upcoming - {{status.statusSeverityDescription}}</span>
                     <!-- <br/>
@@ -16,7 +16,7 @@
             </p>
         </div>
         <div class="undergroundline__line__toggle">
-            <button toggleLineDetail (click)="expandLineInfo(lineData)" *ngIf="hasReason()" type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
+            <button toggleLineDetail (click)="expandLineInfo()" *ngIf="hasReason()" type="button" alt="toggle switch" class="button button__icon" data-format="svg" role="button">
                 <p class="button__icon__text">More Detail</p>
                 <img src="/assets/img/toggle.svg" *ngIf="!detailedViewLoading" class="button undergroundline__line__toggleicon icon" [ngClass]="{'undergroundline__line__toggleicon--expanded': detailedViewToggle}" alt="toggle switch"/>
                 <img src="/assets/img/loading.svg" alt="loading" class="undergroundline__line__loadingicon" [ngClass]="{'undergroundline__line__loadingicon--loading': detailedViewLoading}"/>
@@ -24,6 +24,8 @@
         </div>
     </div>
     <div class="undergroundline__block undergroundline__block__more-info">
-        <p class="undergroundline__block__content">{{detailedLineInfo?.description}}</p>
+        <p class="undergroundline__block__content" *ngFor="let disruptionInfo of detailedLineInfo">
+            {{disruptionInfo?.statusSeverityDescription}} - {{disruptionInfo?.reason}}
+        </p>
     </div>
 </article>

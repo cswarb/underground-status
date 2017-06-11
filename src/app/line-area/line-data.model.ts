@@ -13,3 +13,17 @@ export class lineDataModel {
     crowding: any;
 
 }
+
+export class lineDisruptionDataModel {
+
+    $type: string;
+    created: string;
+    disruption: any;
+    id: number;
+    lineId: string;
+    reason: string;
+    statusSeverity: number;
+    statusSeverityDescription: string;
+    validityPeriods: any;
+
+}

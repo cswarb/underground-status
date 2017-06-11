@@ -12,7 +12,6 @@ import "rxjs/add/operator/switchMap";
 import { stationListModel } from "../station-list.model";
 import { stationInfoModel } from "../station-info.model";
 
-
 import * as _ from "lodash";
 
 @Component({
@@ -24,10 +23,7 @@ export class searchComponent implements OnInit {
 
 	autocompleteForm: FormGroup;
 
-	@Input() sharedSearchString: string;
-    @Output() sharedSearchStringChange: EventEmitter<any> = new EventEmitter(); 
-    //This @output needs to be referenced with the same variable as the input, 
-    //but with Change on the end for it to work
+	@Input() sharedSearchString: any;
 
 	//Inputs from parent components
 	@Input() filterType: string = "station";
@@ -114,8 +110,6 @@ export class searchComponent implements OnInit {
 	public search = (term) => {
 		//Force a model change, passing in the term to search using the endpoint
 		this.modelChanged.next(term);
-		//update the 2 way binding between this, and the parent component
-		this.sharedSearchStringChange.next(term);
 	}
 
 	public selectStation(searchTerm, station) {	
@@ -132,8 +126,8 @@ export class searchComponent implements OnInit {
 		this.showAutocompleteUI = false;	
 	}
 
-	public clearInput(searchTerm): void {	
-		this.sharedSearchString = "";
+	public clearInput(searchTerm): void {
+		this.sharedSearchString.search = "";
 		this.modelChanged.next("");
 		this.hideAutocomplete();
 	}
