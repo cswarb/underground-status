@@ -10,8 +10,5 @@
 	<g>
 		<circle fill="none" stroke="#FFFFFF" stroke-width="90" cx="320" cy="260" r="215"/>
 	</g>
-	<g>
-		<path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="100" d="M0,260h640"/>
-	</g>
 </g>
 </svg>
