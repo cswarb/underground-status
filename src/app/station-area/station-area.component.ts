@@ -39,7 +39,7 @@ export class stationAreaComponent implements OnInit {
 		} else {
 			//Get from cache
 			this.stationsList = this._stationFacade.getStations();
-		};		
+		};	
 	}
 
 	private getResolveData(callback: any): void {
@@ -53,7 +53,7 @@ export class stationAreaComponent implements OnInit {
 		this.searchResults = delta;
 	}
 
-	public clearTheSearchResult(delta: any): void {	
+	public clearTheSearchResult(delta: any): void {
 		let index = this.searchResults.indexOf(delta);
   		this.searchResults.splice(index, 1);  
 		this.searchString.search = "";

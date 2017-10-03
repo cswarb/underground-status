@@ -30,7 +30,7 @@
 
             <div class="suggestion__wrapper" *ngIf="autocompleteFilteredList && showAutocompleteUI">
                 <div class="suggestion__value" *ngFor="let suggestion of autocompleteFilteredList">
-                    <button class="suggestion__select" (click)="selectStation(sharedSearchString.search, suggestion)">
+                    <button class="suggestion__select suggestion__select--{{suggestion?.parentLine}}" (click)="selectStation(sharedSearchString.search, suggestion)">
                         <p class="suggestion__name">{{suggestion?.stationName}}</p>
                         <p class="suggestion__helper suggestion__helper--{{suggestion?.parentLine}}">{{suggestion?.parentLine}}</p>
                     </button>
