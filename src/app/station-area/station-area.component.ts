@@ -22,7 +22,7 @@ export class stationAreaComponent implements OnInit {
 	searchResults: stationInfoModel[] = [];
 	allLines: Array<string> = [];
 
-	private stationsList: stationListModel[] = [];
+	public stationsList: stationListModel[] = [];
 	itemsProcessed: number = 0;
 
 	constructor(private _stationFacade: stationFacade,
