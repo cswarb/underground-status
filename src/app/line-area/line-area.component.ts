@@ -26,13 +26,8 @@ export class lineAreaComponent implements OnInit {
 	}
 
 	private getResolveData(): void {
-		this.concatArray(this.route.snapshot.data["lines"]);
-	}
-
-	private concatArray(lineArray: any): void {
-		lineArray.map((value, iterator) => {
-			this.allLineStatuses = this.allLineStatuses.concat(value);
-		});
+		console.log(this.route.snapshot.data["lines"]);
+		this.allLineStatuses = this.route.snapshot.data["lines"];
 	}
 
 	handleError(error: any) {

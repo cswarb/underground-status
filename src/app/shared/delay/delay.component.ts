@@ -28,14 +28,14 @@ export class delayComponent implements OnInit {
 			if(value) {
 				//Create the delayModel map
 				const obj = new delayModel(
-					value[iterator].$type,
-					value[iterator].category,
-					value[iterator].type,
-					value[iterator].categxoryDescription,
-					value[iterator].description,
-					value[iterator].affectedRoutes,
-					value[iterator].affectedStops,
-					value[iterator].closureText
+					value[0].$type,
+					value[0].category,
+					value[0].type,
+					value[0].categxoryDescription,
+					value[0].description,
+					value[0].affectedRoutes,
+					value[0].affectedStops,
+					value[0].closureText
 				);
 				this.delays.push(obj);
 			};

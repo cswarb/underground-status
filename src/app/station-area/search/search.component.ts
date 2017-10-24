@@ -63,7 +63,7 @@ export class searchComponent implements OnInit {
 
 	private doSearch(searchTerm: string) {	
 		this._searchFacade.queryStation(searchTerm).then((res) => {
-			if(!res || res.httpStatusCode === 404) {return false};
+			if(!res) {return false};
 
     		if(res.length < 1) {
     			this.autocompleteFilteredList.length = 0;

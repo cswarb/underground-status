@@ -38,7 +38,28 @@ export class lineFacade {
 	 * @return {promise}
 	 */
 	getAllLineStatuses(type: string): any {
-		return this._lineService.getAllLineStatuses(type);
+		return this._lineService.getAllLineStatuses(type)
+		.then((response: any) => {
+			return new Promise<any>((resolve: Function, reject: Function) => {
+	            if (response) {
+	                return resolve(response);
+	            } else {
+	                return reject(response);
+	            };
+	        });
+			
+		})
+		.catch((error: any) => {
+			console.log("err")
+		});
+	}
+
+	concatArray(lineArray: any): any {
+		let arr = [];
+		lineArray.map((value, iterator) => {
+			arr = arr.concat(value);
+		});
+		return arr;
 	}
 	
 }
