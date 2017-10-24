@@ -33,8 +33,8 @@ export class stationAreaComponent implements OnInit {
 	ngOnInit() {
 		//Determine if we should get a new list of stations, or ones from cache
 		if(!this._stationFacade.getStations()) {
-			this.getResolveData(() => {
-				this.getAllStations();	
+			this.getResolveData((lines) => {
+				this.getAllStations(lines);	
 			});			
 		} else {
 			//Get from cache
@@ -43,10 +43,10 @@ export class stationAreaComponent implements OnInit {
 	}
 
 	private getResolveData(callback: any): void {
-		this.allLines = this.route.snapshot.data["lines"].map(function(value: any, iterator: number) {
+		let lines = this.route.snapshot.data["lines"].map(function(value: any, iterator: number) {
 			return value.id;
 		});
-		callback();
+		callback(lines);
 	}
 
 	public searchResultHasUpdated(delta: any): void {
@@ -80,14 +80,14 @@ export class stationAreaComponent implements OnInit {
 		this.stationsList = this._stationFacade.getStations();
 	}
 
-	private getAllStations(): void {
+	private getAllStations(lines): void {
 		//Go through each of the lines, get all stations from them, and create a lookup object
 		//so we can use this data as autocomplete data, search and filter stations at a later point in time
-		this.allLines.forEach((lineId) => {
+		this.allLines = lines.forEach((lineId) => {
 			this._stationFacade.getStationsFromLine(lineId).then((response) => {
 				this.itemsProcessed++;
 				this.createStationLookup(lineId, response);
-				if(this.itemsProcessed === this.allLines.length){
+				if(this.itemsProcessed === lines.length){
 					this.stationListReady();
 				};
 			});

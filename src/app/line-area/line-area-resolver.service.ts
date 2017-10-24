@@ -22,7 +22,11 @@ export class lineAreaResolver implements Resolve<any> {
 			this.getDlrStatus(),
 			this.getRailStatus(),
 			this.getTramStatus()
-		]).catch((error) => {
+		])
+		.then((response) => {
+			return this._lineFacade.concatArray(response);
+		})
+		.catch((error) => {
 			this.handleError(error);
 		});
 	}
